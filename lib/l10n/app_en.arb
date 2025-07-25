@@ -2,5 +2,14 @@
   "@@locale": "en",
   "appTitle": "EcoMarket",
   "homeWelcome": "Welcome to EcoMarket",
-  "addProduct": "Add Product"
+  "addProduct": "Add Product",
+  "geminiSuggestion": "Suggestion From Gemini",
+  "newIdeasTitle": "New Ideas",
+  "newIdeasSubtitle": "Set sail for new ideas with Gemini",
+  "ecoProductTitle": "More Eco-Friendly Products",
+  "ecoProductSubtitle": "Gemini helps you renew, improve, and make your products more environmentally friendly",
+  "marketResearchTitle": "Market Research",
+  "marketResearchSubtitle": "Let's conduct market and price research with Gemini",
+  "userFeedbackTitle": "User Feedback",
+  "userFeedbackSubtitle": "Gemini analyzes user comments and requests for you"
 }
