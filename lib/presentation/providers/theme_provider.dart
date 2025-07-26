@@ -5,6 +5,10 @@ class ThemeModeProvider with ChangeNotifier {
 
   ThemeMode get themeMode => _themeMode;
 
+  ThemeMode getCurrentThemeMode(){
+    return _themeMode;
+  }
+
   void setThemeMode(ThemeMode mode) {
     _themeMode = mode;
     notifyListeners();

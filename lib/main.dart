@@ -1,17 +1,24 @@
+import 'package:ecomarket/data/api/gemini_api.dart';
+import 'package:ecomarket/presentation/providers/gemini_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 
 import 'config/theme/app_theme.dart';
-import 'config/locale/locale_provider.dart';
-import 'config/theme/theme_provider.dart';
+import 'presentation/providers/locale_provider.dart';
+import 'presentation/providers/theme_provider.dart';
 import 'presentation/screens/home_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Check for everything is ready for init
+  await dotenv.load(fileName: ".env"); // Loading .env
+  GeminiApiService.initialize(); // Gemini init
   runApp(const EcoMarketApp());
 }
+
 
 class EcoMarketApp extends StatelessWidget {
   const EcoMarketApp({super.key});
@@ -20,6 +27,7 @@ class EcoMarketApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => GeminiProvider()),
         ChangeNotifierProvider(create: (_) => ThemeModeProvider()),
         ChangeNotifierProvider(create: (_) => LocaleProvider()),
       ],

@@ -6,10 +6,12 @@
   "geminiSuggestion": "Gemini'dan Bugünkü Öneri",
   "newIdeasTitle": "Yeni Ürün Fikirleri",
   "newIdeasSubtitle": "Gemini ile beraber yeni fikirlere yelken aç",
+  "ecoBotInfo": "EcoBot Nedir?",
   "ecoProductTitle": "Daha Çevreci Ürünler",
   "ecoProductSubtitle": "Gemini ürünlerini yenilemekte, geliştirmekte ve çevre dostu yapamakta sana yardımcı olur",
   "marketResearchTitle": "Pazar Araştırması",
   "marketResearchSubtitle": "Gemini ile pazar ve fiyat araştırması yapalım",
+  "talkToEcoBot": "EcoBot ile konuşmak için dokun",
   "userFeedbackTitle": "Kullanıcı Geri Dönüşleri",
   "userFeedbackSubtitle": "Gemini senin için kullanıcıların yorumlarını ve isteklerini analiz eder"
 }

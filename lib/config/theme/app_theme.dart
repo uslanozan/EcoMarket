@@ -833,7 +833,7 @@ class AppTheme {
   );
 
   static const LinearGradient englishGradient =LinearGradient(
-    colors: [Colors.red, Colors.blue],
+    colors: [Colors.red,Colors.red,Colors.white,Colors.blue, Colors.blue],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );

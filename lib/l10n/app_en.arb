@@ -6,10 +6,12 @@
   "geminiSuggestion": "Suggestion From Gemini",
   "newIdeasTitle": "New Ideas",
   "newIdeasSubtitle": "Set sail for new ideas with Gemini",
+  "ecoBotInfo": "What's EcoBot",
   "ecoProductTitle": "More Eco-Friendly Products",
   "ecoProductSubtitle": "Gemini helps you renew, improve, and make your products more environmentally friendly",
   "marketResearchTitle": "Market Research",
   "marketResearchSubtitle": "Let's conduct market and price research with Gemini",
+  "talkToEcoBot": "Tap to Talk to EcoBot",
   "userFeedbackTitle": "User Feedback",
   "userFeedbackSubtitle": "Gemini analyzes user comments and requests for you"
 }

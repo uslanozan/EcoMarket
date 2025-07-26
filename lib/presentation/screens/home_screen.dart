@@ -4,8 +4,8 @@ import 'package:ecomarket/presentation/widgets/info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../config/locale/locale_provider.dart';
-import '../../config/theme/theme_provider.dart';
+import '../providers/locale_provider.dart';
+import '../providers/theme_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -37,9 +37,11 @@ class HomeScreen extends StatelessWidget {
               );
             },
           ),
-
           IconButton(
-            icon: const Icon(Icons.brightness_6),
+            icon: context.watch<ThemeModeProvider>().getCurrentThemeMode() ==
+                    ThemeMode.light
+                ? Icon(Icons.brightness_6)
+                : Icon(Icons.brightness_2_rounded),
             onPressed: () {
               context.read<ThemeModeProvider>().toggleTheme();
             },
@@ -50,7 +52,8 @@ class HomeScreen extends StatelessWidget {
         children: [
           // Scrollable içerik
           Padding(
-            padding: const EdgeInsets.only(bottom: 80), // Alttaki Row için boşluk bırak
+            padding: const EdgeInsets.only(
+                bottom: 80), // Alttaki Row için boşluk bırak
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -64,55 +67,61 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(width: 20),
                         InfoCard(
                           title: AppLocalizations.of(context)!.newIdeasTitle,
-                          subtitle: AppLocalizations.of(context)!.newIdeasSubtitle,
+                          subtitle:
+                              AppLocalizations.of(context)!.newIdeasSubtitle,
                           icon: Icons.lightbulb,
                           onTap: () {
-                            // Navigasyon, dialog vs.
+                            //todo: Yeni fikirler page
                           },
                         ),
-
                         const SizedBox(width: 20),
                         InfoCard(
                           title: AppLocalizations.of(context)!.ecoProductTitle,
-                          subtitle:AppLocalizations.of(context)!.ecoProductSubtitle,
+                          subtitle:
+                              AppLocalizations.of(context)!.ecoProductSubtitle,
                           icon: Icons.recycling,
                           onTap: () {
-                            // Navigasyon, dialog vs.
+                            //todo: More Eco product page
                           },
                         ),
                         const SizedBox(width: 20),
                         InfoCard(
-                          title: AppLocalizations.of(context)!.marketResearchTitle,
-                          subtitle: AppLocalizations.of(context)!.marketResearchSubtitle,
+                          title:
+                              AppLocalizations.of(context)!.marketResearchTitle,
+                          subtitle: AppLocalizations.of(context)!
+                              .marketResearchSubtitle,
                           icon: Icons.sell,
                           onTap: () {
-                            // Navigasyon, dialog vs.
+                            //todo: pazar araştırması page
                           },
                         ),
                         const SizedBox(width: 20),
                         InfoCard(
-                          title: AppLocalizations.of(context)!.userFeedbackTitle,
-                          subtitle: AppLocalizations.of(context)!.userFeedbackSubtitle,
+                          title:
+                              AppLocalizations.of(context)!.userFeedbackTitle,
+                          subtitle: AppLocalizations.of(context)!
+                              .userFeedbackSubtitle,
                           icon: Icons.star,
                           onTap: () {
-                            // Navigasyon, dialog vs.
+                            //todo: user feedbacklerini görme page
                           },
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 20),
-
-
-
                   Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       gradient: AppTheme.primaryGradient,
                       boxShadow: [
                         BoxShadow(
-                          color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(0.3),
                           blurRadius: 10,
                           offset: const Offset(0, 6),
                         ),
@@ -124,25 +133,33 @@ class HomeScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(16.0),
                         child: Row(
                           children: [
-                            Icon(Icons.auto_awesome, size: 30, color: Colors.white),
+                            Icon(Icons.auto_awesome,
+                                size: 30, color: Colors.white),
                             const SizedBox(width: 12),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    AppLocalizations.of(context)!.geminiSuggestion,
-                                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                    AppLocalizations.of(context)!
+                                        .geminiSuggestion,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
                                     "Yeni ürünler için geri dönüştürülebilir malzeme listeni güncelle.",
-                                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                      color: Colors.white70,
-                                    ),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(
+                                          color: Colors.white70,
+                                        ),
                                   ),
                                 ],
                               ),
@@ -152,30 +169,52 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-
-
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: FloatingActionButton.extended(
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (_) => EcobotChat(),
-                        );
+                  Center(
+                      child: Text(AppLocalizations.of(context)!.talkToEcoBot)),
+                  Material(
+                    color: Colors.transparent, // Arka planı saydam tutmak için
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(
+                          20), // İsteğe bağlı, ripple'ı şekillendirir
+                      onTap: () {
+                        //todo: EcoBot chat page
+                        print("EcoBot tıklandı!");
                       },
-                      icon: Icon(Icons.android), //todo: daha sonra ekstra icon eklenebilir
-                      label: Text('EcoBot'),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.asset(
+                          'assets/ecobot_default.png',
+                          height: 250,
+                          width: 250,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextButton(
+                    style: ButtonStyle(
+                      overlayColor: MaterialStateProperty.all(Colors.transparent), // Ripple yok
+                      padding: MaterialStateProperty.all(EdgeInsets.zero),
+                    ),
+                    onPressed: () {
+                      //todo: What's EcoBot pop-up
+                    },
+                    child: Text(
+                      AppLocalizations.of(context)!.ecoBotInfo,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   )
-
 
 
                 ],
               ),
             ),
           ),
-
-
 
           Stack(
             children: [
@@ -194,25 +233,34 @@ class HomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton(
-                        style: ButtonStyle(
-
+                        style: ButtonStyle(),
+                        onPressed: () {
+                          //todo: Following product page
+                        },
+                        child: const Icon(
+                          Icons.local_shipping,
+                          color: Colors.white,
                         ),
-                        onPressed: () {},
-                        child: const Icon(Icons.local_shipping,color: Colors.white,),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
-                        child: const Icon(Icons.bar_chart_sharp,color: Colors.white),
+                        onPressed: () {
+                          //todo: Showing graphs page
+                        },
+                        child: const Icon(Icons.bar_chart_sharp,
+                            color: Colors.white),
                       ),
-
                       ElevatedButton(
-                        onPressed: () {},
-                        child: const Icon(Icons.shopping_cart,color: Colors.white),
+                        onPressed: () {
+                          //todo: buy page ???
+                        },
+                        child: const Icon(Icons.shopping_cart,
+                            color: Colors.white),
                       ),
-
                       ElevatedButton(
-                        onPressed: () {},
-                        child: const Icon(Icons.person,color: Colors.white),
+                        onPressed: () {
+                          //todo: profile page
+                        },
+                        child: const Icon(Icons.person, color: Colors.white),
                       ),
                     ],
                   ),
@@ -220,11 +268,8 @@ class HomeScreen extends StatelessWidget {
               )
             ],
           ),
-
-
         ],
       ),
     );
   }
 }
-
