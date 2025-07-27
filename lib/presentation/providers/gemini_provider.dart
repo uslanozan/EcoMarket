@@ -4,6 +4,10 @@ import 'package:flutter_gemini/flutter_gemini.dart';
 class GeminiProvider extends ChangeNotifier {
   final Gemini _gemini = Gemini.instance;
 
+  // prompt results
+  String? _dailySuggestion;
+  String? get dailySuggestion => _dailySuggestion;
+
   String _response = '';
   bool _isLoading = false;
   String _error = '';
@@ -167,6 +171,7 @@ Answer in $answerLanguage.
     }
   }
 
+  /*
   // Günlük öneri kısmı
   Future<void> getDailySuggestion({
     required String answerLanguage
@@ -181,8 +186,34 @@ Answer in $answerLanguage.
 
     try {
       final result = await _gemini.text(prompt);
+      _dailySuggestion = result?.output ?? 'No suggestion available.';
+      notifyListeners();
+    } catch (e) {
+      _dailySuggestion = 'Error: ${e.toString()}';
+      notifyListeners();
+    }
+  }
+   */
+
+  Future<void> getDailySuggestion({required String answerLanguage}) async {
+    _setLoading();
+
+    final prompt = '''
+Provide a fresh and innovative daily suggestion related to e-commerce, lifestyle, or sustainability. 
+The suggestion should be inspiring and useful, but it does not require any input parameters. Maximum 1 sentence.
+Answer in $answerLanguage.
+''';
+
+    try {
+      print('Gemini request started with prompt:\n$prompt'); // LOG
+
+      final result = await _gemini.text(prompt);
+
+      print('Gemini response received: ${result?.output}'); // LOG
+
       _setResponse(result?.output ?? 'No suggestion available.');
     } catch (e) {
+      print('Gemini error: $e'); // LOG
       _setError(e.toString());
     }
   }

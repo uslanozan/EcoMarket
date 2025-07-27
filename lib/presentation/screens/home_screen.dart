@@ -6,14 +6,49 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../providers/locale_provider.dart';
 import '../providers/theme_provider.dart';
+import '../providers/gemini_provider.dart';
+import 'package:ecomarket/core/globals/globals.dart';
 
-class HomeScreen extends StatelessWidget {
+//todo: dil değiştiğinde Günlük öneri de değişmeli. Ayrıca bunlar 24 saat boyunca sabit kalmalı
+//todo: tema değiştirmeye ilk bastığımda hiçbir şey olmuyor 2. bastığımda tema değişiyor debug edilmeli
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Sayfa açılır açılmaz provider'daki günlük öneriyi çağır
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final localeProvider = context.read<LocaleProvider>();
+
+      // Burada global_language'ı güncelleyebilirsin:
+      if (localeProvider.locale.languageCode == 'tr') {
+        global_language = "Turkish";
+      } else {
+        global_language = "English";
+      }
+
+      final geminiProvider = context.read<GeminiProvider>();
+      geminiProvider.getDailySuggestion(answerLanguage: global_language);
+
+      print('GLOBAL_LANGUAGE:$global_language and LANGUAGE_CODE: ${localeProvider.locale.languageCode}');
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
     final localeProvider = context.read<LocaleProvider>();
+    final themeProvider = context.watch<ThemeModeProvider>();
+    final geminiProvider = context.watch<GeminiProvider>();
 
     return Scaffold(
       appBar: AppBar(
@@ -38,10 +73,9 @@ class HomeScreen extends StatelessWidget {
             },
           ),
           IconButton(
-            icon: context.watch<ThemeModeProvider>().getCurrentThemeMode() ==
-                    ThemeMode.light
-                ? Icon(Icons.brightness_6)
-                : Icon(Icons.brightness_2_rounded),
+            icon: themeProvider.getCurrentThemeMode() == ThemeMode.light
+                ? const Icon(Icons.brightness_6)
+                : const Icon(Icons.brightness_2_rounded),
             onPressed: () {
               context.read<ThemeModeProvider>().toggleTheme();
             },
@@ -52,8 +86,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           // Scrollable içerik
           Padding(
-            padding: const EdgeInsets.only(
-                bottom: 80), // Alttaki Row için boşluk bırak
+            padding: const EdgeInsets.only(bottom: 80),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -66,62 +99,53 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         const SizedBox(width: 20),
                         InfoCard(
-                          title: AppLocalizations.of(context)!.newIdeasTitle,
-                          subtitle:
-                              AppLocalizations.of(context)!.newIdeasSubtitle,
+                          title: local.newIdeasTitle,
+                          subtitle: local.newIdeasSubtitle,
                           icon: Icons.lightbulb,
                           onTap: () {
-                            //todo: Yeni fikirler page
+                            // TODO: Yeni fikirler page
                           },
                         ),
                         const SizedBox(width: 20),
                         InfoCard(
-                          title: AppLocalizations.of(context)!.ecoProductTitle,
-                          subtitle:
-                              AppLocalizations.of(context)!.ecoProductSubtitle,
+                          title: local.ecoProductTitle,
+                          subtitle: local.ecoProductSubtitle,
                           icon: Icons.recycling,
                           onTap: () {
-                            //todo: More Eco product page
+                            // TODO: More Eco product page
                           },
                         ),
                         const SizedBox(width: 20),
                         InfoCard(
-                          title:
-                              AppLocalizations.of(context)!.marketResearchTitle,
-                          subtitle: AppLocalizations.of(context)!
-                              .marketResearchSubtitle,
+                          title: local.marketResearchTitle,
+                          subtitle: local.marketResearchSubtitle,
                           icon: Icons.sell,
                           onTap: () {
-                            //todo: pazar araştırması page
+                            // TODO: Pazar araştırması page
                           },
                         ),
                         const SizedBox(width: 20),
                         InfoCard(
-                          title:
-                              AppLocalizations.of(context)!.userFeedbackTitle,
-                          subtitle: AppLocalizations.of(context)!
-                              .userFeedbackSubtitle,
+                          title: local.userFeedbackTitle,
+                          subtitle: local.userFeedbackSubtitle,
                           icon: Icons.star,
                           onTap: () {
-                            //todo: user feedbacklerini görme page
+                            // TODO: User feedback page
                           },
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 20),
+
                   Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
+                    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       gradient: AppTheme.primaryGradient,
                       boxShadow: [
                         BoxShadow(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withOpacity(0.3),
+                          color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                           blurRadius: 10,
                           offset: const Offset(0, 6),
                         ),
@@ -133,34 +157,29 @@ class HomeScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(16.0),
                         child: Row(
                           children: [
-                            Icon(Icons.auto_awesome,
-                                size: 30, color: Colors.white),
+                            const Icon(Icons.auto_awesome, size: 30, color: Colors.white),
                             const SizedBox(width: 12),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    AppLocalizations.of(context)!
-                                        .geminiSuggestion,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                    local.ecoBotSuggestion,
+                                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                   const SizedBox(height: 4),
-                                  Text(
-                                    "Yeni ürünler için geri dönüştürülebilir malzeme listeni güncelle.",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium
-                                        ?.copyWith(
-                                          color: Colors.white70,
-                                        ),
+
+                                  // Burada günlük öneriyi gösteriyoruz
+                                  geminiProvider.isLoading
+                                      ? CircularProgressIndicator(color: Colors.white70)
+                                      : Text(
+                                    geminiProvider.response.isEmpty ? 'Yükleniyor...' : geminiProvider.response,
+                                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white70),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -169,15 +188,14 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Center(
-                      child: Text(AppLocalizations.of(context)!.talkToEcoBot)),
+
+                  Center(child: Text(local.talkToEcoBot)),
                   Material(
-                    color: Colors.transparent, // Arka planı saydam tutmak için
+                    color: Colors.transparent,
                     child: InkWell(
-                      borderRadius: BorderRadius.circular(
-                          20), // İsteğe bağlı, ripple'ı şekillendirir
+                      borderRadius: BorderRadius.circular(20),
                       onTap: () {
-                        //todo: EcoBot chat page
+                        // TODO: EcoBot chat page
                         print("EcoBot tıklandı!");
                       },
                       child: Ink(
@@ -193,80 +211,64 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10),
                   TextButton(
                     style: ButtonStyle(
-                      overlayColor: MaterialStateProperty.all(Colors.transparent), // Ripple yok
+                      overlayColor: MaterialStateProperty.all(Colors.transparent),
                       padding: MaterialStateProperty.all(EdgeInsets.zero),
                     ),
                     onPressed: () {
-                      //todo: What's EcoBot pop-up
+                      // TODO: What's EcoBot pop-up
                     },
                     child: Text(
-                      AppLocalizations.of(context)!.ecoBotInfo,
+                      local.ecoBotInfo,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
-                  )
-
-
+                  ),
                 ],
               ),
             ),
           ),
 
-          Stack(
-            children: [
-              // Sabit alt kısım
-              //NOT! Positioned mutlaka stack içinde olmalı
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  height: 60,
-                  //color: AppTheme.primaryGreen,
-                  color: AppTheme.primaryGreenLight,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ElevatedButton(
-                        style: ButtonStyle(),
-                        onPressed: () {
-                          //todo: Following product page
-                        },
-                        child: const Icon(
-                          Icons.local_shipping,
-                          color: Colors.white,
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          //todo: Showing graphs page
-                        },
-                        child: const Icon(Icons.bar_chart_sharp,
-                            color: Colors.white),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          //todo: buy page ???
-                        },
-                        child: const Icon(Icons.shopping_cart,
-                            color: Colors.white),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          //todo: profile page
-                        },
-                        child: const Icon(Icons.person, color: Colors.white),
-                      ),
-                    ],
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 60,
+              color: AppTheme.primaryGreenLight,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    style: ButtonStyle(),
+                    onPressed: () {
+                      // TODO: Following product page
+                    },
+                    child: const Icon(Icons.local_shipping, color: Colors.white),
                   ),
-                ),
-              )
-            ],
+                  ElevatedButton(
+                    onPressed: () {
+                      // TODO: Showing graphs page
+                    },
+                    child: const Icon(Icons.bar_chart_sharp, color: Colors.white),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // TODO: Buy page?
+                    },
+                    child: const Icon(Icons.shopping_cart, color: Colors.white),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // TODO: Profile page
+                    },
+                    child: const Icon(Icons.person, color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),

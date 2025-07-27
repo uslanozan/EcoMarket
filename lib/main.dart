@@ -11,9 +11,13 @@ import 'config/theme/app_theme.dart';
 import 'presentation/providers/locale_provider.dart';
 import 'presentation/providers/theme_provider.dart';
 import 'presentation/screens/home_screen.dart';
+import 'core/globals/globals.dart' as global;
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Check for everything is ready for init
+  final deviceLocale = WidgetsBinding.instance.platformDispatcher.locale;
+  global.global_language = deviceLocale.languageCode == 'tr' ? 'Turkish' : 'English';
   await dotenv.load(fileName: ".env"); // Loading .env
   GeminiApiService.initialize(); // Gemini init
   runApp(const EcoMarketApp());

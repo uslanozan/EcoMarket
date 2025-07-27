@@ -3,15 +3,15 @@
   "appTitle": "EcoMarket",
   "homeWelcome": "Welcome to EcoMarket",
   "addProduct": "Add Product",
-  "geminiSuggestion": "Suggestion From Gemini",
+  "ecoBotSuggestion": "Suggestion From EcoBot",
   "newIdeasTitle": "New Ideas",
-  "newIdeasSubtitle": "Set sail for new ideas with Gemini",
+  "newIdeasSubtitle": "Set sail for new ideas with EcoBot",
   "ecoBotInfo": "What's EcoBot",
   "ecoProductTitle": "More Eco-Friendly Products",
-  "ecoProductSubtitle": "Gemini helps you renew, improve, and make your products more environmentally friendly",
+  "ecoProductSubtitle": "EcoBot helps you renew, improve, and make your products more environmentally friendly",
   "marketResearchTitle": "Market Research",
-  "marketResearchSubtitle": "Let's conduct market and price research with Gemini",
+  "marketResearchSubtitle": "Let's conduct market and price research with EcoBot",
   "talkToEcoBot": "Tap to Talk to EcoBot",
   "userFeedbackTitle": "User Feedback",
-  "userFeedbackSubtitle": "Gemini analyzes user comments and requests for you"
+  "userFeedbackSubtitle": "EcoBot analyzes user comments and requests for you"
 }
