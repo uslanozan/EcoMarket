@@ -1,8 +1,13 @@
+import 'package:ecomarket/core/cache/daily_suggestion_cache.dart';
+import 'package:ecomarket/core/globals/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GeminiProvider extends ChangeNotifier {
   final Gemini _gemini = Gemini.instance;
+
+  final cache = DailySuggestionCache();
 
   // prompt results
   String? _dailySuggestion;
@@ -17,11 +22,14 @@ class GeminiProvider extends ChangeNotifier {
   String get error => _error;
 
   // Genel prompt gönderme fonksiyonu (isteğe bağlı)
-  Future<void> sendPrompt(String prompt) async {
+  Future<void> sendPrompt({
+    required String prompt,
+    required String fallBackText,
+}) async {
     _setLoading();
     try {
       final result = await _gemini.text(prompt);
-      _setResponse(result?.output ?? 'Cevap alınamadı.');
+      _setResponse(result?.output ?? fallBackText);
     } catch (e) {
       _setError(e.toString());
     }
@@ -35,6 +43,7 @@ class GeminiProvider extends ChangeNotifier {
     required String ecoFriendly,
     required String budget,
     required String answerLanguage, // Direkt UI tarafından gelecek, Turkish ya da English
+    required String fallBackText,
   }) async {
     _setLoading();
 
@@ -61,7 +70,7 @@ Answer in $answerLanguage.
 
     try {
       final result = await _gemini.text(prompt);
-      _setResponse(result?.output ?? 'Cevap alınamadı.');
+      _setResponse(result?.output ?? fallBackText);
     } catch (e) {
       _setError(e.toString());
     }
@@ -73,6 +82,7 @@ Answer in $answerLanguage.
     required String productIdea,
     required String targetCountries,
     required String answerLanguage, // Direkt UI tarafından gelecek, Turkish ya da English
+    required String fallBackText,
   }) async {
     _setLoading();
 
@@ -103,7 +113,7 @@ Answer in $answerLanguage.
 
     try {
       final result = await _gemini.text(prompt);
-      _setResponse(result?.output ?? 'Cevap alınamadı.');
+      _setResponse(result?.output ?? fallBackText);
     } catch (e) {
       _setError(e.toString());
     }
@@ -117,6 +127,7 @@ Answer in $answerLanguage.
     required String currentMaterials,
     required String targetMarket,
     required String answerLanguage, // Direkt UI tarafından gelecek, Turkish ya da English
+    required String fallBackText,
   }) async {
     _setLoading();
 
@@ -137,7 +148,7 @@ Answer in $answerLanguage.
 
     try {
       final result = await _gemini.text(prompt);
-      _setResponse(result?.output ?? 'Cevap alınamadı.');
+      _setResponse(result?.output ?? fallBackText);
     } catch (e) {
       _setError(e.toString());
     }
@@ -148,6 +159,7 @@ Answer in $answerLanguage.
     required String productName,
     required String userFeedbacks,  // Kullanıcı geri dönüşleri, uzun metin olarak veya birleştirilmiş hali
     required String answerLanguage, // Direkt UI tarafından gelecek, Turkish ya da English
+    required String fallBackText,
   }) async {
     _setLoading();
 
@@ -165,53 +177,83 @@ Answer in $answerLanguage.
 
     try {
       final result = await _gemini.text(prompt);
-      _setResponse(result?.output ?? 'Cevap alınamadı.');
+      _setResponse(result?.output ?? fallBackText);
     } catch (e) {
       _setError(e.toString());
     }
   }
 
-  /*
-  // Günlük öneri kısmı
+
   Future<void> getDailySuggestion({
-    required String answerLanguage
+    required String answerLanguage,
+    required String fallBackText,
   }) async {
+    print('OZAN_LOG: getDailySuggestion started for language: $answerLanguage');
     _setLoading();
+    //todo: BURASI TEST İÇİN SİLİNECEK OTOMATİK REQUEST ATMASIN DİYE ŞUANLIK RETURN BIRAKTIM
+    return;
+
+    try {
+      final cachedSuggestion = await cache.getCachedSuggestion(global_language);
+      if (cachedSuggestion != null) {
+        _setDailySuggestion(cachedSuggestion);
+        return;
+      } else {
+        print('OZAN_LOG: Cache bulunamadı veya boş');
+      }
+    } catch (e) {
+      print('OZAN_LOG: Cache okuma sırasında hata: $e');
+    }
 
     final prompt = '''
 Provide a fresh and innovative daily suggestion related to e-commerce, lifestyle, or sustainability. 
-The suggestion should be inspiring and useful, but it does not require any input parameters.
+The suggestion should be inspiring and useful, but it does not require any input parameters. It must be at most one sentence.
 Answer in $answerLanguage.
 ''';
 
     try {
+      print('OZAN LOG: Gemini prompt gönderiliyor:\n$prompt');
       final result = await _gemini.text(prompt);
-      _dailySuggestion = result?.output ?? 'No suggestion available.';
-      notifyListeners();
+      final suggestion = result?.output?.trim() ?? fallBackText;
+      print('OZAN LOG: Gemini cevabı alındı: $suggestion');
+
+      _setDailySuggestion(suggestion);
+
+      try {
+        await cache.saveSuggestion(global_language, suggestion);
+        print('OZAN LOG: Öneri cache\'e kaydedildi');
+      } catch (e) {
+        print('OZAN LOG: Cache kaydetme hatası: $e');
+      }
     } catch (e) {
-      _dailySuggestion = 'Error: ${e.toString()}';
-      notifyListeners();
+      print('OZAN LOG: Gemini API çağrısında hata: $e');
+      _setError(e.toString());
     }
   }
-   */
 
-  Future<void> getDailySuggestion({required String answerLanguage}) async {
+
+  Future<void> translateSuggestion({
+    required String newLanguage,
+    required String fallBackText,
+  }) async {
+    print('OZAN_LOG: translateSuggestion started');
+    print('OZAN_LOG: Current suggestion: $_dailySuggestion');
+    print('OZAN_LOG: Target language: $newLanguage');
+
     _setLoading();
 
     final prompt = '''
-Provide a fresh and innovative daily suggestion related to e-commerce, lifestyle, or sustainability. 
-The suggestion should be inspiring and useful, but it does not require any input parameters. Maximum 1 sentence.
-Answer in $answerLanguage.
+Translate the following sentence into $newLanguage. Do not change the meaning. Keep it to one sentence.
+
+"$_dailySuggestion"
 ''';
 
+    print('OZAN_LOG: Translate prompt:\n$prompt');
+
     try {
-      print('Gemini request started with prompt:\n$prompt'); // LOG
-
       final result = await _gemini.text(prompt);
-
-      print('Gemini response received: ${result?.output}'); // LOG
-
-      _setResponse(result?.output ?? 'No suggestion available.');
+      print('OZAN_LOG: Translation result: ${result?.output}');
+      _setDailySuggestion(result?.output ?? fallBackText);
     } catch (e) {
       print('Gemini error: $e'); // LOG
       _setError(e.toString());
@@ -220,8 +262,14 @@ Answer in $answerLanguage.
 
 
 
-
   // Private yardımcı fonksiyonlar
+  void _setDailySuggestion(String suggestion) {
+    _dailySuggestion = suggestion.trim();
+    _response = suggestion.trim();
+    _isLoading = false;
+    notifyListeners();
+  }
+
   void _setLoading() {
     _isLoading = true;
     _error = '';

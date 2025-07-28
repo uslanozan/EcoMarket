@@ -9,8 +9,11 @@
   "ecoBotInfo": "EcoBot Nedir?",
   "ecoProductTitle": "Daha Çevreci Ürünler",
   "ecoProductSubtitle": "EcoBot ürünlerini yenilemekte, geliştirmekte ve çevre dostu yapamakta sana yardımcı olur",
+  "loading": "Yükleniyor...",
   "marketResearchTitle": "Pazar Araştırması",
   "marketResearchSubtitle": "EcoBot ile pazar ve fiyat araştırması yapalım",
+  "noResponse": "Cevap alınamadı",
+  "noSuggestion": "Uygun öneri bulunamadı",
   "talkToEcoBot": "EcoBot ile konuşmak için dokun",
   "userFeedbackTitle": "Kullanıcı Geri Dönüşleri",
   "userFeedbackSubtitle": "EcoBot senin için kullanıcıların yorumlarını ve isteklerini analiz eder"

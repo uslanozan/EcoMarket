@@ -15,7 +15,12 @@ class ThemeModeProvider with ChangeNotifier {
   }
 
   void toggleTheme() {
-    _themeMode = _themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+    if (_themeMode == ThemeMode.light) {
+      _themeMode = ThemeMode.dark;
+    } else {
+      _themeMode = ThemeMode.light;
+    }
+    print('THEME_LOG INSIDE TOGGLE NEW THEME: $_themeMode');
     notifyListeners();
   }
 }

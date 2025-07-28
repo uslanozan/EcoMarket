@@ -1,6 +1,7 @@
 import 'package:ecomarket/presentation/providers/gemini_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EcobotChat extends StatefulWidget {
   const EcobotChat({super.key});
@@ -28,7 +29,7 @@ class _EcobotChatState extends State<EcobotChat> {
             const SizedBox(height: 12),
             ElevatedButton(
               onPressed: () {
-                context.read<GeminiProvider>().sendPrompt(controller.text);
+                context.read<GeminiProvider>().sendPrompt(prompt: "DENEME", fallBackText: AppLocalizations.of(context)!.noResponse);
               },
               child: Text('Gönder'),
             ),

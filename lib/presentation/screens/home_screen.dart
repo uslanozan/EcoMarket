@@ -1,16 +1,17 @@
 import 'package:ecomarket/config/theme/app_theme.dart';
 import 'package:ecomarket/presentation/screens/ecobot_chat.dart';
+import 'package:ecomarket/presentation/widgets/ecobot/ecobot_suggestion.dart';
 import 'package:ecomarket/presentation/widgets/info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../providers/locale_provider.dart';
 import '../providers/theme_provider.dart';
-import '../providers/gemini_provider.dart';
+import 'package:ecomarket/presentation/providers/gemini_provider.dart';
 import 'package:ecomarket/core/globals/globals.dart';
 
-//todo: dil değiştiğinde Günlük öneri de değişmeli. Ayrıca bunlar 24 saat boyunca sabit kalmalı
-//todo: tema değiştirmeye ilk bastığımda hiçbir şey olmuyor 2. bastığımda tema değişiyor debug edilmeli
+//todo: dil ve günlük öneri kısmı tamamlandı fakat fazla API isteğinden ötürü cache ve 24 saat mekanizması test edilmedi
+//todo: NOT!!!! otomatik request atılmasın diye gemini_provider'dan dailySuggest kısmını şimdilik kapattım
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,10 +21,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+
   @override
   void initState() {
     super.initState();
-
     // Sayfa açılır açılmaz provider'daki günlük öneriyi çağır
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final localeProvider = context.read<LocaleProvider>();
@@ -36,7 +38,10 @@ class _HomeScreenState extends State<HomeScreen> {
       }
 
       final geminiProvider = context.read<GeminiProvider>();
-      geminiProvider.getDailySuggestion(answerLanguage: global_language);
+      geminiProvider.getDailySuggestion(
+        answerLanguage: global_language,
+        fallBackText: AppLocalizations.of(context)!.noSuggestion
+      );
 
       print('GLOBAL_LANGUAGE:$global_language and LANGUAGE_CODE: ${localeProvider.locale.languageCode}');
     });
@@ -64,12 +69,24 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               child: const Icon(Icons.language, size: 24, color: Colors.white),
             ),
-            onPressed: () {
+            onPressed: () async {
               localeProvider.setLocale(
                 localeProvider.locale.languageCode == 'tr'
                     ? const Locale('en')
                     : const Locale('tr'),
               );
+
+              if(geminiProvider.dailySuggestion?.isEmpty ?? true){
+                await geminiProvider.getDailySuggestion(
+                    answerLanguage: global_language,
+                    fallBackText: AppLocalizations.of(context)!.noSuggestion
+                );
+              }else{
+                await geminiProvider.translateSuggestion(
+                    newLanguage: global_language,
+                    fallBackText: AppLocalizations.of(context)!.noSuggestion
+                );
+              }
             },
           ),
           IconButton(
@@ -151,42 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          children: [
-                            const Icon(Icons.auto_awesome, size: 30, color: Colors.white),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    local.ecoBotSuggestion,
-                                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-
-                                  // Burada günlük öneriyi gösteriyoruz
-                                  geminiProvider.isLoading
-                                      ? CircularProgressIndicator(color: Colors.white70)
-                                      : Text(
-                                    geminiProvider.response.isEmpty ? 'Yükleniyor...' : geminiProvider.response,
-                                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white70),
-                                  ),
-
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    child: EcoBotSuggestion(local: local, geminiProvider: geminiProvider,),
                   ),
 
                   Center(child: Text(local.talkToEcoBot)),

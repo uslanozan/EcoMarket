@@ -9,8 +9,11 @@
   "ecoBotInfo": "What's EcoBot",
   "ecoProductTitle": "More Eco-Friendly Products",
   "ecoProductSubtitle": "EcoBot helps you renew, improve, and make your products more environmentally friendly",
+  "loading": "Loading...",
   "marketResearchTitle": "Market Research",
   "marketResearchSubtitle": "Let's conduct market and price research with EcoBot",
+  "noResponse": "No response",
+  "noSuggestion": "No suggestion available",
   "talkToEcoBot": "Tap to Talk to EcoBot",
   "userFeedbackTitle": "User Feedback",
   "userFeedbackSubtitle": "EcoBot analyzes user comments and requests for you"
