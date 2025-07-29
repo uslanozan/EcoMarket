@@ -9,6 +9,7 @@ import '../providers/locale_provider.dart';
 import '../providers/theme_provider.dart';
 import 'package:ecomarket/presentation/providers/gemini_provider.dart';
 import 'package:ecomarket/core/globals/globals.dart';
+import 'package:ecomarket/core/utils/text_highlight.dart';
 
 //todo: dil ve günlük öneri kısmı tamamlandı fakat fazla API isteğinden ötürü cache ve 24 saat mekanizması test edilmedi
 //todo: NOT!!!! otomatik request atılmasın diye gemini_provider'dan dailySuggest kısmını şimdilik kapattım
@@ -21,7 +22,44 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  //------------------------FUNCTIONS----------------------
+  // EcoBot Info mesajı
+  void _showEcoBotInfo(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          AppLocalizations.of(context)!.ecoBotInfoLabel,
+          style: TextStyle(
+            color: AppTheme.primaryGreenLight,
+          ),
+        ),
+        content: SingleChildScrollView(
+          child: RichText(
+            text: highlightWordsInText(
+              text: AppLocalizations.of(context)!.ecoBotInfoMessage,
+              highlights: global_language == "Turkish"
+                  ? ['EcoBot', 'e-ticaret', 'Google', 'Gemini', 'Ozan Uslan']
+                  : ['EcoBot', 'e-commerce', 'Google', 'Gemini AI', 'Ozan Uslan'],
+              normalStyle: Theme.of(context).textTheme.bodyMedium!,
+              highlightStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: AppTheme.primaryGreen,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(AppLocalizations.of(context)!.gotIt),
+          ),
+        ],
+      ),
+    );
+  }
 
+  //------------------------FUNCTIONS END------------------
 
   @override
   void initState() {
@@ -39,13 +77,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
       final geminiProvider = context.read<GeminiProvider>();
       geminiProvider.getDailySuggestion(
-        answerLanguage: global_language,
-        fallBackText: AppLocalizations.of(context)!.noSuggestion
-      );
+          answerLanguage: global_language,
+          fallBackText: AppLocalizations.of(context)!.noSuggestion);
 
-      print('GLOBAL_LANGUAGE:$global_language and LANGUAGE_CODE: ${localeProvider.locale.languageCode}');
+      print(
+          'GLOBAL_LANGUAGE:$global_language and LANGUAGE_CODE: ${localeProvider.locale.languageCode}');
     });
-
   }
 
   @override
@@ -76,16 +113,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     : const Locale('tr'),
               );
 
-              if(geminiProvider.dailySuggestion?.isEmpty ?? true){
+              if (geminiProvider.dailySuggestion?.isEmpty ?? true) {
                 await geminiProvider.getDailySuggestion(
                     answerLanguage: global_language,
-                    fallBackText: AppLocalizations.of(context)!.noSuggestion
-                );
-              }else{
+                    fallBackText: AppLocalizations.of(context)!.noSuggestion);
+              } else {
                 await geminiProvider.translateSuggestion(
                     newLanguage: global_language,
-                    fallBackText: AppLocalizations.of(context)!.noSuggestion
-                );
+                    fallBackText: AppLocalizations.of(context)!.noSuggestion);
               }
             },
           ),
@@ -154,29 +189,38 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-
                   Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       gradient: AppTheme.primaryGradient,
                       boxShadow: [
                         BoxShadow(
-                          color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(0.3),
                           blurRadius: 10,
                           offset: const Offset(0, 6),
                         ),
                       ],
                     ),
-                    child: EcoBotSuggestion(local: local, geminiProvider: geminiProvider,),
+                    child: EcoBotSuggestion(
+                      local: local,
+                      geminiProvider: geminiProvider,
+                    ),
                   ),
-
                   Center(child: Text(local.talkToEcoBot)),
                   Material(
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(20),
                       onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => EcoBotChat()),
+                        );
                         // TODO: EcoBot chat page
                         print("EcoBot tıklandı!");
                       },
@@ -192,18 +236,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 10),
                   TextButton(
                     style: ButtonStyle(
-                      overlayColor: MaterialStateProperty.all(Colors.transparent),
+                      overlayColor:
+                          MaterialStateProperty.all(Colors.transparent),
                       padding: MaterialStateProperty.all(EdgeInsets.zero),
                     ),
                     onPressed: () {
-                      // TODO: What's EcoBot pop-up
+                      _showEcoBotInfo(context);
                     },
                     child: Text(
-                      local.ecoBotInfo,
+                      local.ecoBotInfoLabel,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
@@ -228,13 +272,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       // TODO: Following product page
                     },
-                    child: const Icon(Icons.local_shipping, color: Colors.white),
+                    child:
+                        const Icon(Icons.local_shipping, color: Colors.white),
                   ),
                   ElevatedButton(
                     onPressed: () {
                       // TODO: Showing graphs page
                     },
-                    child: const Icon(Icons.bar_chart_sharp, color: Colors.white),
+                    child:
+                        const Icon(Icons.bar_chart_sharp, color: Colors.white),
                   ),
                   ElevatedButton(
                     onPressed: () {

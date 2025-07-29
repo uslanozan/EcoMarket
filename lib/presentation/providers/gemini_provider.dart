@@ -191,7 +191,7 @@ Answer in $answerLanguage.
     print('OZAN_LOG: getDailySuggestion started for language: $answerLanguage');
     _setLoading();
     //todo: BURASI TEST İÇİN SİLİNECEK OTOMATİK REQUEST ATMASIN DİYE ŞUANLIK RETURN BIRAKTIM
-    return;
+    //return;
 
     try {
       final cachedSuggestion = await cache.getCachedSuggestion(global_language);
@@ -206,8 +206,8 @@ Answer in $answerLanguage.
     }
 
     final prompt = '''
-Provide a fresh and innovative daily suggestion related to e-commerce, lifestyle, or sustainability. 
-The suggestion should be inspiring and useful, but it does not require any input parameters. It must be at most one sentence.
+Provide a fresh and innovative daily suggestion related to e-commerce, lifestyle, or sustainability for those engaged in e-commerce. 
+The suggestion should be inspiring and useful. It must be at most one sentence.
 Answer in $answerLanguage.
 ''';
 
