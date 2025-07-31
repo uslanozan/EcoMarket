@@ -35,7 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   flutter_localization: ^0.3.3
-  intl: ^0.19.0
+  intl: ^0.20.2
   provider: ^6.1.5
   flutter_dotenv: ^5.2.1
   flutter_gemini: ^3.0.0
@@ -49,7 +49,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -60,7 +60,8 @@ flutter:
   generate: true
   assets:
     - .env
-    - assets/
+    - assets/images/
+    - assets/icons/
 
 l10n:
   arb-dir: lib/l10n

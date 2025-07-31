@@ -1,0 +1,315 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart' as intl;
+
+import 'app_localizations_en.dart';
+import 'app_localizations_tr.dart';
+
+// ignore_for_file: type=lint
+
+/// Callers can lookup localized strings with an instance of AppLocalizations
+/// returned by `AppLocalizations.of(context)`.
+///
+/// Applications need to include `AppLocalizations.delegate()` in their app's
+/// `localizationDelegates` list, and the locales they support in the app's
+/// `supportedLocales` list. For example:
+///
+/// ```dart
+/// import 'l10n/app_localizations.dart';
+///
+/// return MaterialApp(
+///   localizationsDelegates: AppLocalizations.localizationsDelegates,
+///   supportedLocales: AppLocalizations.supportedLocales,
+///   home: MyApplicationHome(),
+/// );
+/// ```
+///
+/// ## Update pubspec.yaml
+///
+/// Please make sure to update your pubspec.yaml to include the following
+/// packages:
+///
+/// ```yaml
+/// dependencies:
+///   # Internationalization support.
+///   flutter_localizations:
+///     sdk: flutter
+///   intl: any # Use the pinned version from flutter_localizations
+///
+///   # Rest of dependencies
+/// ```
+///
+/// ## iOS Applications
+///
+/// iOS applications define key application metadata, including supported
+/// locales, in an Info.plist file that is built into the application bundle.
+/// To configure the locales supported by your app, you’ll need to edit this
+/// file.
+///
+/// First, open your project’s ios/Runner.xcworkspace Xcode workspace file.
+/// Then, in the Project Navigator, open the Info.plist file under the Runner
+/// project’s Runner folder.
+///
+/// Next, select the Information Property List item, select Add Item from the
+/// Editor menu, then select Localizations from the pop-up menu.
+///
+/// Select and expand the newly-created Localizations item then, for each
+/// locale your application supports, add a new item and select the locale
+/// you wish to add from the pop-up menu in the Value field. This list should
+/// be consistent with the languages listed in the AppLocalizations.supportedLocales
+/// property.
+abstract class AppLocalizations {
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+
+  final String localeName;
+
+  static AppLocalizations? of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations);
+  }
+
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+
+  /// A list of this localizations delegate along with the default localizations
+  /// delegates.
+  ///
+  /// Returns a list of localizations delegates containing this delegate along with
+  /// GlobalMaterialLocalizations.delegate, GlobalCupertinoLocalizations.delegate,
+  /// and GlobalWidgetsLocalizations.delegate.
+  ///
+  /// Additional delegates can be added by appending to this list in
+  /// MaterialApp. This list does not have to be used at all if a custom list
+  /// of delegates is preferred or required.
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
+
+  /// A list of this localizations delegate's supported locales.
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('en'),
+    Locale('tr')
+  ];
+
+  /// No description provided for @appTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'EcoMarket'**
+  String get appTitle;
+
+  /// No description provided for @homeWelcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to EcoMarket'**
+  String get homeWelcome;
+
+  /// No description provided for @addProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Product'**
+  String get addProduct;
+
+  /// No description provided for @cardInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the cards to Reveal More'**
+  String get cardInfo;
+
+  /// No description provided for @ecoBotSuggestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestion From EcoBot'**
+  String get ecoBotSuggestion;
+
+  /// No description provided for @gotIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get gotIt;
+
+  /// No description provided for @newIdeasTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New Ideas'**
+  String get newIdeasTitle;
+
+  /// No description provided for @newIdeasSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set sail for new ideas with EcoBot'**
+  String get newIdeasSubtitle;
+
+  /// No description provided for @ecoBotInfoLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s EcoBot?'**
+  String get ecoBotInfoLabel;
+
+  /// No description provided for @ecoBotInfoMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'EcoBot is an intelligent assistant designed to provide you with daily tips and insights related to e-commerce, sustainability, and conscious lifestyle habits. Powered by Google\'s Gemini AI, EcoBot generates fresh, inspiring suggestions tailored to help you live and shop more responsibly.\n\nThis assistant is a core feature of the EcoMarket app, envisioned and developed by Ozan Uslan, with the goal of making sustainability more accessible and actionable in everyday life. EcoBot continuously learns from your preferences and delivers meaningful, eco-friendly recommendations to guide your journey toward a more conscious lifestyle.\n\n👉 EcoBot is always here to help you make better, greener choices—every single day.'**
+  String get ecoBotInfoMessage;
+
+  /// No description provided for @ecoProductTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'More Eco-Friendly Products'**
+  String get ecoProductTitle;
+
+  /// No description provided for @ecoProductSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'EcoBot helps you renew, improve, and make your products more environmentally friendly'**
+  String get ecoProductSubtitle;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// No description provided for @marketResearchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Market Research'**
+  String get marketResearchTitle;
+
+  /// No description provided for @marketResearchSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s conduct market and price research with EcoBot'**
+  String get marketResearchSubtitle;
+
+  /// No description provided for @newIdeaQuestion1.
+  ///
+  /// In en, this message translates to:
+  /// **'What will be the product category or categories?'**
+  String get newIdeaQuestion1;
+
+  /// No description provided for @newIdeaQuestion2.
+  ///
+  /// In en, this message translates to:
+  /// **'What will be the product material or materials?'**
+  String get newIdeaQuestion2;
+
+  /// No description provided for @newIdeaQuestion3.
+  ///
+  /// In en, this message translates to:
+  /// **'What will be the target country or countries for the product?'**
+  String get newIdeaQuestion3;
+
+  /// No description provided for @newIdeaQuestion4.
+  ///
+  /// In en, this message translates to:
+  /// **'What will be the product\'s budget?'**
+  String get newIdeaQuestion4;
+
+  /// No description provided for @newIdeaQuestion5.
+  ///
+  /// In en, this message translates to:
+  /// **'Will the product be eco-friendly? If so, to what extent?'**
+  String get newIdeaQuestion5;
+
+  /// No description provided for @newIdeaHint1.
+  ///
+  /// In en, this message translates to:
+  /// **'Clothing, accessories, electronics...'**
+  String get newIdeaHint1;
+
+  /// No description provided for @newIdeaHint2.
+  ///
+  /// In en, this message translates to:
+  /// **'Cotton, recycled plastic, glass...'**
+  String get newIdeaHint2;
+
+  /// No description provided for @newIdeaHint3.
+  ///
+  /// In en, this message translates to:
+  /// **'Global, Turkey, Italy...'**
+  String get newIdeaHint3;
+
+  /// No description provided for @newIdeaHint4.
+  ///
+  /// In en, this message translates to:
+  /// **'High budget, 40,000 \$, medium budget...'**
+  String get newIdeaHint4;
+
+  /// No description provided for @newIdeaHint5.
+  ///
+  /// In en, this message translates to:
+  /// **'No, slightly, maybe...'**
+  String get newIdeaHint5;
+
+  /// No description provided for @newIdeasWelcomeText.
+  ///
+  /// In en, this message translates to:
+  /// **'How about designing the next generation of e-commerce products together with EcoBot?\n\nWith your ideas, you can help make the world a more sustainable place.\n\nOur goal is to develop eco-friendly, innovative, and inspiring e-commerce product ideas.\n\nEcoBot will be your guide: it will ask questions and help you shape your vision.\n\nIf you\'re ready, start answering and let\'s build the future together!'**
+  String get newIdeasWelcomeText;
+
+  /// No description provided for @noResponse.
+  ///
+  /// In en, this message translates to:
+  /// **'No response'**
+  String get noResponse;
+
+  /// No description provided for @noSuggestion.
+  ///
+  /// In en, this message translates to:
+  /// **'No suggestion available'**
+  String get noSuggestion;
+
+  /// No description provided for @talkToEcoBot.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to Talk with EcoBot'**
+  String get talkToEcoBot;
+
+  /// No description provided for @userFeedbackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'User Feedback'**
+  String get userFeedbackTitle;
+
+  /// No description provided for @userFeedbackSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'EcoBot analyzes user comments and requests for you'**
+  String get userFeedbackSubtitle;
+}
+
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+  const _AppLocalizationsDelegate();
+
+  @override
+  Future<AppLocalizations> load(Locale locale) {
+    return SynchronousFuture<AppLocalizations>(lookupAppLocalizations(locale));
+  }
+
+  @override
+  bool isSupported(Locale locale) => <String>['en', 'tr'].contains(locale.languageCode);
+
+  @override
+  bool shouldReload(_AppLocalizationsDelegate old) => false;
+}
+
+AppLocalizations lookupAppLocalizations(Locale locale) {
+
+
+  // Lookup logic when only language code is specified.
+  switch (locale.languageCode) {
+    case 'en': return AppLocalizationsEn();
+    case 'tr': return AppLocalizationsTr();
+  }
+
+  throw FlutterError(
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
+}

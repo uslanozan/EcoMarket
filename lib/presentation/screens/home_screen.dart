@@ -1,10 +1,11 @@
 import 'package:ecomarket/config/theme/app_theme.dart';
 import 'package:ecomarket/presentation/screens/ecobot_chat.dart';
+import 'package:ecomarket/presentation/screens/new_ideas.dart';
 import 'package:ecomarket/presentation/widgets/ecobot/ecobot_suggestion.dart';
 import 'package:ecomarket/presentation/widgets/info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:ecomarket/l10n/app_localizations.dart';
 import '../providers/locale_provider.dart';
 import '../providers/theme_provider.dart';
 import 'package:ecomarket/presentation/providers/gemini_provider.dart';
@@ -39,8 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
             text: highlightWordsInText(
               text: AppLocalizations.of(context)!.ecoBotInfoMessage,
               highlights: global_language == "Turkish"
-                  ? ['EcoBot', 'e-ticaret', 'Google', 'Gemini', 'Ozan Uslan']
-                  : ['EcoBot', 'e-commerce', 'Google', 'Gemini AI', 'Ozan Uslan'],
+                  ? global_trHighlightWords
+                  : global_enHighlightWords,
               normalStyle: Theme.of(context).textTheme.bodyMedium!,
               highlightStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: AppTheme.primaryGreen,
@@ -155,7 +156,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           subtitle: local.newIdeasSubtitle,
                           icon: Icons.lightbulb,
                           onTap: () {
-                            // TODO: Yeni fikirler page
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(builder: (context) => NewIdeas())
+                            );
                           },
                         ),
                         const SizedBox(width: 20),
@@ -188,6 +192,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 5),
+                  Center(child: Text(local.cardInfo,style: TextTheme.of(context).bodySmall,)),
                   const SizedBox(height: 20),
                   Container(
                     margin: const EdgeInsets.symmetric(
@@ -229,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Image.asset(
-                          'assets/ecobot_default.png',
+                          'assets/images/ecobot_default.png',
                           height: 250,
                           width: 250,
                         ),

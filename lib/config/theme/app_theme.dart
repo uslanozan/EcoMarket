@@ -33,6 +33,49 @@ class AppTheme {
   static const String primaryFont = 'Roboto';
   static const String headingFont = 'Roboto';
 
+/* //TODO: Bunları light ve dark içine yazmak gerekebilir bakılacak
+  static BoxDecoration containerDecoration({
+    Color? color,
+    BorderRadius? borderRadius,
+    List<BoxShadow>? boxShadow,
+    DecorationImage? image,
+    BoxBorder? border,
+    Gradient? gradient,
+  }) {
+    return BoxDecoration(
+      color: color,
+      borderRadius: borderRadius,
+      boxShadow: boxShadow,
+      image: image,
+      border: border,
+      gradient: gradient,
+    );
+  }
+
+  static BoxDecoration cardContainerDecoration = BoxDecoration(
+    color: Colors.white,
+    borderRadius: largeRadius,
+    boxShadow: cardShadow,
+  );
+
+  static BoxDecoration elevatedContainerDecoration = BoxDecoration(
+    color: Colors.white,
+    borderRadius: largeRadius,
+    boxShadow: elevatedShadow,
+  );
+
+  static BoxDecoration primaryGradientContainerDecoration = BoxDecoration(
+    gradient: primaryGradient,
+    borderRadius: mediumRadius,
+  );
+
+  static BoxDecoration darkCardContainerDecoration = BoxDecoration(
+    color: darkCard,
+    borderRadius: largeRadius,
+    boxShadow: elevatedShadow, // Reusing elevated shadow for dark cards
+  );
+ */
+
   // LIGHT THEME
   static final ThemeData light = ThemeData(
     useMaterial3: true,
@@ -276,7 +319,7 @@ class AppTheme {
     ),
 
     // Card teması
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       elevation: 2,
       shadowColor: Colors.black26,
       surfaceTintColor: Colors.transparent,
@@ -669,7 +712,7 @@ class AppTheme {
     ),
 
     // Dark theme için Card
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       elevation: 4,
       shadowColor: Colors.black87,
       surfaceTintColor: Colors.transparent,

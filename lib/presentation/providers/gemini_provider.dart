@@ -2,7 +2,7 @@ import 'package:ecomarket/core/cache/daily_suggestion_cache.dart';
 import 'package:ecomarket/core/globals/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:ecomarket/l10n/app_localizations.dart';
 
 class GeminiProvider extends ChangeNotifier {
   final Gemini _gemini = Gemini.instance;
@@ -37,6 +37,7 @@ class GeminiProvider extends ChangeNotifier {
 
   // Yeni ürün fikirleri için prompt
   Future<void> generateNewProductIdeas({
+    //todo: Direkt explanation da eklenebilir
     required String productCategory,
     required String material,
     required String targetCountry,

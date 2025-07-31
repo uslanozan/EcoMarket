@@ -1,45 +1,112 @@
+import 'package:ecomarket/core/utils/logger.dart';
+import 'package:ecomarket/l10n/app_localizations.dart';
+import 'package:ecomarket/presentation/providers/answer_provider.dart';
 import 'package:ecomarket/presentation/providers/gemini_provider.dart';
+import 'package:ecomarket/presentation/widgets/ecobot/new_ideas_question.dart';
+import 'package:ecomarket/presentation/widgets/ecobot/new_ideas_welcome.dart';
+import 'package:ecomarket/presentation/widgets/page_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class EcoBotChat extends StatefulWidget {
-  const EcoBotChat({super.key});
+class NewIdeas extends StatefulWidget{
+  const NewIdeas({super.key});
 
   @override
-  State<EcoBotChat> createState() => _EcobotChatState();
+  State<NewIdeas> createState() => _NewIdeasState();
 }
 
-class _EcobotChatState extends State<EcoBotChat> {
+// SingleTickerProviderStateMixin animasyonlara vsync verebildiğimiz bir provider
+class _NewIdeasState extends State<NewIdeas> with SingleTickerProviderStateMixin{
+
+
+  late PageController _pageController;
+  late TabController _tabController;
+  int _currentPageIndex = 0;
+
+  //------------------------FUNCTIONS----------------------
+  // Mevcut sayfa indexini ve TabController indexini günceller
+  void _handlePageChanged(int index) {
+    setState(() {
+      _currentPageIndex = index;
+      _tabController.index = index;
+    });
+  }
+
+  // PageIndicator ile tıklanırsa TabControlelr indexini günceller ve animasyonlu geçişi yaptırır
+  void _updateCurrentPageIndex(int index) {
+    setState(() {
+      _currentPageIndex = index;
+      _tabController.index = index;
+    });
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  //------------------------FUNCTIONS END------------------
+
+
+
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: 0);
+    _tabController = TabController(
+        length: 6,  //todo: sayfa sayısı artarsa burayı artır
+        vsync: this  // vsync animasyon performansını optimize eder
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final geminiProvider = context.watch<GeminiProvider>();
-    final controller = TextEditingController();
+    return ChangeNotifierProvider(
+      create: (_) => AnswerProvider(),
+      child: Scaffold(
+        // resizeToAvoidBottomInset: true,
+        appBar: AppBar(title: Text(AppLocalizations.of(context)!.newIdeasTitle)),
+        body: Stack(
+          alignment: Alignment.bottomCenter,
+          children:<Widget> [
+            PageView(
+              onPageChanged: _handlePageChanged,
+              controller: _pageController,
+              scrollDirection: Axis.horizontal,
+              children: [
+                NewQuestionWelcome(),
 
-    return Scaffold(
-      appBar: AppBar(title: Text('Gemini Assistant')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            TextField(
-              controller: controller,
-              decoration: InputDecoration(labelText: 'Prompt yaz'),
+                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestion1
+                ,hint: AppLocalizations.of(context)!.newIdeaHint1,),
+
+                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestion2
+                  ,hint: AppLocalizations.of(context)!.newIdeaHint2,),
+
+                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestion3
+                  ,hint: AppLocalizations.of(context)!.newIdeaHint3,),
+
+                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestion4
+                  ,hint: AppLocalizations.of(context)!.newIdeaHint4,),
+
+                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestion5
+                  ,hint: AppLocalizations.of(context)!.newIdeaHint5,),
+
+                //todo: buraya bir sayfa daha eklenecek sonuçlar için
+              ],
             ),
-            const SizedBox(height: 12),
-            ElevatedButton(
-              onPressed: () {
-                context.read<GeminiProvider>().sendPrompt(prompt: "DENEME", fallBackText: AppLocalizations.of(context)!.noResponse);
-              },
-              child: Text('Gönder'),
+            PageIndicator(
+              tabController: _tabController,
+              currentPageIndex: _currentPageIndex,
+              onUpdateCurrentPageIndex: _updateCurrentPageIndex,
             ),
-            const SizedBox(height: 24),
-            if (geminiProvider.isLoading)
-              CircularProgressIndicator()
-            else if (geminiProvider.error.isNotEmpty)
-              Text('Hata: ${geminiProvider.error}', style: TextStyle(color: Colors.red))
-            else
-              Text(geminiProvider.response),
           ],
         ),
       ),

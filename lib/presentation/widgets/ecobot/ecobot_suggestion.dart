@@ -1,6 +1,6 @@
 import 'package:ecomarket/presentation/providers/gemini_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:ecomarket/l10n/app_localizations.dart';
 
 class EcoBotSuggestion extends StatelessWidget {
   const EcoBotSuggestion({
