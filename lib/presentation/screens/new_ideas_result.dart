@@ -1,0 +1,129 @@
+import 'package:ecomarket/config/theme/app_theme.dart';
+import 'package:ecomarket/core/globals/globals.dart';
+import 'package:ecomarket/core/utils/logger.dart';
+import 'package:ecomarket/l10n/app_localizations.dart';
+import 'package:ecomarket/presentation/providers/gemini_provider.dart';
+import 'package:ecomarket/presentation/widgets/doodle_background.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+
+class NewIdeasResult extends StatefulWidget {
+  const NewIdeasResult({super.key});
+
+  @override
+  State<NewIdeasResult> createState() => _NewIdeasResultState();
+}
+
+//todo: gemini'den dönen sonuçları regexleyecek fonksiyon yazılacak ve ayrı cardlarda gösterilecek
+
+class _NewIdeasResultState extends State<NewIdeasResult> {
+  // late dememizin sebei değişken şuan atanmayacak ama null olmayacak demek
+  // bunu demezsek GeminiProvider? _geminiProvider olarak tanımlamak gerek
+  // ve bundan sonra her yerde ? kontrolü yapmak gerekir
+  late GeminiProvider _geminiProvider;
+  bool _isInitialized = false;
+
+
+  // initState BuildContext'e erişilebilir gibi görünse de widget tree'ye tam bağlanmamıştır
+  // bu yüzden context'e bağlı providerlar hata verebilir
+  // ama didChangeDependencies widget ve context tamamen bağlandığında çalışır
+  // bu yüzden context'e bağlı şeyler için daha güvenlidir
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isInitialized) {
+      _geminiProvider = context.read<GeminiProvider>();
+
+      // Fonksiyonu sadece bir kez çağırıyoruz
+      _geminiProvider.generateNewProductIdeas(
+        productCategory: global_newIdeasAnswers['productCategory'] ?? '-',
+        material: global_newIdeasAnswers['material'] ?? '-',
+        targetCountry: global_newIdeasAnswers['targetCountry'] ?? '-',
+        ecoFriendly: global_newIdeasAnswers['ecoFriendly'] ?? '-',
+        budget: global_newIdeasAnswers['budget'] ?? '-',
+        answerLanguage: global_language,
+        fallBackText: AppLocalizations.of(context)!.generateNewProductIdeasFallBack,
+      );
+
+      _isInitialized = true;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final geminiProvider = context.watch<GeminiProvider>();
+
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: DoodleBackground(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: double.infinity,
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            children: [
+              Text(
+                AppLocalizations.of(context)!.yourIdeasReady,
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Card(
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: geminiProvider.isLoading
+                          ? const Center(
+                        child: CircularProgressIndicator(color: Colors.white70),
+                      )
+                          : Text(
+                        geminiProvider.newIdeas.isEmpty
+                            ? AppLocalizations.of(context)!.loading
+                            : geminiProvider.newIdeas,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(color: Colors.white70),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      if (geminiProvider.newIdeas.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(AppLocalizations.of(context)!.copyError)),
+                        );
+                      } else {
+                        Clipboard.setData(ClipboardData(text: geminiProvider.newIdeas));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(AppLocalizations.of(context)!.copied)),
+                        );
+                      }
+                    },
+                    icon: const Icon(Icons.copy),
+                  ),
+                  const Spacer(),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(AppLocalizations.of(context)!.restart),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

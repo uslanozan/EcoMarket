@@ -8,3 +8,5 @@ List<String> global_enHighlightWords = ['EcoBot', 'e-commerce', 'Google', 'Gemin
 
 List<String> global_enHighlightWordsQuestion = ['category', 'categories', 'material', 'materials', 'country', 'countries', 'budget', 'eco-friendly'];
 List<String> global_trHighlightWordsQuestion = ['kategorisi', 'kategorileri', 'materyali', 'materyalleri', 'ülke', 'ülkeleri', 'bütçesi', 'çevre dostu'];
+
+Map<String, String> global_newIdeasAnswers = {};

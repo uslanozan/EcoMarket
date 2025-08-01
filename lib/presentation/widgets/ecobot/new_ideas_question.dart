@@ -1,4 +1,6 @@
 import 'package:ecomarket/config/theme/app_theme.dart';
+import 'package:ecomarket/core/globals/globals.dart';
+import 'package:ecomarket/core/utils/logger.dart';
 import 'package:ecomarket/presentation/providers/gemini_provider.dart';
 import 'package:ecomarket/presentation/widgets/doodle_background.dart';
 import 'package:ecomarket/presentation/widgets/question_card.dart';
@@ -9,51 +11,121 @@ class NewQuestionPage extends StatefulWidget {
     super.key,
     required this.question,
     required this.hint,
+    required this.questionType,
   });
 
   final String question;
   final String hint;
+  final String questionType;
 
   @override
   State<NewQuestionPage> createState() => _NewQuestionPage1State();
 }
 
-//todo: klavye açıldığında QuestionCard aşağı inecek
+//todo: klavye açıldığında QuestionCard aşağı inecek ya da TextFormField yukarı çıkacak
 class _NewQuestionPage1State extends State<NewQuestionPage> {
+
+  late final TextEditingController _answerController = TextEditingController();
+  bool _isAnswerSaved = false;
+
+  /*
+  @override
+  void initState() {
+    super.initState();
+  }
+  */
+
+  @override
+  void dispose() {
+    _answerController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          DoodleBackground(
-            child: Container(
-              height: 600,
-              width: double.infinity,
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  QuestionCard(
-                    question: widget.question,
-                  ),
-                  Spacer(),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        hintText: widget.hint,
-                        hintStyle: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(fontStyle: FontStyle.italic),
+
+    if(_answerController != null || _answerController != ''){
+      logPrint(logTag: "_answerController",logMessage: _answerController.text.trim());
+    }
+
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            DoodleBackground(
+              child: Container(
+                height: 600,
+                width: double.infinity,
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: QuestionCard(
+                        question: widget.question,
                       ),
                     ),
-                  ),
-                ],
+                    Spacer(),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              controller: _answerController,
+                              decoration: InputDecoration(
+                                hintText: widget.hint,
+                                hintStyle: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .copyWith(fontStyle: FontStyle.italic),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 4), // buton ile alan arasında boşluk
+                          IconButton(
+                            onPressed: () {
+                              logPrint(logTag: "_isAnswerSaved: ",logMessage: '$_isAnswerSaved');
+                              logPrint(logTag: "_answerController: ",logMessage: _answerController.text.trim());
+
+
+                              if (_answerController.text.trim().isNotEmpty) {
+                                global_newIdeasAnswers[widget.questionType] = _answerController.text.trim();
+                                logPrint(
+                                  logTag: "global_newIdeasAnswers",
+                                  logMessage: "Kaydedildi: ${widget.questionType} = ${_answerController.text.trim()}",
+                                );
+                              } else {
+                                // Cevap boşsa "-" olarak kaydet
+                                global_newIdeasAnswers[widget.questionType] = '-';
+                                logPrint(
+                                  logTag: "global_newIdeasAnswers",
+                                  logMessage: "Boş cevap, - ile kaydedildi: ${widget.questionType}",
+                                );
+                              }
+
+                              logPrint(logTag: "global_newIdeasAnswers", logMessage: '$global_newIdeasAnswers');
+
+                              setState(() {
+                                _isAnswerSaved = true;
+                              });
+                            },
+                            icon: _isAnswerSaved
+                                ? Icon(Icons.done,color: AppTheme.primaryGreenLight,)
+                                : Icon(Icons.send,color: AppTheme.primaryGreenLight,),
+                            //icon: Icon(Icons.send,color: AppTheme.primaryGreenLight,),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

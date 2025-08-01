@@ -101,6 +101,24 @@ abstract class AppLocalizations {
   /// **'EcoMarket'**
   String get appTitle;
 
+  /// No description provided for @answeredAllQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations! You answered all the questions.'**
+  String get answeredAllQuestions;
+
+  /// No description provided for @copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied!'**
+  String get copied;
+
+  /// No description provided for @copyError.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot Copied'**
+  String get copyError;
+
   /// No description provided for @homeWelcome.
   ///
   /// In en, this message translates to:
@@ -130,6 +148,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Got it'**
   String get gotIt;
+
+  /// No description provided for @generateNewProductIdeasFallBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! Something went wrong while generating new ideas.'**
+  String get generateNewProductIdeasFallBack;
 
   /// No description provided for @newIdeasTitle.
   ///
@@ -185,35 +209,35 @@ abstract class AppLocalizations {
   /// **'Let\'s conduct market and price research with EcoBot'**
   String get marketResearchSubtitle;
 
-  /// No description provided for @newIdeaQuestion1.
+  /// No description provided for @newIdeaQuestionCategory.
   ///
   /// In en, this message translates to:
   /// **'What will be the product category or categories?'**
-  String get newIdeaQuestion1;
+  String get newIdeaQuestionCategory;
 
-  /// No description provided for @newIdeaQuestion2.
+  /// No description provided for @newIdeaQuestionMaterial.
   ///
   /// In en, this message translates to:
   /// **'What will be the product material or materials?'**
-  String get newIdeaQuestion2;
+  String get newIdeaQuestionMaterial;
 
-  /// No description provided for @newIdeaQuestion3.
+  /// No description provided for @newIdeaQuestionCountry.
   ///
   /// In en, this message translates to:
   /// **'What will be the target country or countries for the product?'**
-  String get newIdeaQuestion3;
+  String get newIdeaQuestionCountry;
 
-  /// No description provided for @newIdeaQuestion4.
+  /// No description provided for @newIdeaQuestionBudget.
   ///
   /// In en, this message translates to:
   /// **'What will be the product\'s budget?'**
-  String get newIdeaQuestion4;
+  String get newIdeaQuestionBudget;
 
-  /// No description provided for @newIdeaQuestion5.
+  /// No description provided for @newIdeaQuestionIsEco.
   ///
   /// In en, this message translates to:
   /// **'Will the product be eco-friendly? If so, to what extent?'**
-  String get newIdeaQuestion5;
+  String get newIdeaQuestionIsEco;
 
   /// No description provided for @newIdeaHint1.
   ///
@@ -263,6 +287,18 @@ abstract class AppLocalizations {
   /// **'No suggestion available'**
   String get noSuggestion;
 
+  /// No description provided for @restart.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart'**
+  String get restart;
+
+  /// No description provided for @seeTheNewIdeas.
+  ///
+  /// In en, this message translates to:
+  /// **'See the New Ideas'**
+  String get seeTheNewIdeas;
+
   /// No description provided for @talkToEcoBot.
   ///
   /// In en, this message translates to:
@@ -280,6 +316,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'EcoBot analyzes user comments and requests for you'**
   String get userFeedbackSubtitle;
+
+  /// No description provided for @yourIdeasReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Your ideas are ready!'**
+  String get yourIdeasReady;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

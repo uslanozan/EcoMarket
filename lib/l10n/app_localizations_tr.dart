@@ -12,6 +12,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appTitle => 'EcoMarket';
 
   @override
+  String get answeredAllQuestions => 'Tebrikler! Tüm soruları yanıtladınız.';
+
+  @override
+  String get copied => 'Kopyalandı!';
+
+  @override
+  String get copyError => 'Kopyalanamadı';
+
+  @override
   String get homeWelcome => 'EcoMarket\'e Hoş Geldin';
 
   @override
@@ -25,6 +34,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get gotIt => 'Harika';
+
+  @override
+  String get generateNewProductIdeasFallBack => 'Oops! Yeni fikirler üretilirken bir sorun oluştu. Lütfen tekrar deneyin.';
 
   @override
   String get newIdeasTitle => 'Yeni Ürün Fikirleri';
@@ -54,19 +66,19 @@ class AppLocalizationsTr extends AppLocalizations {
   String get marketResearchSubtitle => 'EcoBot ile pazar ve fiyat araştırması yapalım';
 
   @override
-  String get newIdeaQuestion1 => 'Ürünün kategorisi ya da kategorileri ne olacak?';
+  String get newIdeaQuestionCategory => 'Ürünün kategorisi ya da kategorileri ne olacak?';
 
   @override
-  String get newIdeaQuestion2 => 'Ürünün materyali ya da materyalleri ne olacak?';
+  String get newIdeaQuestionMaterial => 'Ürünün materyali ya da materyalleri ne olacak?';
 
   @override
-  String get newIdeaQuestion3 => 'Ürünün hedef ülke ya da ülkeleri neresi olacak?';
+  String get newIdeaQuestionCountry => 'Ürünün hedef ülke ya da ülkeleri neresi olacak?';
 
   @override
-  String get newIdeaQuestion4 => 'Ürünün bütçesi ne olacak?';
+  String get newIdeaQuestionBudget => 'Ürünün bütçesi ne olacak?';
 
   @override
-  String get newIdeaQuestion5 => 'Ürün çevre dostu olacak mı? Olacaksa ne düzeyde olacak?';
+  String get newIdeaQuestionIsEco => 'Ürün çevre dostu olacak mı? Olacaksa ne düzeyde olacak?';
 
   @override
   String get newIdeaHint1 => 'Giyim, aksesuar, elektronik...';
@@ -93,6 +105,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get noSuggestion => 'Uygun öneri bulunamadı';
 
   @override
+  String get restart => 'Yeniden Başla';
+
+  @override
+  String get seeTheNewIdeas => 'Yeni Fikirleri Gör';
+
+  @override
   String get talkToEcoBot => 'EcoBot ile konuşmak için dokun';
 
   @override
@@ -100,4 +118,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get userFeedbackSubtitle => 'EcoBot senin için kullanıcıların yorumlarını ve isteklerini analiz eder';
+
+  @override
+  String get yourIdeasReady => 'Fikirlerin Hazır!';
 }

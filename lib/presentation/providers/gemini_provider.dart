@@ -1,25 +1,39 @@
 import 'package:ecomarket/core/cache/daily_suggestion_cache.dart';
 import 'package:ecomarket/core/globals/globals.dart';
+import 'package:ecomarket/core/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:ecomarket/l10n/app_localizations.dart';
 
 class GeminiProvider extends ChangeNotifier {
+
+  //todo: enum açarak gemini status kontrol etme eklenebilir ama şuan biraz gereksiz
   final Gemini _gemini = Gemini.instance;
 
   final cache = DailySuggestionCache();
 
   // prompt results
-  String? _dailySuggestion;
-  String? get dailySuggestion => _dailySuggestion;
+  // günlük öneri
+  String _dailySuggestion= '';
+  String get dailySuggestion => _dailySuggestion;
 
+  // yeni fikirler
+  String _newIdeas= '';
+  String get newIdeas => _newIdeas;
+
+  // normal prompt için olacak
   String _response = '';
-  bool _isLoading = false;
-  String _error = '';
-
   String get response => _response;
+
+
+  bool _isLoading = false;
   bool get isLoading => _isLoading;
+
+  String _error = '';
   String get error => _error;
+
+
+
 
   // Genel prompt gönderme fonksiyonu (isteğe bağlı)
   Future<void> sendPrompt({
@@ -49,6 +63,8 @@ class GeminiProvider extends ChangeNotifier {
     _setLoading();
 
 
+    logPrint(logTag: "generateNewProductIdeas: ",logMessage: "$productCategory, $material, $targetCountry, $ecoFriendly, $budget, $answerLanguage, $fallBackText");
+
     final prompt = '''
     Some of the parameters below may be written in Turkish. Please translate them to English before processing the request, and only use the translated versions in your reasoning. If the 
     parameters are empty or meanless, ignore the parameter.
@@ -69,11 +85,15 @@ Answer in $answerLanguage.
 
   ''';
 
+    logPrint(logTag: "generateNewProductIdeas: ",logMessage: "Prompt is: \n $prompt");
+
     try {
       final result = await _gemini.text(prompt);
-      _setResponse(result?.output ?? fallBackText);
+      logPrint(logTag: "generateNewProductIdeas: ",logMessage: "Result is: \n $result");
+      _setNewIdeas(result?.output ?? fallBackText);
     } catch (e) {
       _setError(e.toString());
+      logPrint(logTag: "generateNewProductIdeas: ",logMessage: "Result Error: \n $e");
     }
   }
 
@@ -266,7 +286,18 @@ Translate the following sentence into $newLanguage. Do not change the meaning. K
   // Private yardımcı fonksiyonlar
   void _setDailySuggestion(String suggestion) {
     _dailySuggestion = suggestion.trim();
-    _response = suggestion.trim();
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  void _setNewIdeas(String newIdeas) {
+    _newIdeas = newIdeas.trim();
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  void _setResponse(String response) {
+    _response = response;
     _isLoading = false;
     notifyListeners();
   }
@@ -274,12 +305,6 @@ Translate the following sentence into $newLanguage. Do not change the meaning. K
   void _setLoading() {
     _isLoading = true;
     _error = '';
-    notifyListeners();
-  }
-
-  void _setResponse(String response) {
-    _response = response;
-    _isLoading = false;
     notifyListeners();
   }
 
@@ -293,6 +318,8 @@ Translate the following sentence into $newLanguage. Do not change the meaning. K
   void reset() {
     _response = '';
     _error = '';
+    _newIdeas = '';
+    _dailySuggestion = '';
     _isLoading = false;
     notifyListeners();
   }

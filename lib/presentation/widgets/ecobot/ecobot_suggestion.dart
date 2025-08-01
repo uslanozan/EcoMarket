@@ -39,7 +39,7 @@ class EcoBotSuggestion extends StatelessWidget {
                   geminiProvider.isLoading
                       ? CircularProgressIndicator(color: Colors.white70)
                       : Text(
-                    geminiProvider.response.isEmpty ? AppLocalizations.of(context)!.loading : geminiProvider.response,
+                    geminiProvider.dailySuggestion.isEmpty ? AppLocalizations.of(context)!.loading : geminiProvider.dailySuggestion,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white70),
                   ),
 

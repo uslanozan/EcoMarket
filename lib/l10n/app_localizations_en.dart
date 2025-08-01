@@ -12,6 +12,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appTitle => 'EcoMarket';
 
   @override
+  String get answeredAllQuestions => 'Congratulations! You answered all the questions.';
+
+  @override
+  String get copied => 'Copied!';
+
+  @override
+  String get copyError => 'Cannot Copied';
+
+  @override
   String get homeWelcome => 'Welcome to EcoMarket';
 
   @override
@@ -25,6 +34,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get gotIt => 'Got it';
+
+  @override
+  String get generateNewProductIdeasFallBack => 'Oops! Something went wrong while generating new ideas.';
 
   @override
   String get newIdeasTitle => 'New Ideas';
@@ -54,19 +66,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get marketResearchSubtitle => 'Let\'s conduct market and price research with EcoBot';
 
   @override
-  String get newIdeaQuestion1 => 'What will be the product category or categories?';
+  String get newIdeaQuestionCategory => 'What will be the product category or categories?';
 
   @override
-  String get newIdeaQuestion2 => 'What will be the product material or materials?';
+  String get newIdeaQuestionMaterial => 'What will be the product material or materials?';
 
   @override
-  String get newIdeaQuestion3 => 'What will be the target country or countries for the product?';
+  String get newIdeaQuestionCountry => 'What will be the target country or countries for the product?';
 
   @override
-  String get newIdeaQuestion4 => 'What will be the product\'s budget?';
+  String get newIdeaQuestionBudget => 'What will be the product\'s budget?';
 
   @override
-  String get newIdeaQuestion5 => 'Will the product be eco-friendly? If so, to what extent?';
+  String get newIdeaQuestionIsEco => 'Will the product be eco-friendly? If so, to what extent?';
 
   @override
   String get newIdeaHint1 => 'Clothing, accessories, electronics...';
@@ -93,6 +105,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noSuggestion => 'No suggestion available';
 
   @override
+  String get restart => 'Restart';
+
+  @override
+  String get seeTheNewIdeas => 'See the New Ideas';
+
+  @override
   String get talkToEcoBot => 'Tap to Talk with EcoBot';
 
   @override
@@ -100,4 +118,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get userFeedbackSubtitle => 'EcoBot analyzes user comments and requests for you';
+
+  @override
+  String get yourIdeasReady => 'Your ideas are ready!';
 }

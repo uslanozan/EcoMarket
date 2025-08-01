@@ -42,7 +42,7 @@ class PageIndicator extends StatelessWidget {
             splashRadius: 16.0,
             padding: EdgeInsets.zero,
             onPressed: () {
-              if (currentPageIndex == 5) {
+              if (currentPageIndex == 6) { //todo: sayfa sayısı artarsa burayı artır, son page indexi
                 return;
               }
               onUpdateCurrentPageIndex(currentPageIndex + 1);

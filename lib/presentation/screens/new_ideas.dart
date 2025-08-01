@@ -1,8 +1,8 @@
 import 'package:ecomarket/core/utils/logger.dart';
 import 'package:ecomarket/l10n/app_localizations.dart';
 import 'package:ecomarket/presentation/providers/answer_provider.dart';
-import 'package:ecomarket/presentation/providers/gemini_provider.dart';
 import 'package:ecomarket/presentation/widgets/ecobot/new_ideas_question.dart';
+import 'package:ecomarket/presentation/widgets/ecobot/new_ideas_see_result.dart';
 import 'package:ecomarket/presentation/widgets/ecobot/new_ideas_welcome.dart';
 import 'package:ecomarket/presentation/widgets/page_indicator.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +55,7 @@ class _NewIdeasState extends State<NewIdeas> with SingleTickerProviderStateMixin
     super.initState();
     _pageController = PageController(initialPage: 0);
     _tabController = TabController(
-        length: 6,  //todo: sayfa sayısı artarsa burayı artır
+        length: 7,  //todo: sayfa sayısı artarsa burayı artır
         vsync: this  // vsync animasyon performansını optimize eder
     );
   }
@@ -84,21 +84,29 @@ class _NewIdeasState extends State<NewIdeas> with SingleTickerProviderStateMixin
               children: [
                 NewQuestionWelcome(),
 
-                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestion1
-                ,hint: AppLocalizations.of(context)!.newIdeaHint1,),
+                // Kategori
+                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestionCategory
+                ,hint: AppLocalizations.of(context)!.newIdeaHint1,questionType:'productCategory'),
 
-                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestion2
-                  ,hint: AppLocalizations.of(context)!.newIdeaHint2,),
+                // Materyal
+                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestionMaterial
+                  ,hint: AppLocalizations.of(context)!.newIdeaHint2,questionType:'material'),
 
-                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestion3
-                  ,hint: AppLocalizations.of(context)!.newIdeaHint3,),
+                // Ülke
+                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestionCountry
+                  ,hint: AppLocalizations.of(context)!.newIdeaHint3,questionType:'targetCountry'),
 
-                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestion4
-                  ,hint: AppLocalizations.of(context)!.newIdeaHint4,),
+                // Bütçe
+                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestionBudget
+                  ,hint: AppLocalizations.of(context)!.newIdeaHint4,questionType:'budget'),
 
-                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestion5
-                  ,hint: AppLocalizations.of(context)!.newIdeaHint5,),
+                // Çevre Dostu
+                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestionIsEco
+                  ,hint: AppLocalizations.of(context)!.newIdeaHint5,questionType:'ecoFriendly'),
 
+                NewIdeasSeeResult(),
+
+                //todo: index muhabbeti debug edilecek
                 //todo: buraya bir sayfa daha eklenecek sonuçlar için
               ],
             ),
