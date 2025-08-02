@@ -66,6 +66,21 @@ class AppLocalizationsTr extends AppLocalizations {
   String get marketResearchSubtitle => 'EcoBot ile pazar ve fiyat araştırması yapalım';
 
   @override
+  String get marketResearchWelcomeText => 'EcoBot ile birlikte e-ticaret pazarını keşfetmeye hazır mısın?\n\nVerdiğin ürün fikri ve hedef ülke doğrultusunda, benzer ürünlerin piyasada olup olmadığını, fiyat aralıklarını ve pazar trendlerini birlikte inceleyeceğiz.\n\nAmacımız, girişim yolculuğunda sana güçlü veriler sunmak ve fikrinin pazardaki yerini netleştirmek.\n\nEcoBot senin araştırma asistanın olacak: sana birkaç soru soracak, ardından verileri toplayıp analiz ederek sana özel bir pazar araştırması sunacak.\n\nHazırsan, başlayalım ve fikrini gerçeğe dönüştürme yolunda sağlam adımlar atalım!';
+
+  @override
+  String get marketResearchQuestionIdeaExplanation => 'Pazar araştırmasını hangi ürün fikri üzerine yapmak istersin?';
+
+  @override
+  String get marketResearchQuestionTarget => 'Bu ürün için pazar araştırmasını hangi ülke ya da ülkelerde yapmak istersin?';
+
+  @override
+  String get marketResearchHint1 => 'Telefon Kılıfı, Küpe, Sweatshirt...';
+
+  @override
+  String get marketResearchHint2 => 'Global, Amerika, Filipinler';
+
+  @override
   String get newIdeaQuestionCategory => 'Ürünün kategorisi ya da kategorileri ne olacak?';
 
   @override

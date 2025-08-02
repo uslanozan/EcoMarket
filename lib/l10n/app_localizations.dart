@@ -209,6 +209,36 @@ abstract class AppLocalizations {
   /// **'Let\'s conduct market and price research with EcoBot'**
   String get marketResearchSubtitle;
 
+  /// No description provided for @marketResearchWelcomeText.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you ready to explore the world of e-commerce with EcoBot?\n\nBased on your product idea and target country, we\'ll research whether similar products exist, what their price ranges are, and what trends are shaping the market.\n\nOur goal is to provide you with solid insights and help you understand where your idea stands in the market.\n\nEcoBot will be your research assistant: it will ask you a few questions, gather and analyze data, and present you with a personalized market report.\n\nIf you\'re ready, let\'s begin and take the first confident step toward bringing your idea to life!'**
+  String get marketResearchWelcomeText;
+
+  /// No description provided for @marketResearchQuestionIdeaExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'What product idea would you like to conduct market research on?'**
+  String get marketResearchQuestionIdeaExplanation;
+
+  /// No description provided for @marketResearchQuestionTarget.
+  ///
+  /// In en, this message translates to:
+  /// **'Which country or countries would you like to focus your market research on for this product?'**
+  String get marketResearchQuestionTarget;
+
+  /// No description provided for @marketResearchHint1.
+  ///
+  /// In en, this message translates to:
+  /// **'Telefon Kılıfı, Küpe, Sweatshirt...'**
+  String get marketResearchHint1;
+
+  /// No description provided for @marketResearchHint2.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Case, Earrings, Sweatshirt...'**
+  String get marketResearchHint2;
+
   /// No description provided for @newIdeaQuestionCategory.
   ///
   /// In en, this message translates to:

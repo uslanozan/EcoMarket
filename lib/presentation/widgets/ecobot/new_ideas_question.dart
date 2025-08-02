@@ -12,11 +12,13 @@ class NewQuestionPage extends StatefulWidget {
     required this.question,
     required this.hint,
     required this.questionType,
+    required this.globMap,
   });
 
   final String question;
   final String hint;
   final String questionType;
+  final Map<String, String> globMap;
 
   @override
   State<NewQuestionPage> createState() => _NewQuestionPage1State();
@@ -92,21 +94,21 @@ class _NewQuestionPage1State extends State<NewQuestionPage> {
 
 
                               if (_answerController.text.trim().isNotEmpty) {
-                                global_newIdeasAnswers[widget.questionType] = _answerController.text.trim();
+                                widget.globMap[widget.questionType] = _answerController.text.trim();
                                 logPrint(
-                                  logTag: "global_newIdeasAnswers",
+                                  logTag: "${widget.globMap}",
                                   logMessage: "Kaydedildi: ${widget.questionType} = ${_answerController.text.trim()}",
                                 );
                               } else {
                                 // Cevap boşsa "-" olarak kaydet
-                                global_newIdeasAnswers[widget.questionType] = '-';
+                                widget.globMap[widget.questionType] = '-';
                                 logPrint(
-                                  logTag: "global_newIdeasAnswers",
+                                  logTag: "${widget.globMap}",
                                   logMessage: "Boş cevap, - ile kaydedildi: ${widget.questionType}",
                                 );
                               }
 
-                              logPrint(logTag: "global_newIdeasAnswers", logMessage: '$global_newIdeasAnswers');
+                              logPrint(logTag: "${widget.globMap}", logMessage: '$widget.globMap');
 
                               setState(() {
                                 _isAnswerSaved = true;

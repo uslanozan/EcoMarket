@@ -10,18 +10,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 
-class NewIdeasSeeResult extends StatefulWidget {
-  const NewIdeasSeeResult({
+class SeeResult extends StatefulWidget {
+  const SeeResult({
     super.key,
+    required this.seeResultFunc,
   });
+
+  final VoidCallback seeResultFunc;
 
 
 
   @override
-  State<NewIdeasSeeResult> createState() => _NewIdeasSeeResult();
+  State<SeeResult> createState() => _SeeResultState();
 }
 
-class _NewIdeasSeeResult extends State<NewIdeasSeeResult> {
+class _SeeResultState extends State<SeeResult> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,14 +47,7 @@ class _NewIdeasSeeResult extends State<NewIdeasSeeResult> {
                     ),
                     const SizedBox(height: 40),
                     ElevatedButton.icon(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const NewIdeasResult(),
-                          ),
-                        );
-                      },
+                      onPressed: widget.seeResultFunc,
                       icon: const Icon(Icons.lightbulb),
                       label: Text(AppLocalizations.of(context)!.seeTheNewIdeas),
                       style: ElevatedButton.styleFrom(

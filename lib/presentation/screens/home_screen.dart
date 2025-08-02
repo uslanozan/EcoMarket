@@ -1,5 +1,6 @@
 import 'package:ecomarket/config/theme/app_theme.dart';
 import 'package:ecomarket/presentation/screens/ecobot_chat.dart';
+import 'package:ecomarket/presentation/screens/market_research.dart';
 import 'package:ecomarket/presentation/screens/new_ideas.dart';
 import 'package:ecomarket/presentation/widgets/ecobot/ecobot_suggestion.dart';
 import 'package:ecomarket/presentation/widgets/info_card.dart';
@@ -144,6 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 children: [
                   const SizedBox(height: 10),
+                  //todo: burası dinamikleşecek user'a göre.
                   Center(child: Text('${local.homeWelcome} Ozan')),
                   const SizedBox(height: 10),
                   SingleChildScrollView(
@@ -177,6 +179,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           subtitle: local.marketResearchSubtitle,
                           icon: Icons.sell,
                           onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => MarketResearch()));
                             // TODO: Pazar araştırması page
                           },
                         ),

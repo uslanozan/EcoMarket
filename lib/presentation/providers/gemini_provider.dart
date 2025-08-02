@@ -66,8 +66,12 @@ class GeminiProvider extends ChangeNotifier {
     logPrint(logTag: "generateNewProductIdeas: ",logMessage: "$productCategory, $material, $targetCountry, $ecoFriendly, $budget, $answerLanguage, $fallBackText");
 
     final prompt = '''
-    Some of the parameters below may be written in Turkish. Please translate them to English before processing the request, and only use the translated versions in your reasoning. If the 
-    parameters are empty or meanless, ignore the parameter.
+    Some of the parameters below may be written in Turkish. Please translate them to English before processing the request, and only use the translated versions in your reasoning. If the parameters are empty or meanless, ignore the parameter. 
+    Please silently translate them to English before processing the request, and only use the translated versions in your reasoning. Do not include the translated parameters or any explanation in the final output.
+    Each idea must start with a '+' symbol followed by a space (e.g., '+ Idea title'). Do not use bullet points or numbering. Only use the '+' format.
+    Give details for ideas. Before listing the product ideas, generate a short introductory sentence that summarizes the budget, target market, product category, and eco-friendliness level using natural language.
+    Important: Do not include any content (descriptions or explanations) on the same line as the idea title. The line starting with + should contain only the title. Add the idea’s content in the lines below.
+
 
 Parameters:
 - Product category: $productCategory

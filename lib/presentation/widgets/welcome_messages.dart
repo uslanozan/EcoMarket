@@ -4,10 +4,14 @@ import 'package:ecomarket/core/utils/text_highlight.dart';
 import 'package:ecomarket/presentation/widgets/doodle_background.dart';
 import 'package:flutter/material.dart';
 import 'package:ecomarket/l10n/app_localizations.dart';
-import 'package:ecomarket/widgets/doodle_background.dart'; // path'i senin yapına göre ayarla
 
-class NewQuestionWelcome extends StatelessWidget {
-  const NewQuestionWelcome({super.key});
+class WelcomeMessages extends StatelessWidget {
+  const WelcomeMessages({
+    super.key,
+    required this.pageType,
+  });
+
+  final String pageType;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,7 @@ class NewQuestionWelcome extends StatelessWidget {
               padding: const EdgeInsets.all(24),
               child: RichText(
                 text: highlightWordsInText(
-                  text: AppLocalizations.of(context)!.newIdeasWelcomeText,
+                  text: pageType,
                   highlights: global_language == "Turkish"
                       ? global_trHighlightWords
                       : global_enHighlightWords,

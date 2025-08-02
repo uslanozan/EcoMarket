@@ -7,9 +7,11 @@ class PageIndicator extends StatelessWidget {
     required this.tabController,
     required this.currentPageIndex,
     required this.onUpdateCurrentPageIndex,
+    required this.pageCount,
   });
 
   final int currentPageIndex;
+  final int pageCount;
   final TabController tabController;
   final void Function(int) onUpdateCurrentPageIndex;
 
@@ -42,7 +44,7 @@ class PageIndicator extends StatelessWidget {
             splashRadius: 16.0,
             padding: EdgeInsets.zero,
             onPressed: () {
-              if (currentPageIndex == 6) { //todo: sayfa sayısı artarsa burayı artır, son page indexi
+              if (currentPageIndex == pageCount) {
                 return;
               }
               onUpdateCurrentPageIndex(currentPageIndex + 1);

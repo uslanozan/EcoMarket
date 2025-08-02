@@ -1,9 +1,12 @@
 import 'package:ecomarket/config/theme/app_theme.dart';
 import 'package:ecomarket/core/globals/globals.dart';
 import 'package:ecomarket/core/utils/logger.dart';
+import 'package:ecomarket/core/utils/parse_new_ideas.dart';
 import 'package:ecomarket/l10n/app_localizations.dart';
 import 'package:ecomarket/presentation/providers/gemini_provider.dart';
+import 'package:ecomarket/presentation/screens/new_ideas.dart';
 import 'package:ecomarket/presentation/widgets/doodle_background.dart';
+import 'package:ecomarket/presentation/widgets/idea_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -53,6 +56,11 @@ class _NewIdeasResultState extends State<NewIdeasResult> {
   @override
   Widget build(BuildContext context) {
     final geminiProvider = context.watch<GeminiProvider>();
+    final _intro = !geminiProvider.isLoading ? parseIntro(output: geminiProvider.newIdeas) : '';
+    final _ideas = !geminiProvider.isLoading ? parseIdeas(output: geminiProvider.newIdeas) : {};
+
+    logPrint(logTag: "parserLog: ",logMessage: "$_ideas");
+    logPrint(logTag: "parserLog: ",logMessage: _intro);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -60,7 +68,7 @@ class _NewIdeasResultState extends State<NewIdeasResult> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: double.infinity,
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.only(bottom: 24,top: 24,left: 3,right: 3),
           child: Column(
             children: [
               Text(
@@ -70,27 +78,36 @@ class _NewIdeasResultState extends State<NewIdeasResult> {
               const SizedBox(height: 16),
               Expanded(
                 child: SingleChildScrollView(
-                  child: Card(
-                    elevation: 4,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: geminiProvider.isLoading
-                          ? const Center(
-                        child: CircularProgressIndicator(color: Colors.white70),
-                      )
-                          : Text(
-                        geminiProvider.newIdeas.isEmpty
-                            ? AppLocalizations.of(context)!.loading
-                            : geminiProvider.newIdeas,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(color: Colors.white70),
-                      ),
+                    child: geminiProvider.isLoading
+                        ? const Center(
+                      child: CircularProgressIndicator(color: Colors.white70),
+                    )
+                        : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Giriş yazısı
+                        Text(
+                          _intro,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(color: Colors.white),
+                        ),
+                        const SizedBox(height: 16),
+
+                        // Fikir kartları
+                        //... bir iterable içindeki elemanları başka bir koleksiyonun içine serpiştirir
+                        ..._ideas.entries.map((entry) => Padding(
+                          padding: const EdgeInsets.only(bottom: 12.0),
+                          child: IdeaCart(
+                            title: entry.key,
+                            content: entry.value,
+                          ),
+                        )),
+                      ],
                     ),
-                  ),
+
+
                 ),
               ),
               const SizedBox(height: 16),
@@ -114,7 +131,7 @@ class _NewIdeasResultState extends State<NewIdeasResult> {
                   const Spacer(),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const NewIdeas()));
                     },
                     child: Text(AppLocalizations.of(context)!.restart),
                   ),

@@ -1,7 +1,7 @@
 import 'package:ecomarket/core/globals/globals.dart';
 import 'package:ecomarket/l10n/app_localizations.dart';
 import 'package:ecomarket/presentation/providers/answer_provider.dart';
-import 'package:ecomarket/presentation/screens/new_ideas_result.dart';
+import 'package:ecomarket/presentation/screens/market_research_result.dart';
 import 'package:ecomarket/presentation/widgets/ecobot/new_ideas_question.dart';
 import 'package:ecomarket/presentation/widgets/page_indicator.dart';
 import 'package:ecomarket/presentation/widgets/see_result.dart';
@@ -9,15 +9,15 @@ import 'package:ecomarket/presentation/widgets/welcome_messages.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class NewIdeas extends StatefulWidget{
-  const NewIdeas({super.key});
+class MarketResearch extends StatefulWidget{
+  const MarketResearch({super.key});
 
   @override
-  State<NewIdeas> createState() => _NewIdeasState();
+  State<MarketResearch> createState() => _MarketResearchState();
 }
 
 // SingleTickerProviderStateMixin animasyonlara vsync verebildiğimiz bir provider
-class _NewIdeasState extends State<NewIdeas> with SingleTickerProviderStateMixin{
+class _MarketResearchState extends State<MarketResearch> with SingleTickerProviderStateMixin{
 
 
   late PageController _pageController;
@@ -56,7 +56,7 @@ class _NewIdeasState extends State<NewIdeas> with SingleTickerProviderStateMixin
     super.initState();
     _pageController = PageController(initialPage: 0);
     _tabController = TabController(
-        length: 7,  //todo: sayfa sayısı artarsa burayı artır
+        length: 4,  //todo: sayfa sayısı artarsa burayı artır
         vsync: this  // vsync animasyon performansını optimize eder
     );
   }
@@ -74,7 +74,7 @@ class _NewIdeasState extends State<NewIdeas> with SingleTickerProviderStateMixin
       create: (_) => AnswerProvider(),
       child: Scaffold(
         // resizeToAvoidBottomInset: true,
-        appBar: AppBar(title: Text(AppLocalizations.of(context)!.newIdeasTitle)),
+        appBar: AppBar(title: Text(AppLocalizations.of(context)!.marketResearchTitle)),
         body: Stack(
           alignment: Alignment.bottomCenter,
           children:<Widget> [
@@ -83,40 +83,28 @@ class _NewIdeasState extends State<NewIdeas> with SingleTickerProviderStateMixin
               controller: _pageController,
               scrollDirection: Axis.horizontal,
               children: [
-                WelcomeMessages(pageType: AppLocalizations.of(context)!.newIdeasWelcomeText,),
+                WelcomeMessages(pageType: AppLocalizations.of(context)!.marketResearchWelcomeText),
 
-                // Kategori
-                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestionCategory
-                ,hint: AppLocalizations.of(context)!.newIdeaHint1,questionType:'productCategory',globMap: global_newIdeasAnswers,),
-
-                // Materyal
-                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestionMaterial
-                  ,hint: AppLocalizations.of(context)!.newIdeaHint2,questionType:'material',globMap: global_newIdeasAnswers,),
+                // Açıklama
+                NewQuestionPage(question: AppLocalizations.of(context)!.marketResearchQuestionIdeaExplanation
+                    ,hint: AppLocalizations.of(context)!.marketResearchHint1,questionType:'productCategory',globMap: global_marketResearchAnaswers,),
 
                 // Ülke
-                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestionCountry
-                  ,hint: AppLocalizations.of(context)!.newIdeaHint3,questionType:'targetCountry',globMap: global_newIdeasAnswers,),
-
-                // Bütçe
-                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestionBudget
-                  ,hint: AppLocalizations.of(context)!.newIdeaHint4,questionType:'budget',globMap: global_newIdeasAnswers,),
-
-                // Çevre Dostu
-                NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestionIsEco
-                  ,hint: AppLocalizations.of(context)!.newIdeaHint5,questionType:'ecoFriendly',globMap: global_newIdeasAnswers,),
+                NewQuestionPage(question: AppLocalizations.of(context)!.marketResearchQuestionTarget
+                    ,hint: AppLocalizations.of(context)!.marketResearchHint2,questionType:'targetCountry',globMap: global_marketResearchAnaswers),
 
                 SeeResult(seeResultFunc: (){
-                  //todo: global_newIdeasAnswers temizlenecek
+                  //todo: global_market temizlenecek
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const NewIdeasResult(),
+                      builder: (context) => const MarketResearchResult(),
                     ),
                   );
                 }),
+
               ],
             ),
-            //todo: PageIndicator sabit kalmalı
             PageIndicator(
               tabController: _tabController,
               currentPageIndex: _currentPageIndex,
