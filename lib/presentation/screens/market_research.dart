@@ -2,9 +2,9 @@ import 'package:ecomarket/core/globals/globals.dart';
 import 'package:ecomarket/l10n/app_localizations.dart';
 import 'package:ecomarket/presentation/providers/answer_provider.dart';
 import 'package:ecomarket/presentation/screens/market_research_result.dart';
-import 'package:ecomarket/presentation/widgets/ecobot/new_ideas_question.dart';
+import 'package:ecomarket/presentation/screens/new_question.dart';
 import 'package:ecomarket/presentation/widgets/page_indicator.dart';
-import 'package:ecomarket/presentation/widgets/see_result.dart';
+import 'package:ecomarket/presentation/screens/see_result.dart';
 import 'package:ecomarket/presentation/widgets/welcome_messages.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -87,13 +87,15 @@ class _MarketResearchState extends State<MarketResearch> with SingleTickerProvid
 
                 // Açıklama
                 NewQuestionPage(question: AppLocalizations.of(context)!.marketResearchQuestionIdeaExplanation
-                    ,hint: AppLocalizations.of(context)!.marketResearchHint1,questionType:'productCategory',globMap: global_marketResearchAnaswers,),
+                    ,hint: AppLocalizations.of(context)!.marketResearchHint1,questionType:'explanation',globMap: global_marketResearchAnaswers,),
 
                 // Ülke
                 NewQuestionPage(question: AppLocalizations.of(context)!.marketResearchQuestionTarget
                     ,hint: AppLocalizations.of(context)!.marketResearchHint2,questionType:'targetCountry',globMap: global_marketResearchAnaswers),
 
-                SeeResult(seeResultFunc: (){
+                SeeResult(
+                navigateLabel:AppLocalizations.of(context)!.seeTheMarketResearch,
+                    seeResultFunc: (){
                   //todo: global_market temizlenecek
                   Navigator.push(
                     context,

@@ -1,7 +1,5 @@
 import 'package:ecomarket/config/theme/app_theme.dart';
-import 'package:ecomarket/core/globals/globals.dart';
 import 'package:ecomarket/core/utils/logger.dart';
-import 'package:ecomarket/presentation/providers/gemini_provider.dart';
 import 'package:ecomarket/presentation/widgets/doodle_background.dart';
 import 'package:ecomarket/presentation/widgets/question_card.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +19,11 @@ class NewQuestionPage extends StatefulWidget {
   final Map<String, String> globMap;
 
   @override
-  State<NewQuestionPage> createState() => _NewQuestionPage1State();
+  State<NewQuestionPage> createState() => _NewQuestionPageState();
 }
 
 //todo: klavye açıldığında QuestionCard aşağı inecek ya da TextFormField yukarı çıkacak
-class _NewQuestionPage1State extends State<NewQuestionPage> {
+class _NewQuestionPageState extends State<NewQuestionPage> {
 
   late final TextEditingController _answerController = TextEditingController();
   bool _isAnswerSaved = false;

@@ -3,7 +3,6 @@ import 'package:ecomarket/core/globals/globals.dart';
 import 'package:ecomarket/core/utils/text_highlight.dart';
 import 'package:ecomarket/presentation/widgets/doodle_background.dart';
 import 'package:flutter/material.dart';
-import 'package:ecomarket/l10n/app_localizations.dart';
 
 class WelcomeMessages extends StatelessWidget {
   const WelcomeMessages({

@@ -2,9 +2,9 @@ import 'package:ecomarket/core/globals/globals.dart';
 import 'package:ecomarket/l10n/app_localizations.dart';
 import 'package:ecomarket/presentation/providers/answer_provider.dart';
 import 'package:ecomarket/presentation/screens/new_ideas_result.dart';
-import 'package:ecomarket/presentation/widgets/ecobot/new_ideas_question.dart';
+import 'package:ecomarket/presentation/screens/new_question.dart';
 import 'package:ecomarket/presentation/widgets/page_indicator.dart';
-import 'package:ecomarket/presentation/widgets/see_result.dart';
+import 'package:ecomarket/presentation/screens/see_result.dart';
 import 'package:ecomarket/presentation/widgets/welcome_messages.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -105,7 +105,9 @@ class _NewIdeasState extends State<NewIdeas> with SingleTickerProviderStateMixin
                 NewQuestionPage(question: AppLocalizations.of(context)!.newIdeaQuestionIsEco
                   ,hint: AppLocalizations.of(context)!.newIdeaHint5,questionType:'ecoFriendly',globMap: global_newIdeasAnswers,),
 
-                SeeResult(seeResultFunc: (){
+                SeeResult(
+                    navigateLabel: AppLocalizations.of(context)!.seeTheNewIdeas,
+                    seeResultFunc: (){
                   //todo: global_newIdeasAnswers temizlenecek
                   Navigator.push(
                     context,

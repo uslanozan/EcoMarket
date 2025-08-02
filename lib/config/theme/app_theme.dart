@@ -97,11 +97,9 @@ class AppTheme {
       onError: Colors.white,
       errorContainer: Color(0xFFFFEBEE),
       onErrorContainer: Color(0xFFB71C1C),
-      background: Colors.white,
-      onBackground: textPrimary,
       surface: Colors.white,
       onSurface: textPrimary,
-      surfaceVariant: lightGrey,
+      surfaceContainerHighest: lightGrey,
       onSurfaceVariant: textSecondary,
       outline: mediumGrey,
       shadow: Colors.black26,
@@ -431,14 +429,14 @@ class AppTheme {
 
     // Switch teması
     switchTheme: SwitchThemeData(
-      thumbColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
+      thumbColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
           return primaryGreen;
         }
         return mediumGrey;
       }),
-      trackColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
+      trackColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
           return accentGreen;
         }
         return lightGrey;
@@ -447,13 +445,13 @@ class AppTheme {
 
     // Checkbox teması
     checkboxTheme: CheckboxThemeData(
-      fillColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
+      fillColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
           return primaryGreen;
         }
         return Colors.transparent;
       }),
-      checkColor: MaterialStateProperty.all(Colors.white),
+      checkColor: WidgetStateProperty.all(Colors.white),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(4),
       ),
@@ -461,8 +459,8 @@ class AppTheme {
 
     // RadioButton teması
     radioTheme: RadioThemeData(
-      fillColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
+      fillColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
           return primaryGreen;
         }
         return textSecondary;
@@ -491,11 +489,9 @@ class AppTheme {
       onError: Colors.black,
       errorContainer: Color(0xFFB71C1C),
       onErrorContainer: Color(0xFFFFCDD2),
-      background: darkBackground,
-      onBackground: Colors.white,
       surface: darkSurface,
       onSurface: Colors.white,
-      surfaceVariant: darkCard,
+      surfaceContainerHighest: darkCard,
       onSurfaceVariant: Color(0xFFBDBDBD),
       outline: Color(0xFF757575),
       shadow: Colors.black87,
@@ -797,14 +793,14 @@ class AppTheme {
     ),
 
     switchTheme: SwitchThemeData(
-      thumbColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
+      thumbColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
           return accentGreen;
         }
         return Color(0xFF757575);
       }),
-      trackColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
+      trackColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
           return primaryGreenLight;
         }
         return darkCard;
@@ -812,21 +808,21 @@ class AppTheme {
     ),
 
     checkboxTheme: CheckboxThemeData(
-      fillColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
+      fillColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
           return accentGreen;
         }
         return Colors.transparent;
       }),
-      checkColor: MaterialStateProperty.all(Colors.black),
+      checkColor: WidgetStateProperty.all(Colors.black),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(4),
       ),
     ),
 
     radioTheme: RadioThemeData(
-      fillColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
+      fillColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
           return accentGreen;
         }
         return Color(0xFFBDBDBD);

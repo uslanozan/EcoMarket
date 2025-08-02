@@ -60,6 +60,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get loading => 'Yükleniyor...';
 
   @override
+  String get marketResearchFallBack => 'Oops! Pazar araştırması yapılırken bir sorun oluştu. Lütfen tekrar deneyin.';
+
+  @override
+  String get marketResearchIsDone => 'Pazar Araştırması Tamamlandı!';
+
+  @override
   String get marketResearchTitle => 'Pazar Araştırması';
 
   @override
@@ -124,6 +130,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get seeTheNewIdeas => 'Yeni Fikirleri Gör';
+
+  @override
+  String get seeTheMarketResearch => 'Market Araştırması sonuçlarını Gör';
 
   @override
   String get talkToEcoBot => 'EcoBot ile konuşmak için dokun';

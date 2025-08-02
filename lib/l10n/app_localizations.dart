@@ -197,6 +197,18 @@ abstract class AppLocalizations {
   /// **'Loading...'**
   String get loading;
 
+  /// No description provided for @marketResearchFallBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! Something went wrong while doing market research.'**
+  String get marketResearchFallBack;
+
+  /// No description provided for @marketResearchIsDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Market Research is Done!'**
+  String get marketResearchIsDone;
+
   /// No description provided for @marketResearchTitle.
   ///
   /// In en, this message translates to:
@@ -328,6 +340,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'See the New Ideas'**
   String get seeTheNewIdeas;
+
+  /// No description provided for @seeTheMarketResearch.
+  ///
+  /// In en, this message translates to:
+  /// **'See the Market Resarch Results'**
+  String get seeTheMarketResearch;
 
   /// No description provided for @talkToEcoBot.
   ///

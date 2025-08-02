@@ -1,7 +1,8 @@
-library language_global;
+library;
 
 String global_language = 'English'; // Default olarak English
 
+//todo: sayfaların hangi highlightları kullanacağına karar vermek için List<List<String>> tutmak gerek
 // Highlight Words
 // EcoBot Info
 List<String> global_trHighlightWords = ['EcoBot', 'e-ticaret', 'Google', 'Gemini', 'Ozan Uslan'];

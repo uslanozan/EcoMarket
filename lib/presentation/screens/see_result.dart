@@ -1,23 +1,17 @@
-import 'package:ecomarket/config/theme/app_theme.dart';
-import 'package:ecomarket/core/globals/globals.dart';
-import 'package:ecomarket/core/utils/logger.dart';
 import 'package:ecomarket/l10n/app_localizations.dart';
-import 'package:ecomarket/presentation/providers/gemini_provider.dart';
-import 'package:ecomarket/presentation/screens/new_ideas_result.dart';
 import 'package:ecomarket/presentation/widgets/doodle_background.dart';
-import 'package:ecomarket/presentation/widgets/question_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 
 class SeeResult extends StatefulWidget {
   const SeeResult({
     super.key,
     required this.seeResultFunc,
+    required this.navigateLabel,
   });
 
   final VoidCallback seeResultFunc;
-
+  final String navigateLabel;
 
 
   @override
@@ -49,7 +43,7 @@ class _SeeResultState extends State<SeeResult> {
                     ElevatedButton.icon(
                       onPressed: widget.seeResultFunc,
                       icon: const Icon(Icons.lightbulb),
-                      label: Text(AppLocalizations.of(context)!.seeTheNewIdeas),
+                      label: Text(widget.navigateLabel,textAlign: TextAlign.center,),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
                         foregroundColor: Colors.white,

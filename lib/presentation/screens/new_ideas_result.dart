@@ -1,7 +1,6 @@
-import 'package:ecomarket/config/theme/app_theme.dart';
 import 'package:ecomarket/core/globals/globals.dart';
 import 'package:ecomarket/core/utils/logger.dart';
-import 'package:ecomarket/core/utils/parse_new_ideas.dart';
+import 'package:ecomarket/core/utils/parser.dart';
 import 'package:ecomarket/l10n/app_localizations.dart';
 import 'package:ecomarket/presentation/providers/gemini_provider.dart';
 import 'package:ecomarket/presentation/screens/new_ideas.dart';
@@ -38,17 +37,20 @@ class _NewIdeasResultState extends State<NewIdeasResult> {
     if (!_isInitialized) {
       _geminiProvider = context.read<GeminiProvider>();
 
-      // Fonksiyonu sadece bir kez çağırıyoruz
-      _geminiProvider.generateNewProductIdeas(
-        productCategory: global_newIdeasAnswers['productCategory'] ?? '-',
-        material: global_newIdeasAnswers['material'] ?? '-',
-        targetCountry: global_newIdeasAnswers['targetCountry'] ?? '-',
-        ecoFriendly: global_newIdeasAnswers['ecoFriendly'] ?? '-',
-        budget: global_newIdeasAnswers['budget'] ?? '-',
-        answerLanguage: global_language,
-        fallBackText: AppLocalizations.of(context)!.generateNewProductIdeasFallBack,
-      );
-
+      // UI build edildikten sonra çağırılır
+      // Burada UI hazır olmadan bilgiyi alma ve onu text içine gömme gibi bir durum olmaması için kullanılıyor
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        // Fonksiyonu sadece bir kez çağırıyoruz
+        _geminiProvider.generateNewProductIdeas(
+          productCategory: global_newIdeasAnswers['productCategory'] ?? '-',
+          material: global_newIdeasAnswers['material'] ?? '-',
+          targetCountry: global_newIdeasAnswers['targetCountry'] ?? '-',
+          ecoFriendly: global_newIdeasAnswers['ecoFriendly'] ?? '-',
+          budget: global_newIdeasAnswers['budget'] ?? '-',
+          answerLanguage: global_language,
+          fallBackText: AppLocalizations.of(context)!.generateNewProductIdeasFallBack,
+        );
+      });
       _isInitialized = true;
     }
   }
@@ -56,11 +58,11 @@ class _NewIdeasResultState extends State<NewIdeasResult> {
   @override
   Widget build(BuildContext context) {
     final geminiProvider = context.watch<GeminiProvider>();
-    final _intro = !geminiProvider.isLoading ? parseIntro(output: geminiProvider.newIdeas) : '';
-    final _ideas = !geminiProvider.isLoading ? parseIdeas(output: geminiProvider.newIdeas) : {};
+    final intro = !geminiProvider.isLoading ? parseIntro(output: geminiProvider.newIdeas) : '';
+    final ideas = !geminiProvider.isLoading ? parseIdeas(output: geminiProvider.newIdeas) : {};
 
-    logPrint(logTag: "parserLog: ",logMessage: "$_ideas");
-    logPrint(logTag: "parserLog: ",logMessage: _intro);
+    logPrint(logTag: "parserLog: ",logMessage: "$ideas");
+    logPrint(logTag: "parserLog: ",logMessage: intro);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -87,7 +89,7 @@ class _NewIdeasResultState extends State<NewIdeasResult> {
                       children: [
                         // Giriş yazısı
                         Text(
-                          _intro,
+                          intro,
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge
@@ -97,7 +99,7 @@ class _NewIdeasResultState extends State<NewIdeasResult> {
 
                         // Fikir kartları
                         //... bir iterable içindeki elemanları başka bir koleksiyonun içine serpiştirir
-                        ..._ideas.entries.map((entry) => Padding(
+                        ...ideas.entries.map((entry) => Padding(
                           padding: const EdgeInsets.only(bottom: 12.0),
                           child: IdeaCart(
                             title: entry.key,

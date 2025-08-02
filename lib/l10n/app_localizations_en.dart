@@ -60,6 +60,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loading => 'Loading...';
 
   @override
+  String get marketResearchFallBack => 'Oops! Something went wrong while doing market research.';
+
+  @override
+  String get marketResearchIsDone => 'Market Research is Done!';
+
+  @override
   String get marketResearchTitle => 'Market Research';
 
   @override
@@ -124,6 +130,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get seeTheNewIdeas => 'See the New Ideas';
+
+  @override
+  String get seeTheMarketResearch => 'See the Market Resarch Results';
 
   @override
   String get talkToEcoBot => 'Tap to Talk with EcoBot';

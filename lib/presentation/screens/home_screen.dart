@@ -2,7 +2,7 @@ import 'package:ecomarket/config/theme/app_theme.dart';
 import 'package:ecomarket/presentation/screens/ecobot_chat.dart';
 import 'package:ecomarket/presentation/screens/market_research.dart';
 import 'package:ecomarket/presentation/screens/new_ideas.dart';
-import 'package:ecomarket/presentation/widgets/ecobot/ecobot_suggestion.dart';
+import 'package:ecomarket/presentation/widgets/ecobot_suggestion.dart';
 import 'package:ecomarket/presentation/widgets/info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     : const Locale('tr'),
               );
 
-              if (geminiProvider.dailySuggestion?.isEmpty ?? true) {
+              if (geminiProvider.dailySuggestion.isEmpty ?? true) {
                 await geminiProvider.getDailySuggestion(
                     answerLanguage: global_language,
                     fallBackText: AppLocalizations.of(context)!.noSuggestion);
@@ -251,8 +251,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   TextButton(
                     style: ButtonStyle(
                       overlayColor:
-                          MaterialStateProperty.all(Colors.transparent),
-                      padding: MaterialStateProperty.all(EdgeInsets.zero),
+                          WidgetStateProperty.all(Colors.transparent),
+                      padding: WidgetStateProperty.all(EdgeInsets.zero),
                     ),
                     onPressed: () {
                       _showEcoBotInfo(context);

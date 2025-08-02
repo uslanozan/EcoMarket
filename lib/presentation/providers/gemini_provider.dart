@@ -3,7 +3,6 @@ import 'package:ecomarket/core/globals/globals.dart';
 import 'package:ecomarket/core/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
-import 'package:ecomarket/l10n/app_localizations.dart';
 
 class GeminiProvider extends ChangeNotifier {
 
@@ -20,6 +19,13 @@ class GeminiProvider extends ChangeNotifier {
   // yeni fikirler
   String _newIdeas= '';
   String get newIdeas => _newIdeas;
+
+  // market araştırması
+  String _marketResearchResult = '';
+  String get marketResearchResult => _marketResearchResult;
+
+  // daha çevreci yapma
+  // yorumları özetleme
 
   // normal prompt için olacak
   String _response = '';
@@ -102,6 +108,8 @@ Answer in $answerLanguage.
   }
 
 
+  //todo: result Instance of 'Candidate' dönüyor ama output geliyor. Araştırılacak
+  //todo: sebebi promptta internet araştırması istemem olabilir ?
   // Pazar araştırması
   Future<void> doMarketResearch({
     required String productIdea,
@@ -111,36 +119,61 @@ Answer in $answerLanguage.
   }) async {
     _setLoading();
 
+    logPrint(logTag: "doMarketResearch: ",logMessage: "$productIdea, $targetCountries, $answerLanguage, $fallBackText");
+
+
     final prompt = '''
 Some of the parameters below may be written in Turkish. Please translate them to English before processing the request, and only use the translated versions in your reasoning. 
-If the parameters are empty or meaningless, ignore them.
+If the parameters are empty or meaningless, ignore them. Please silently translate them before reasoning and use only the translated versions. 
+Do not include the translated parameters or any explanation in the final output. Start directly from the first section below.
+Each section title must start with a '+' (e.g., +Market Demand+) and must not be numbered.
+If listing subitems (e.g., customer segments), write each item on a new line starting with ++ and ending with ++, followed by a single, concise explanatory sentence.
+Use paragraph breaks (\n\n) between sections for readability.
 
 Parameters:
 - Product idea: $productIdea
 - Target countries/markets: $targetCountries
 
-Do a comprehensive market research on the product idea "$productIdea" for the target region: $targetCountries.
+Conduct a comprehensive market research report for the product idea "$productIdea" targeting the region: $targetCountries.
 
-Include details such as:
-- Is this product in demand in the target market?
-- What types of customers are likely to buy it?
-- What is the competitive landscape?
-- Are there similar products currently available?
-- Through which platforms or marketplaces are they being sold?
-- What is the general price range?
-- Are there any trends or growth patterns related to this product?
-- Any potential risks or limitations?
+Include the following sections:
++Market Demand+: Is this product in demand in the target market?
 
-Make the analysis insightful and actionable for an entrepreneur or product designer. 
++Target Customer Segments+: What types of customers are likely to buy it?
 
++Competitive Landscape+: Who are the key competitors, and how saturated is the market?
+
++Similar Products & Marketplaces+: Are there similar products currently available? Through which platforms or marketplaces are they being sold?
+
++Price Range+: What is the general price range of similar products?
+
++Trends and Growth Patterns+: Are there any trends or growth patterns related to this product?
+
++Risks and Limitations+: Any potential risks or limitations to consider?
+
+At the end, add one final section:
+
++Existing Products and Prices+:
+- Mention whether similar products are currently available on the market
+- List a few existing brands or sellers (if any)
+- Provide their approximate price ranges
+
+Ensure the analysis is practical, realistic, and actionable for an entrepreneur or product designer.
+
+Translate all section titles (e.g., +Market Demand+) to $answerLanguage before generating the output. Keep the '+' format and capitalization consistent with the answer language.
 Answer in $answerLanguage.
 ''';
 
+    logPrint(logTag: "doMarketResearch: ",logMessage: "Prompt is: \n $prompt");
+
+
     try {
       final result = await _gemini.text(prompt);
-      _setResponse(result?.output ?? fallBackText);
+      logPrint(logTag: "doMarketResearch: ",logMessage: "Result is: \n ${result.toString()}");
+      _setMarketResearch(result?.output ?? fallBackText);
     } catch (e) {
       _setError(e.toString());
+      logPrint(logTag: "doMarketResearch: ",logMessage: "Result Error: \n $e");
     }
   }
 
@@ -294,6 +327,13 @@ Translate the following sentence into $newLanguage. Do not change the meaning. K
     notifyListeners();
   }
 
+  void _setMarketResearch(String suggestion) {
+    _marketResearchResult = suggestion.trim();
+    _isLoading = false;
+    notifyListeners();
+  }
+
+
   void _setNewIdeas(String newIdeas) {
     _newIdeas = newIdeas.trim();
     _isLoading = false;
@@ -328,3 +368,4 @@ Translate the following sentence into $newLanguage. Do not change the meaning. K
     notifyListeners();
   }
 }
+
