@@ -57,6 +57,39 @@ class AppLocalizationsTr extends AppLocalizations {
   String get ecoProductSubtitle => 'EcoBot ürünlerini yenilemekte, geliştirmekte ve çevre dostu yapamakta sana yardımcı olur';
 
   @override
+  String get ecoProductWelcomeText => 'EcoBot ile birlikte ürününü geliştirmeye hazır mısın?\n\nBana ürünün adını, açıklamasını, materyallerini ve satış yapmayı planladığın ülkeyi ver — gerisini birlikte halledelim.\n\nAmacımız, ürününü daha çevreci ve rekabetçi hale getirmek.\n\nEcoBot senin geliştirme asistanın olacak: sana birkaç soru soracak, ardından analiz yaparak çevresel etkileri azaltmaya ve ürününü iyileştirmeye yönelik öneriler sunacak.\n\nHazırsan, başlayalım ve daha sürdürülebilir bir ürüne birlikte adım atalım!';
+
+  @override
+  String get ecoProductQuestionName => 'Ürünün adı nedir?';
+
+  @override
+  String get ecoProductQuestionDescription => 'Ürünü tanımlayabilir misin?';
+
+  @override
+  String get ecoProductQuestionMaterial => 'Ürün hangi malzeme ya da malzemelerden yapılmıştır?';
+
+  @override
+  String get ecoProductQuestionTarget => 'Ürünün satışının hedeflendiği ülke veya ülkeler hangileri?';
+
+  @override
+  String get ecoProductHint1 => 'Ürününüzün adı, baskılı tişört...';
+
+  @override
+  String get ecoProductHint2 => 'Kauçuk, baskılı telefon kılıfı...';
+
+  @override
+  String get ecoProductHint3 => 'Plastik, ahşap, gümüş...';
+
+  @override
+  String get ecoProductHint4 => 'Global, Türkiye, Rusya...';
+
+  @override
+  String get ecoProductFallBack => 'Oops! Ürün geliştirmesi yapılırken bir sorun oluştu. Lütfen tekrar deneyin.';
+
+  @override
+  String get ecoProductIsDone => 'Eco Ürün Geliştirmeleri Hazır!';
+
+  @override
   String get loading => 'Yükleniyor...';
 
   @override
@@ -135,6 +168,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get seeTheMarketResearch => 'Market Araştırması sonuçlarını Gör';
 
   @override
+  String get seeTheImprovedProduct => 'Geliştirilmiş ürünü gör';
+
+  @override
   String get talkToEcoBot => 'EcoBot ile konuşmak için dokun';
 
   @override
@@ -144,5 +180,5 @@ class AppLocalizationsTr extends AppLocalizations {
   String get userFeedbackSubtitle => 'EcoBot senin için kullanıcıların yorumlarını ve isteklerini analiz eder';
 
   @override
-  String get yourIdeasReady => 'Fikirlerin Hazır!';
+  String get newIdeaIsDone => 'Fikirlerin Hazır!';
 }

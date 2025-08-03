@@ -1,5 +1,6 @@
 import 'package:ecomarket/config/theme/app_theme.dart';
 import 'package:ecomarket/presentation/screens/ecobot_chat.dart';
+import 'package:ecomarket/presentation/screens/improve_product.dart';
 import 'package:ecomarket/presentation/screens/market_research.dart';
 import 'package:ecomarket/presentation/screens/new_ideas.dart';
 import 'package:ecomarket/presentation/widgets/ecobot_suggestion.dart';
@@ -170,8 +171,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           subtitle: local.ecoProductSubtitle,
                           icon: Icons.recycling,
                           onTap: () {
-                            // TODO: More Eco product page
-                          },
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ImproveProduct()));                          },
                         ),
                         const SizedBox(width: 20),
                         InfoCard(
@@ -182,7 +184,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => MarketResearch()));
-                            // TODO: Pazar araştırması page
                           },
                         ),
                         const SizedBox(width: 20),

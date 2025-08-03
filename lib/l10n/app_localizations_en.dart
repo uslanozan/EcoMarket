@@ -57,6 +57,39 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ecoProductSubtitle => 'EcoBot helps you renew, improve, and make your products more environmentally friendly';
 
   @override
+  String get ecoProductWelcomeText => 'Ready to improve your product with EcoBot?\n\nJust tell me your product’s name, description, materials, and the country you plan to sell in — we’ll take it from there.\n\nOur goal is to make your product more eco-friendly and competitive.\n\nEcoBot will be your development assistant: it will ask a few questions, analyze the details, and give tailored suggestions to enhance your product and reduce its environmental impact.\n\nIf you\'re ready, let\'s begin and take a solid step toward a more sustainable product!';
+
+  @override
+  String get ecoProductQuestionName => 'What is the name of the product?';
+
+  @override
+  String get ecoProductQuestionDescription => 'Can you describe the product?';
+
+  @override
+  String get ecoProductQuestionMaterial => 'What material or materials is the product made of?';
+
+  @override
+  String get ecoProductQuestionTarget => 'Which country or countries is the product intended to be sold in?';
+
+  @override
+  String get ecoProductHint1 => 'Your product name, printed t-shirt...';
+
+  @override
+  String get ecoProductHint2 => 'Rubber, printed phone case...';
+
+  @override
+  String get ecoProductHint3 => 'Plastic, wood, silver...';
+
+  @override
+  String get ecoProductHint4 => 'Global, Turkey, Russia...';
+
+  @override
+  String get ecoProductFallBack => 'Oops! Something went wrong while improving the product.';
+
+  @override
+  String get ecoProductIsDone => 'Eco Improvements are Ready!';
+
+  @override
   String get loading => 'Loading...';
 
   @override
@@ -81,10 +114,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get marketResearchQuestionTarget => 'Which country or countries would you like to focus your market research on for this product?';
 
   @override
-  String get marketResearchHint1 => 'Telefon Kılıfı, Küpe, Sweatshirt...';
+  String get marketResearchHint1 => 'Phone Case, Earrings, Sweatshirt...';
 
   @override
-  String get marketResearchHint2 => 'Phone Case, Earrings, Sweatshirt...';
+  String get marketResearchHint2 => 'Global, America, Philippines...';
 
   @override
   String get newIdeaQuestionCategory => 'What will be the product category or categories?';
@@ -135,6 +168,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get seeTheMarketResearch => 'See the Market Resarch Results';
 
   @override
+  String get seeTheImprovedProduct => 'See the improved product';
+
+  @override
   String get talkToEcoBot => 'Tap to Talk with EcoBot';
 
   @override
@@ -144,5 +180,5 @@ class AppLocalizationsEn extends AppLocalizations {
   String get userFeedbackSubtitle => 'EcoBot analyzes user comments and requests for you';
 
   @override
-  String get yourIdeasReady => 'Your ideas are ready!';
+  String get newIdeaIsDone => 'Your ideas are ready!';
 }

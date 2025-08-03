@@ -7,6 +7,8 @@ import 'package:flutter_gemini/flutter_gemini.dart';
 class GeminiProvider extends ChangeNotifier {
 
   //todo: enum açarak gemini status kontrol etme eklenebilir ama şuan biraz gereksiz
+  //todo: Fonksiyonlara saçma şeyler yazılırsa prompt sapıtabilir bu eklenebilir (improve harici denenmedi):
+  //todo: Do not generate any fallback messages, warnings, or hypothetical examples.
   final Gemini _gemini = Gemini.instance;
 
   final cache = DailySuggestionCache();
@@ -17,15 +19,20 @@ class GeminiProvider extends ChangeNotifier {
   String get dailySuggestion => _dailySuggestion;
 
   // yeni fikirler
-  String _newIdeas= '';
-  String get newIdeas => _newIdeas;
+  String _newIdeasResult= '';
+  String get newIdeasResult => _newIdeasResult;
 
   // market araştırması
   String _marketResearchResult = '';
   String get marketResearchResult => _marketResearchResult;
 
   // daha çevreci yapma
+  String _improveProductResult= '';
+  String get improveProductResult => _improveProductResult;
+
   // yorumları özetleme
+  String _summarizeCommentsResult = '';
+  String get summarizeCommentsResult => _summarizeCommentsResult;
 
   // normal prompt için olacak
   String _response = '';
@@ -179,7 +186,8 @@ Answer in $answerLanguage.
 
 
   // Ürünü daha çevreci hale getirmek için prompt
-  Future<void> improveEcoFriendliness({
+  //todo: fiyat, kullanıcı yorumları vesaire eklenebilir
+  Future<void> improveProduct({
     required String productName,
     required String productDescription,
     required String currentMaterials,
@@ -189,9 +197,16 @@ Answer in $answerLanguage.
   }) async {
     _setLoading();
 
+    logPrint(logTag: "improveProduct: ",logMessage: "$productName, $productDescription, $currentMaterials, $targetMarket, $answerLanguage, $fallBackText");
+
 
     final prompt = '''
-Some of the parameters below may be written in Turkish. Please translate them to English before processing the request, and only use the translated versions in your reasoning. If the parameters are empty or meaningless, ignore them.
+Some of the parameters below may be written in Turkish. Please translate them to English before processing the request, and only use the translated versions in your reasoning.
+If the parameters are empty or meaningless, ignore them. Do not generate any fallback messages, warnings, or hypothetical examples. 
+Please silently translate them before reasoning and use only the translated versions. 
+Each suggestion title must start with a '+' (e.g., +Material Optimization+) and must not be numbered.
+If listing subitems (e.g., removing chemicals), write each item on a new line starting with ++ and ending with ++, followed by a single, concise explanatory sentence.
+Use paragraph breaks (\n\n) between sections for readability.
 
 Parameters:
 - Product name: $productName
@@ -204,11 +219,16 @@ Suggest detailed and practical ways to improve the eco-friendliness of the produ
 Answer in $answerLanguage.
   ''';
 
+    logPrint(logTag: "improveProduct: ",logMessage: "Prompt is: \n $prompt");
+
+
     try {
       final result = await _gemini.text(prompt);
-      _setResponse(result?.output ?? fallBackText);
+      _setImproveProduct(result?.output ?? fallBackText);
+      logPrint(logTag: "improveProduct: ",logMessage: "Result is: \n ${result.toString()}");
     } catch (e) {
       _setError(e.toString());
+      logPrint(logTag: "improveProduct: ",logMessage: "Result Error: \n $e");
     }
   }
 
@@ -248,8 +268,6 @@ Answer in $answerLanguage.
   }) async {
     print('OZAN_LOG: getDailySuggestion started for language: $answerLanguage');
     _setLoading();
-    //todo: BURASI TEST İÇİN SİLİNECEK OTOMATİK REQUEST ATMASIN DİYE ŞUANLIK RETURN BIRAKTIM
-    //return;
 
     try {
       final cachedSuggestion = await cache.getCachedSuggestion(global_language);
@@ -327,6 +345,12 @@ Translate the following sentence into $newLanguage. Do not change the meaning. K
     notifyListeners();
   }
 
+  void _setImproveProduct(String suggestion) {
+    _improveProductResult = suggestion.trim();
+    _isLoading = false;
+    notifyListeners();
+  }
+
   void _setMarketResearch(String suggestion) {
     _marketResearchResult = suggestion.trim();
     _isLoading = false;
@@ -335,7 +359,7 @@ Translate the following sentence into $newLanguage. Do not change the meaning. K
 
 
   void _setNewIdeas(String newIdeas) {
-    _newIdeas = newIdeas.trim();
+    _newIdeasResult = newIdeas.trim();
     _isLoading = false;
     notifyListeners();
   }
@@ -362,10 +386,14 @@ Translate the following sentence into $newLanguage. Do not change the meaning. K
   void reset() {
     _response = '';
     _error = '';
-    _newIdeas = '';
+    _newIdeasResult = '';
     _dailySuggestion = '';
+    _improveProductResult = '';
+    _marketResearchResult = '';
+    _summarizeCommentsResult = '';
     _isLoading = false;
     notifyListeners();
   }
 }
+
 

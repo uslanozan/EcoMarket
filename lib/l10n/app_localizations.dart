@@ -191,6 +191,72 @@ abstract class AppLocalizations {
   /// **'EcoBot helps you renew, improve, and make your products more environmentally friendly'**
   String get ecoProductSubtitle;
 
+  /// No description provided for @ecoProductWelcomeText.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to improve your product with EcoBot?\n\nJust tell me your product’s name, description, materials, and the country you plan to sell in — we’ll take it from there.\n\nOur goal is to make your product more eco-friendly and competitive.\n\nEcoBot will be your development assistant: it will ask a few questions, analyze the details, and give tailored suggestions to enhance your product and reduce its environmental impact.\n\nIf you\'re ready, let\'s begin and take a solid step toward a more sustainable product!'**
+  String get ecoProductWelcomeText;
+
+  /// No description provided for @ecoProductQuestionName.
+  ///
+  /// In en, this message translates to:
+  /// **'What is the name of the product?'**
+  String get ecoProductQuestionName;
+
+  /// No description provided for @ecoProductQuestionDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Can you describe the product?'**
+  String get ecoProductQuestionDescription;
+
+  /// No description provided for @ecoProductQuestionMaterial.
+  ///
+  /// In en, this message translates to:
+  /// **'What material or materials is the product made of?'**
+  String get ecoProductQuestionMaterial;
+
+  /// No description provided for @ecoProductQuestionTarget.
+  ///
+  /// In en, this message translates to:
+  /// **'Which country or countries is the product intended to be sold in?'**
+  String get ecoProductQuestionTarget;
+
+  /// No description provided for @ecoProductHint1.
+  ///
+  /// In en, this message translates to:
+  /// **'Your product name, printed t-shirt...'**
+  String get ecoProductHint1;
+
+  /// No description provided for @ecoProductHint2.
+  ///
+  /// In en, this message translates to:
+  /// **'Rubber, printed phone case...'**
+  String get ecoProductHint2;
+
+  /// No description provided for @ecoProductHint3.
+  ///
+  /// In en, this message translates to:
+  /// **'Plastic, wood, silver...'**
+  String get ecoProductHint3;
+
+  /// No description provided for @ecoProductHint4.
+  ///
+  /// In en, this message translates to:
+  /// **'Global, Turkey, Russia...'**
+  String get ecoProductHint4;
+
+  /// No description provided for @ecoProductFallBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! Something went wrong while improving the product.'**
+  String get ecoProductFallBack;
+
+  /// No description provided for @ecoProductIsDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Eco Improvements are Ready!'**
+  String get ecoProductIsDone;
+
   /// No description provided for @loading.
   ///
   /// In en, this message translates to:
@@ -242,13 +308,13 @@ abstract class AppLocalizations {
   /// No description provided for @marketResearchHint1.
   ///
   /// In en, this message translates to:
-  /// **'Telefon Kılıfı, Küpe, Sweatshirt...'**
+  /// **'Phone Case, Earrings, Sweatshirt...'**
   String get marketResearchHint1;
 
   /// No description provided for @marketResearchHint2.
   ///
   /// In en, this message translates to:
-  /// **'Phone Case, Earrings, Sweatshirt...'**
+  /// **'Global, America, Philippines...'**
   String get marketResearchHint2;
 
   /// No description provided for @newIdeaQuestionCategory.
@@ -347,6 +413,12 @@ abstract class AppLocalizations {
   /// **'See the Market Resarch Results'**
   String get seeTheMarketResearch;
 
+  /// No description provided for @seeTheImprovedProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'See the improved product'**
+  String get seeTheImprovedProduct;
+
   /// No description provided for @talkToEcoBot.
   ///
   /// In en, this message translates to:
@@ -365,11 +437,11 @@ abstract class AppLocalizations {
   /// **'EcoBot analyzes user comments and requests for you'**
   String get userFeedbackSubtitle;
 
-  /// No description provided for @yourIdeasReady.
+  /// No description provided for @newIdeaIsDone.
   ///
   /// In en, this message translates to:
   /// **'Your ideas are ready!'**
-  String get yourIdeasReady;
+  String get newIdeaIsDone;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -17,3 +17,5 @@ List<String> global_trHighlightWordsQuestion = ['kategorisi', 'kategorileri', 'm
 Map<String, String> global_newIdeasAnswers = {};
 // Market Research Answers
 Map<String, String> global_marketResearchAnaswers = {};
+// Eco Improve Answers
+Map<String, String> global_ecoImproveAnswers = {};
