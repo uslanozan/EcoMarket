@@ -45,6 +45,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get newIdeasSubtitle => 'EcoBot ile beraber yeni fikirlere yelken aç';
 
   @override
+  String get ecoBot => 'EcoBot';
+
+  @override
+  String get sendMessageFallback => 'Mesaj oluşturulurken bir hata oldu.';
+
+  @override
+  String get ecoBotTalkHint => 'Konuşmak için yaz';
+
+  @override
   String get ecoBotInfoLabel => 'EcoBot Nedir?';
 
   @override

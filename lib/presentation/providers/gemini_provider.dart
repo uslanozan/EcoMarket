@@ -1,6 +1,7 @@
 import 'package:ecomarket/core/cache/daily_suggestion_cache.dart';
 import 'package:ecomarket/core/globals/globals.dart';
 import 'package:ecomarket/core/utils/logger.dart';
+import 'package:ecomarket/data/models/chat_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 
@@ -34,10 +35,9 @@ class GeminiProvider extends ChangeNotifier {
   String _summarizeCommentsResult = '';
   String get summarizeCommentsResult => _summarizeCommentsResult;
 
-  // normal prompt için olacak
-  String _response = '';
-  String get response => _response;
-
+  // normal sohbet geçmişi
+  final List<ChatMessage> _chatHistory = [];
+  List<ChatMessage> get chatHistory => List.unmodifiable(_chatHistory); // unmodifiable yanlışlıkla değiştirilmesin diye
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -48,16 +48,31 @@ class GeminiProvider extends ChangeNotifier {
 
 
 
-  // Genel prompt gönderme fonksiyonu (isteğe bağlı)
-  Future<void> sendPrompt({
-    required String prompt,
+  // Normal sohbet promptu
+  //todo: Prompt engineer yapılacak (senin adın EcoBot vesaire....)
+  Future<void> sendMessage({
+    required String message,
     required String fallBackText,
 }) async {
     _setLoading();
+    logPrint(logTag: "sendMessage: ",logMessage: "$message, $fallBackText");
+
+    // Kullanıcının gönderdiği
+    _setMessage(message,true);
+
+    //todo: şimdilik boş
+    String prompt = "";
+
+    logPrint(logTag: "sendMessage: ",logMessage: "Prompt is: \n $prompt");
+
+
     try {
-      final result = await _gemini.text(prompt);
-      _setResponse(result?.output ?? fallBackText);
+      final result = await _gemini.text(message);
+      logPrint(logTag: "sendMessage: ",logMessage: "Result is: \n $result");
+      // Bot'un gönderdiği
+      _setMessage(result?.output ?? fallBackText,false);
     } catch (e) {
+      logPrint(logTag: "sendMessage: ",logMessage: "Result Error: \n $e");
       _setError(e.toString());
     }
   }
@@ -255,7 +270,7 @@ Answer in $answerLanguage.
 
     try {
       final result = await _gemini.text(prompt);
-      _setResponse(result?.output ?? fallBackText);
+      _setSummarizeUserFeedback(result?.output ?? fallBackText);
     } catch (e) {
       _setError(e.toString());
     }
@@ -345,6 +360,12 @@ Translate the following sentence into $newLanguage. Do not change the meaning. K
     notifyListeners();
   }
 
+  void _setSummarizeUserFeedback(String suggestion) {
+    _summarizeCommentsResult = suggestion.trim();
+    _isLoading = false;
+    notifyListeners();
+  }
+
   void _setImproveProduct(String suggestion) {
     _improveProductResult = suggestion.trim();
     _isLoading = false;
@@ -364,11 +385,12 @@ Translate the following sentence into $newLanguage. Do not change the meaning. K
     notifyListeners();
   }
 
-  void _setResponse(String response) {
-    _response = response;
-    _isLoading = false;
+  void _setMessage (String message, bool isUser){
+    _chatHistory.insert(0, ChatMessage(text: message, isUser: isUser, dateTime: DateTime.now()));
+    _isLoading = true;
     notifyListeners();
   }
+
 
   void _setLoading() {
     _isLoading = true;
@@ -378,13 +400,11 @@ Translate the following sentence into $newLanguage. Do not change the meaning. K
 
   void _setError(String error) {
     _error = error;
-    _response = '';
     _isLoading = false;
     notifyListeners();
   }
 
   void reset() {
-    _response = '';
     _error = '';
     _newIdeasResult = '';
     _dailySuggestion = '';

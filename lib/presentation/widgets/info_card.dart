@@ -5,13 +5,16 @@ class InfoCard extends StatefulWidget {
   final String title;
   final String subtitle;
   final IconData icon;
+  final Color iconColor;
   final VoidCallback? onTap;
+
 
   const InfoCard({
     super.key,
     required this.title,
     required this.subtitle,
     required this.icon,
+    required this.iconColor,
     this.onTap,
   });
 
@@ -44,7 +47,7 @@ class _InfoCardState extends State<InfoCard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(widget.icon, size: 38, color: Colors.white),
+              Icon(widget.icon, size: 38, color: widget.iconColor),
               const SizedBox(height: 12),
               Text(
                 widget.title,

@@ -167,6 +167,24 @@ abstract class AppLocalizations {
   /// **'Set sail for new ideas with EcoBot'**
   String get newIdeasSubtitle;
 
+  /// No description provided for @ecoBot.
+  ///
+  /// In en, this message translates to:
+  /// **'EcoBot'**
+  String get ecoBot;
+
+  /// No description provided for @sendMessageFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! Something went wrong while generating message.'**
+  String get sendMessageFallback;
+
+  /// No description provided for @ecoBotTalkHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Write to talk'**
+  String get ecoBotTalkHint;
+
   /// No description provided for @ecoBotInfoLabel.
   ///
   /// In en, this message translates to:

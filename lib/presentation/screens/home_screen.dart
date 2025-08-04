@@ -158,11 +158,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           title: local.newIdeasTitle,
                           subtitle: local.newIdeasSubtitle,
                           icon: Icons.lightbulb,
+                          iconColor: AppTheme.lightbulbIcon,
                           onTap: () {
                             Navigator.push(
-                              context, 
-                              MaterialPageRoute(builder: (context) => NewIdeas())
-                            );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => NewIdeas()));
                           },
                         ),
                         const SizedBox(width: 20),
@@ -170,20 +171,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           title: local.ecoProductTitle,
                           subtitle: local.ecoProductSubtitle,
                           icon: Icons.recycling,
+                          iconColor: AppTheme.recyclingIcon,
                           onTap: () {
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => ImproveProduct()));                          },
+                                MaterialPageRoute(
+                                    builder: (context) => ImproveProduct()));
+                          },
                         ),
                         const SizedBox(width: 20),
                         InfoCard(
                           title: local.marketResearchTitle,
                           subtitle: local.marketResearchSubtitle,
                           icon: Icons.sell,
+                          iconColor: AppTheme.sellIcon,
                           onTap: () {
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => MarketResearch()));
+                                MaterialPageRoute(
+                                    builder: (context) => MarketResearch()));
                           },
                         ),
                         const SizedBox(width: 20),
@@ -191,6 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           title: local.userFeedbackTitle,
                           subtitle: local.userFeedbackSubtitle,
                           icon: Icons.star,
+                          iconColor: AppTheme.starIcon,
                           onTap: () {
                             // TODO: User feedback page
                           },
@@ -199,7 +206,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  Center(child: Text(local.cardInfo,style: TextTheme.of(context).bodySmall,)),
+                  Center(
+                      child: Text(
+                    local.cardInfo,
+                    style: TextTheme.of(context).bodySmall,
+                  )),
                   const SizedBox(height: 20),
                   Container(
                     margin: const EdgeInsets.symmetric(
@@ -251,8 +262,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 10),
                   TextButton(
                     style: ButtonStyle(
-                      overlayColor:
-                          WidgetStateProperty.all(Colors.transparent),
+                      overlayColor: WidgetStateProperty.all(Colors.transparent),
                       padding: WidgetStateProperty.all(EdgeInsets.zero),
                     ),
                     onPressed: () {
@@ -280,31 +290,72 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    style: ButtonStyle(),
+                    style: ElevatedButtonTheme.of(context).style?.copyWith(
+
+                      padding: WidgetStateProperty.all(EdgeInsets.all(8)), // veya EdgeInsets.zero
+                      minimumSize: WidgetStateProperty.all(Size(70, 50)), // Butonun minimum boyutu
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap, // tıklama alanını da küçültür
+
+                    ),
                     onPressed: () {
                       // TODO: Following product page
                     },
-                    child:
-                        const Icon(Icons.local_shipping, color: Colors.white),
+                    child: const Icon(
+                      Icons.local_shipping,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                   ),
                   ElevatedButton(
+                    style: ElevatedButtonTheme.of(context).style?.copyWith(
+
+                      padding: WidgetStateProperty.all(EdgeInsets.all(8)), // veya EdgeInsets.zero
+                      minimumSize: WidgetStateProperty.all(Size(70, 50)), // Butonun minimum boyutu
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap, // tıklama alanını da küçültür
+
+                    ),
                     onPressed: () {
                       // TODO: Showing graphs page
                     },
-                    child:
-                        const Icon(Icons.bar_chart_sharp, color: Colors.white),
+                    child: const Icon(
+                      Icons.bar_chart_sharp,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                   ),
                   ElevatedButton(
+                    style: ElevatedButtonTheme.of(context).style?.copyWith(
+
+                      padding: WidgetStateProperty.all(EdgeInsets.all(8)), // veya EdgeInsets.zero
+                      minimumSize: WidgetStateProperty.all(Size(70, 50)), // Butonun minimum boyutu
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap, // tıklama alanını da küçültür
+
+                    ),
                     onPressed: () {
                       // TODO: Buy page?
                     },
-                    child: const Icon(Icons.shopping_cart, color: Colors.white),
+                    child: const Icon(
+                      Icons.shopping_cart,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                   ),
                   ElevatedButton(
+                    style: ElevatedButtonTheme.of(context).style?.copyWith(
+
+                      padding: WidgetStateProperty.all(EdgeInsets.all(8)), // veya EdgeInsets.zero
+                      minimumSize: WidgetStateProperty.all(Size(70, 50)), // Butonun minimum boyutu
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap, // tıklama alanını da küçültür
+
+                    ),
                     onPressed: () {
                       // TODO: Profile page
                     },
-                    child: const Icon(Icons.person, color: Colors.white),
+                    child: const Icon(
+                      Icons.person,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                   ),
                 ],
               ),

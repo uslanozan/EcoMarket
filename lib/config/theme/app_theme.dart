@@ -14,6 +14,12 @@ class AppTheme {
   static const Color errorColor = Color(0xFFF44336);
   static const Color infoColor = Color(0xFF2196F3);
 
+  // İkon renkleri
+  static const Color lightbulbIcon = Color(0xFFFFC100); // Amber 500
+  static const Color recyclingIcon = Color(0xFFE0D7C6); // Nature-like cream
+  static const Color sellIcon = Color(0xFFDC4340);      // Red 400
+  static const Color starIcon = Color(0xFF189AF8);      // Blue 300
+
   // Gri tonları
   static const Color lightGrey = Color(0xFFF5F5F5);
   static const Color mediumGrey = Color(0xFFBDBDBD);
