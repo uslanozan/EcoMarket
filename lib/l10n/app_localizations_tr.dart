@@ -102,6 +102,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get loading => 'Yükleniyor...';
 
   @override
+  String get products => 'Ürünler';
+
+  @override
   String get marketResearchFallBack => 'Oops! Pazar araştırması yapılırken bir sorun oluştu. Lütfen tekrar deneyin.';
 
   @override

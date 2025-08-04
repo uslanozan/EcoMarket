@@ -3,10 +3,11 @@ library;
 String global_language = 'English'; // Default olarak English
 
 //todo: sayfaların hangi highlightları kullanacağına karar vermek için List<List<String>> tutmak gerek
+//todo: BUNUN İÇİN DE BİR COUNTRY CLASSI YAZILACAK
 // Highlight Words
 // EcoBot Info
-List<String> global_trHighlightWords = ['EcoBot', 'e-ticaret', 'Google', 'Gemini', 'Ozan Uslan'];
-List<String> global_enHighlightWords = ['EcoBot', 'e-commerce', 'Google', 'Gemini AI', 'Ozan Uslan'];
+List<String> global_trHighlightWords = ['EcoBot','EcoMarket', 'e-ticaret', 'Google', 'Gemini', 'Ozan Uslan'];
+List<String> global_enHighlightWords = ['EcoBot','EcoMarket', 'e-commerce', 'Google', 'Gemini AI', 'Ozan Uslan'];
 
 // New Ideas Questions
 List<String> global_enHighlightWordsQuestion = ['category', 'categories', 'material', 'materials', 'country', 'countries', 'budget', 'eco-friendly'];

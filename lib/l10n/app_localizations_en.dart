@@ -102,6 +102,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loading => 'Loading...';
 
   @override
+  String get products => 'Products';
+
+  @override
   String get marketResearchFallBack => 'Oops! Something went wrong while doing market research.';
 
   @override

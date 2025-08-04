@@ -31,6 +31,7 @@
   "ecoProductFallBack": "Oops! Something went wrong while improving the product.",
   "ecoProductIsDone": "Eco Improvements are Ready!",
   "loading": "Loading...",
+  "products": "Products",
   "marketResearchFallBack": "Oops! Something went wrong while doing market research.",
   "marketResearchIsDone": "Market Research is Done!",
   "marketResearchTitle": "Market Research",

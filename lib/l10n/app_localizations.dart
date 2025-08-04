@@ -281,6 +281,12 @@ abstract class AppLocalizations {
   /// **'Loading...'**
   String get loading;
 
+  /// No description provided for @products.
+  ///
+  /// In en, this message translates to:
+  /// **'Products'**
+  String get products;
+
   /// No description provided for @marketResearchFallBack.
   ///
   /// In en, this message translates to:

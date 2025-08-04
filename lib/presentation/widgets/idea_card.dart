@@ -1,8 +1,8 @@
 import 'package:ecomarket/config/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class IdeaCart extends StatelessWidget {
-  const IdeaCart({
+class IdeaCard extends StatelessWidget {
+  const IdeaCard({
     super.key,
     required this.title,
     required this.content,

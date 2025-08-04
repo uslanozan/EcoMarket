@@ -5,7 +5,7 @@ import 'package:ecomarket/l10n/app_localizations.dart';
 import 'package:ecomarket/presentation/providers/gemini_provider.dart';
 import 'package:ecomarket/presentation/screens/new_ideas.dart';
 import 'package:ecomarket/presentation/widgets/doodle_background.dart';
-import 'package:ecomarket/presentation/widgets/idea_cart.dart';
+import 'package:ecomarket/presentation/widgets/idea_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -101,7 +101,7 @@ class _NewIdeasResultState extends State<NewIdeasResult> {
                         //... bir iterable içindeki elemanları başka bir koleksiyonun içine serpiştirir
                         ...ideas.entries.map((entry) => Padding(
                           padding: const EdgeInsets.only(bottom: 12.0),
-                          child: IdeaCart(
+                          child: IdeaCard(
                             title: entry.key,
                             content: entry.value,
                           ),

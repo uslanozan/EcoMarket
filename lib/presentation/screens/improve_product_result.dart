@@ -6,7 +6,7 @@ import 'package:ecomarket/presentation/providers/gemini_provider.dart';
 import 'package:ecomarket/presentation/screens/improve_product.dart';
 import 'package:ecomarket/presentation/screens/new_ideas.dart';
 import 'package:ecomarket/presentation/widgets/doodle_background.dart';
-import 'package:ecomarket/presentation/widgets/idea_cart.dart';
+import 'package:ecomarket/presentation/widgets/idea_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';

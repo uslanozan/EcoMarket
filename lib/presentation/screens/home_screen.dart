@@ -3,6 +3,7 @@ import 'package:ecomarket/presentation/screens/ecobot_chat.dart';
 import 'package:ecomarket/presentation/screens/improve_product.dart';
 import 'package:ecomarket/presentation/screens/market_research.dart';
 import 'package:ecomarket/presentation/screens/new_ideas.dart';
+import 'package:ecomarket/presentation/screens/products_screen.dart';
 import 'package:ecomarket/presentation/widgets/ecobot_suggestion.dart';
 import 'package:ecomarket/presentation/widgets/info_card.dart';
 import 'package:flutter/material.dart';
@@ -300,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       // TODO: Following product page
                     },
-                    child: const Icon(
+                    child: Icon(
                       Icons.local_shipping,
                       color: Colors.white,
                       size: 30,
@@ -317,7 +318,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       // TODO: Showing graphs page
                     },
-                    child: const Icon(
+                    child: Icon(
                       Icons.bar_chart_sharp,
                       color: Colors.white,
                       size: 30,
@@ -332,10 +333,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     ),
                     onPressed: () {
-                      // TODO: Buy page?
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Products())
+                      );
+                      // TODO: Inventory Page
                     },
-                    child: const Icon(
-                      Icons.shopping_cart,
+                    child: Icon(
+                      Icons.inventory,
                       color: Colors.white,
                       size: 30,
                     ),
@@ -351,7 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       // TODO: Profile page
                     },
-                    child: const Icon(
+                    child: Icon(
                       Icons.person,
                       color: Colors.white,
                       size: 30,
