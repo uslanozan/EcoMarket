@@ -3,7 +3,6 @@ import 'package:ecomarket/core/models/comment.dart';
 import 'package:ecomarket/core/mock/mock_customers.dart'; // mockCustomers burada
 
 final List<Product> mockProducts = [
-
   //https://unsplash.com/s/photos/t-shirt-mockup?license=free
   Product(
     starScore: 3.5,
@@ -28,6 +27,21 @@ final List<Product> mockProducts = [
         star: 3.0,
         customer: mockCustomers[4],
       ),
+      Comment(
+        commentText: "Harika konfor, tam beklediğim gibi.",
+        star: 5.0,
+        customer: mockCustomers[1],
+      ),
+      Comment(
+        commentText: "Beklediğimden daha iyi çıktı, tavsiye ederim.",
+        star: 4.5,
+        customer: mockCustomers[2],
+      ),
+      Comment(
+        commentText: "Kumaşı çok yumuşak ve rengi solmadı.",
+        star: 4.0,
+        customer: mockCustomers[3],
+      ),
     ],
   ),
 
@@ -49,6 +63,16 @@ final List<Product> mockProducts = [
         commentText: "Rengi çok doğal duruyor.",
         star: 5.0,
         customer: mockCustomers[3],
+      ),
+      Comment(
+        commentText: "Cildime çok iyi uyum sağladı.",
+        star: 5.0,
+        customer: mockCustomers[0],
+      ),
+      Comment(
+        commentText: "Uzun süre kalıcı ve topaklanma yapmıyor.",
+        star: 4.5,
+        customer: mockCustomers[1],
       ),
     ],
   ),
@@ -78,6 +102,16 @@ final List<Product> mockProducts = [
         star: 4.0,
         customer: mockCustomers[2],
       ),
+      Comment(
+        commentText: "Çok hafif ve ayağı yormuyor.",
+        star: 5.0,
+        customer: mockCustomers[4],
+      ),
+      Comment(
+        commentText: "Malzeme kalitesi çok iyi, dayanıklı görünüyor.",
+        star: 5.0,
+        customer: mockCustomers[3],
+      ),
     ],
   ),
 
@@ -98,6 +132,21 @@ final List<Product> mockProducts = [
         commentText: "Çok şık ve kaliteli bir bardak.",
         star: 4.5,
         customer: mockCustomers[3],
+      ),
+      Comment(
+        commentText: "Hediye olarak aldım, çok beğenildi.",
+        star: 5.0,
+        customer: mockCustomers[0],
+      ),
+      Comment(
+        commentText: "Eşsiz bir tasarımı var.",
+        star: 4.0,
+        customer: mockCustomers[2],
+      ),
+      Comment(
+        commentText: "İnce ve zarif duruyor.",
+        star: 4.5,
+        customer: mockCustomers[4],
       ),
     ],
   ),
@@ -125,6 +174,16 @@ final List<Product> mockProducts = [
         commentText: "Biraz daha rahat olabilirdi.",
         star: 3.0,
         customer: mockCustomers[4],
+      ),
+      Comment(
+        commentText: "Yaz ayları için ideal, terletmiyor.",
+        star: 4.0,
+        customer: mockCustomers[1],
+      ),
+      Comment(
+        commentText: "Beklediğimden daha canlı duruyor.",
+        star: 5.0,
+        customer: mockCustomers[3],
       ),
     ],
   ),

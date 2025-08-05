@@ -39,7 +39,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get generateNewProductIdeasFallBack => 'Oops! Something went wrong while generating new ideas.';
 
   @override
+  String get summarizeFeedbackFallBack => 'Oops! Something went wrong while analyzing customer comments.';
+
+  @override
   String get newIdeasTitle => 'New Ideas';
+
+  @override
+  String get summarizeFeedbackIsDone => 'Product Comments Analysis is Done!';
 
   @override
   String get newIdeasSubtitle => 'Set sail for new ideas with EcoBot';
@@ -108,13 +114,55 @@ class AppLocalizationsEn extends AppLocalizations {
   String get save => 'Save';
 
   @override
+  String get email => 'E-mail Address';
+
+  @override
+  String get phone => 'Phone Number';
+
+  @override
+  String get address => 'Address';
+
+  @override
+  String get noAddress => 'No Address';
+
+  @override
+  String get contactInfoTitle => 'Contact Info';
+
+  @override
+  String get sellerInfoTitle => 'Sales Info';
+
+  @override
+  String get differentProductCountLabel => 'Number of Product Types';
+
+  @override
+  String get targetCountriesLabel => 'Available Countries';
+
+  @override
+  String get processesLabel => 'Products Process Status';
+
+  @override
+  String get customerLabel => 'Customer';
+
+  @override
+  String get quantityLabel => 'Quantity';
+
+  @override
+  String get dateLabel => 'Date';
+
+  @override
   String get noSave => 'Don\'t Save';
 
   @override
   String get close => 'Close';
 
   @override
+  String get profileTitle => 'Profile Page';
+
+  @override
   String get newPrice => 'Enter the New Price';
+
+  @override
+  String get summarizeFeedbackWelcomeText => 'EcoBot will now analyze customer feedback (comments and scores) about the product you selected.\n\nIt will summarize the comments to highlight the product’s strengths and weaknesses, and provide suggestions for improvement based on real user experiences.\n\nOur goal is to enhance the user experience and make the product more sustainable by minimizing its environmental impact.\n\nIf you\'re ready, let\'s take your product to the next level with the help of user feedback!';
 
   @override
   String get marketResearchFallBack => 'Oops! Something went wrong while doing market research.';
@@ -198,10 +246,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get talkToEcoBot => 'Tap to Talk with EcoBot';
 
   @override
-  String get userFeedbackTitle => 'User Feedback';
+  String get userFeedbackTitle => 'Analysis of Customer Comments';
 
   @override
-  String get userFeedbackSubtitle => 'EcoBot analyzes user comments and requests for you';
+  String get userFeedbackSubtitle => 'EcoBot analyzes the comments and ratings of your selected product';
+
+  @override
+  String get summarizeCommentsButton => 'See the Analysis';
 
   @override
   String get newIdeaIsDone => 'Your ideas are ready!';

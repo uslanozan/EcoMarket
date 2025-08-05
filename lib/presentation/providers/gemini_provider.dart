@@ -1,5 +1,6 @@
 import 'package:ecomarket/core/cache/daily_suggestion_cache.dart';
 import 'package:ecomarket/core/globals/globals.dart';
+import 'package:ecomarket/core/models/comment.dart';
 import 'package:ecomarket/core/utils/logger.dart';
 import 'package:ecomarket/data/models/chat_message.dart';
 import 'package:flutter/material.dart';
@@ -250,29 +251,52 @@ Answer in $answerLanguage.
   // Ürünün kullanıcı yorumlarını analiz eder ve özetler
   Future<void> summarizeUserFeedback({
     required String productName,
-    required String userFeedbacks,  // Kullanıcı geri dönüşleri, uzun metin olarak veya birleştirilmiş hali
-    required String answerLanguage, // Direkt UI tarafından gelecek, Turkish ya da English
+    required List<String> userFeedbacks,
+    required String answerLanguage,
     required String fallBackText,
   }) async {
     _setLoading();
 
+    logPrint(logTag: "summarizeUserFeedback: ",logMessage: "$productName, $userFeedbacks, $answerLanguage, $fallBackText");
+
+
     final prompt = '''
-Some of the parameters below may be written in Turkish. Please translate them to English before processing the request, and only use the translated versions in your reasoning. If the parameters are empty or meaningless, ignore them.
+Some of the parameters below may be written in Turkish. Please translate them to English before processing the request, and only use the translated versions in your reasoning.
+If the parameters are empty or meaningless, ignore them. Do not generate fallback messages, warnings, or hypothetical examples.
+Use paragraph breaks (\\n\\n) between sections for readability.
 
 Parameters:
 - Product name: $productName
-- User feedbacks: $userFeedbacks
+- List of user feedbacks: $userFeedbacks
 
-Please provide a concise and clear summary of the user feedbacks regarding the product above. Highlight positive points, common issues, and suggestions for improvement.
+Based on the user feedbacks provided above, analyze the product and organize your answer under the following four sections:
 
-Answer in $answerLanguage.
-  ''';
+Overall Sentiment
+Summarize the general user sentiment using qualitative descriptors such as "very good", "mixed", "poor", "mostly positive", etc.
+
+Rating Summary
+Estimate the average star rating (out of 5) and provide a breakdown of how many users gave each star rating. (e.g., "3 users gave 5 stars", "2 users gave 2 stars", etc.)
+
+Comment Analysis
+Identify the most frequently mentioned strengths and weaknesses. Present them clearly, with short explanations.
+
+Improvement Suggestions
+List practical improvement suggestions derived from the user feedback. Start each suggestion with ++ and make them concise and actionable.
+
+Answer in $answerLanguage and JSON format to make parsing easy.
+''';
+
+    logPrint(logTag: "summarizeUserFeedback: ",logMessage: "Prompt is: \n $prompt");
+
+
 
     try {
       final result = await _gemini.text(prompt);
       _setSummarizeUserFeedback(result?.output ?? fallBackText);
+      logPrint(logTag: "summarizeUserFeedback: ",logMessage: "Result is: \n ${result.toString()}");
     } catch (e) {
       _setError(e.toString());
+      logPrint(logTag: "summarizeUserFeedback: ",logMessage: "Result Error: \n $e");
     }
   }
 

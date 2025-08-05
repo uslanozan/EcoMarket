@@ -1,3 +1,4 @@
+import 'package:ecomarket/core/models/process.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -38,6 +39,14 @@ class AppTheme {
   // Font aileleri
   static const String primaryFont = 'Roboto';
   static const String headingFont = 'Roboto';
+
+  // İşlem durumların - renk map eşleştirmesi
+  static const Map<ProcessStatus, Color> processStatusColors = {
+    ProcessStatus.delivered: Colors.green,
+    ProcessStatus.shipped: Colors.blue,
+    ProcessStatus.pending: Colors.orange,
+    ProcessStatus.cancelled: Colors.red,
+  };
 
 /* //TODO: Bunları light ve dark içine yazmak gerekebilir bakılacak
   static BoxDecoration containerDecoration({

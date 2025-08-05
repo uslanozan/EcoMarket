@@ -61,7 +61,7 @@ class _EcobotChatState extends State<EcoBotChat> {
                               padding: const EdgeInsets.all(12),
                               margin: const EdgeInsets.symmetric(vertical: 4),
                               decoration: BoxDecoration(
-                                color: Colors.green,
+                                color: AppTheme.primaryGreen,
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(
@@ -84,7 +84,7 @@ class _EcobotChatState extends State<EcoBotChat> {
                                   margin:
                                       const EdgeInsets.symmetric(vertical: 4),
                                   decoration: BoxDecoration(
-                                    color: Colors.cyan,
+                                    color: AppTheme.primaryGreenLight,
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Text(

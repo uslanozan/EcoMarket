@@ -4,6 +4,11 @@
 // Parse Ideas
 import 'package:ecomarket/core/utils/logger.dart';
 
+//todo: JSON formatında gelecek bilgileri parse'layacak fonksiyon yazılacak ve widget içerisinde onlar kullanılacak
+//todo: her propmt için ayrı
+//todo: login page yapılacak
+
+
 // Parse New Ideas Ideas
 Map<String, String> parseIdeas({
   required String output,

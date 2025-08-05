@@ -1,9 +1,10 @@
+import 'package:ecomarket/config/theme/app_theme.dart';
 import 'package:ecomarket/core/globals/globals.dart';
 import 'package:ecomarket/core/utils/logger.dart';
 import 'package:ecomarket/core/utils/parser.dart';
 import 'package:ecomarket/l10n/app_localizations.dart';
 import 'package:ecomarket/presentation/providers/gemini_provider.dart';
-import 'package:ecomarket/presentation/screens/new_ideas.dart';
+import 'package:ecomarket/presentation/screens/new_ideas_screen.dart';
 import 'package:ecomarket/presentation/widgets/doodle_background.dart';
 import 'package:ecomarket/presentation/widgets/idea_card.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +76,9 @@ class _NewIdeasResultState extends State<NewIdeasResult> {
             children: [
               Text(
                 AppLocalizations.of(context)!.newIdeaIsDone,
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  color: AppTheme.primaryGreenLight,
+                ),
               ),
               const SizedBox(height: 16),
               Expanded(

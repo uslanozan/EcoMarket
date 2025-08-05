@@ -39,7 +39,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get generateNewProductIdeasFallBack => 'Oops! Yeni fikirler üretilirken bir sorun oluştu. Lütfen tekrar deneyin.';
 
   @override
+  String get summarizeFeedbackFallBack => 'Oops! Müşteri yorumları analiz edilirken bir sorun oluştu. Lütfen tekrar deneyin.';
+
+  @override
   String get newIdeasTitle => 'Yeni Ürün Fikirleri';
+
+  @override
+  String get summarizeFeedbackIsDone => 'Ürün Yorumları Analizi Hazır!';
 
   @override
   String get newIdeasSubtitle => 'EcoBot ile beraber yeni fikirlere yelken aç';
@@ -108,13 +114,55 @@ class AppLocalizationsTr extends AppLocalizations {
   String get save => 'Kaydet';
 
   @override
+  String get email => 'E-posta Adresi';
+
+  @override
+  String get phone => 'Telefon Numarasu';
+
+  @override
+  String get address => 'Adres';
+
+  @override
+  String get noAddress => 'Adres Yok';
+
+  @override
+  String get contactInfoTitle => 'İletişim Bilgileri';
+
+  @override
+  String get sellerInfoTitle => 'Satış Bilgileri';
+
+  @override
+  String get differentProductCountLabel => 'Ürün Çeşidi Sayısı';
+
+  @override
+  String get targetCountriesLabel => 'Satış Yapılabilen Ülkeler';
+
+  @override
+  String get processesLabel => 'Ürünlerin İşlem Durumu';
+
+  @override
+  String get customerLabel => 'Müşteri';
+
+  @override
+  String get quantityLabel => 'Miktar';
+
+  @override
+  String get dateLabel => 'Tarih';
+
+  @override
   String get noSave => 'Kaydetmeden Çık';
 
   @override
   String get close => 'Kapat';
 
   @override
+  String get profileTitle => 'Profil Sayfası';
+
+  @override
   String get newPrice => 'Yeni Fiyatı Giriniz';
+
+  @override
+  String get summarizeFeedbackWelcomeText => 'EcoBot şimdi seçtiğin ürünle ilgili yapılan müşteri yorumlarını analiz edecek.\n\nYorumları özetleyerek ürünün güçlü ve zayıf yönlerini senin için ortaya koyacak. Ayrıca, müşterilerden gelen geri bildirimlere dayanarak ürünü nasıl geliştirebileceğine dair öneriler sunacak.\n\nHedefimiz, kullanıcı deneyimini artırmak ve çevresel etkileri en aza indirecek şekilde ürünü daha sürdürülebilir hale getirmek.\n\nHazırsan, kullanıcı görüşlerinden yola çıkarak ürününü bir adım öteye taşıyalım!';
 
   @override
   String get marketResearchFallBack => 'Oops! Pazar araştırması yapılırken bir sorun oluştu. Lütfen tekrar deneyin.';
@@ -198,10 +246,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get talkToEcoBot => 'EcoBot ile konuşmak için dokun';
 
   @override
-  String get userFeedbackTitle => 'Kullanıcı Geri Dönüşleri';
+  String get userFeedbackTitle => 'Kullanıcı Yorumlarının Analizi';
 
   @override
   String get userFeedbackSubtitle => 'EcoBot senin için kullanıcıların yorumlarını ve isteklerini analiz eder';
+
+  @override
+  String get summarizeCommentsButton => 'Analizi Gör';
 
   @override
   String get newIdeaIsDone => 'Fikirlerin Hazır!';

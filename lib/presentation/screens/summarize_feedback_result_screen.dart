@@ -1,33 +1,51 @@
 import 'package:ecomarket/config/theme/app_theme.dart';
 import 'package:ecomarket/core/globals/globals.dart';
+import 'package:ecomarket/core/models/product.dart';
 import 'package:ecomarket/core/utils/logger.dart';
 import 'package:ecomarket/core/utils/parser.dart';
 import 'package:ecomarket/l10n/app_localizations.dart';
 import 'package:ecomarket/presentation/providers/gemini_provider.dart';
 import 'package:ecomarket/presentation/screens/improve_product_screen.dart';
-import 'package:ecomarket/presentation/screens/new_ideas_screen.dart';
+import 'package:ecomarket/presentation/screens/summarize_feedback_screen.dart';
 import 'package:ecomarket/presentation/widgets/doodle_background.dart';
-import 'package:ecomarket/presentation/widgets/idea_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-class ImproveProductResult extends StatefulWidget {
-  const ImproveProductResult({super.key});
+class SummarizeFeedbackResultScreen extends StatefulWidget {
+  const SummarizeFeedbackResultScreen({
+    super.key,
+    required this.product
+  });
+
+  // Yorum analizi yapılacak olan ürün
+  final Product product;
 
   @override
-  State<ImproveProductResult> createState() => _ImproveProductResultState();
+  State<SummarizeFeedbackResultScreen> createState() =>_SummarizeFeedbackResultState();
+
 }
+
+List<String> _mergeComments(Product product){
+  List<String> comments = [];
+
+  for(int i = 0; i < product.comments.length; i++){
+    comments.add('comment: ${product.comments[i].commentText} and star score: ${product.comments[i].star}');
+  }
+
+
+  return comments;
+}
+
 
 //todo: gemini'den dönen sonuçları regexleyecek fonksiyon yazılacak ve ayrı cardlarda gösterilecek
 
-class _ImproveProductResultState extends State<ImproveProductResult> {
+class _SummarizeFeedbackResultState extends State<SummarizeFeedbackResultScreen> {
   // late dememizin sebei değişken şuan atanmayacak ama null olmayacak demek
   // bunu demezsek GeminiProvider? _geminiProvider olarak tanımlamak gerek
   // ve bundan sonra her yerde ? kontrolü yapmak gerekir
   late GeminiProvider _geminiProvider;
   bool _isInitialized = false;
-
 
   // initState BuildContext'e erişilebilir gibi görünse de widget tree'ye tam bağlanmamıştır
   // bu yüzden context'e bağlı providerlar hata verebilir
@@ -42,14 +60,20 @@ class _ImproveProductResultState extends State<ImproveProductResult> {
       // UI build edildikten sonra çağırılır
       // Burada UI hazır olmadan bilgiyi alma ve onu text içine gömme gibi bir durum olmaması için kullanılıyor
       WidgetsBinding.instance.addPostFrameCallback((_) {
+
+        List<String> stringComments = _mergeComments(widget.product);
+
         // Fonksiyonu sadece bir kez çağırıyoruz
-        _geminiProvider.improveProduct(
-            productName: global_ecoImproveAnswers['name'] ?? '-',
-            productDescription: global_ecoImproveAnswers['description'] ?? '-',
-            currentMaterials: global_ecoImproveAnswers['material'] ?? '-',
-            targetMarket: global_ecoImproveAnswers['targetCountry'] ?? '-',
-            answerLanguage: global_language,
-            fallBackText: AppLocalizations.of(context)!.ecoProductFallBack);
+        _geminiProvider.summarizeUserFeedback(
+            //productName: global_ecoImproveAnswers['name'] ?? '-',
+          productName: widget.product.name,
+          userFeedbacks: stringComments,
+          answerLanguage: global_language,
+          fallBackText: AppLocalizations.of(context)!.summarizeFeedbackFallBack,
+          //averageStarScore: 1 ?? 0,
+        );
+
+
       });
       _isInitialized = true;
     }
@@ -71,11 +95,12 @@ class _ImproveProductResultState extends State<ImproveProductResult> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: double.infinity,
-          padding: const EdgeInsets.only(bottom: 24,top: 24,left: 3,right: 3),
+          padding:
+              const EdgeInsets.only(bottom: 24, top: 24, left: 3, right: 3),
           child: Column(
             children: [
               Text(
-                AppLocalizations.of(context)!.ecoProductIsDone,
+                AppLocalizations.of(context)!.summarizeFeedbackIsDone,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: AppTheme.primaryGreenLight,
                 ),
@@ -85,33 +110,23 @@ class _ImproveProductResultState extends State<ImproveProductResult> {
                 child: SingleChildScrollView(
                   child: geminiProvider.isLoading
                       ? const Center(
-                    child: CircularProgressIndicator(color: Colors.white70),
-                  )
+                          child:
+                              CircularProgressIndicator(color: Colors.white70),
+                        )
                       : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        geminiProvider.improveProductResult,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge
-                            ?.copyWith(color: Colors.white),
-                      ),
-                      // Fikir kartları
-                      //... bir iterable içindeki elemanları başka bir koleksiyonun içine serpiştirir
-                      /*
-                      ...ideas.entries.map((entry) => Padding(
-                        padding: const EdgeInsets.only(bottom: 12.0),
-                        child: IdeaCart(
-                          title: entry.key,
-                          content: entry.value,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+
+                            Text(
+                              geminiProvider.summarizeCommentsResult,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(color: Colors.white),
+                            ),
+
+                          ],
                         ),
-                      )),
-                       */
-                    ],
-                  ),
-
-
                 ),
               ),
               const SizedBox(height: 16),
@@ -119,14 +134,19 @@ class _ImproveProductResultState extends State<ImproveProductResult> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      if (geminiProvider.improveProductResult.isEmpty) {
+                      if (geminiProvider.summarizeCommentsResult.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(AppLocalizations.of(context)!.copyError)),
+                          SnackBar(
+                              content: Text(
+                                  AppLocalizations.of(context)!.copyError)),
                         );
                       } else {
-                        Clipboard.setData(ClipboardData(text: geminiProvider.improveProductResult));
+                        Clipboard.setData(ClipboardData(
+                            text: geminiProvider.summarizeCommentsResult));
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(AppLocalizations.of(context)!.copied)),
+                          SnackBar(
+                              content:
+                                  Text(AppLocalizations.of(context)!.copied)),
                         );
                       }
                     },
@@ -135,7 +155,10 @@ class _ImproveProductResultState extends State<ImproveProductResult> {
                   const Spacer(),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ImproveProduct()));
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SummarizeFeedbackScreen()));
                     },
                     child: Text(AppLocalizations.of(context)!.restart),
                   ),

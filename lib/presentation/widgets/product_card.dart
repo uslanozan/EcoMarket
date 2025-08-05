@@ -212,15 +212,6 @@ class _ProductCardState extends State<ProductCard> {
   }
 
 
-/* Consumer<ProductProvider>(
-        builder: (context,provider,_){
-          final updatedProduct = provider.products.firstWhere((p) => p.id == widget.product.id);
-          return
-        },
-      )
-      */
-
-
   @override
   Widget build(BuildContext context) {
     // En altta Consumer<ProductProvider> ile sarmaladık bu yüzden daha üstlerde

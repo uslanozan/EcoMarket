@@ -155,11 +155,23 @@ abstract class AppLocalizations {
   /// **'Oops! Something went wrong while generating new ideas.'**
   String get generateNewProductIdeasFallBack;
 
+  /// No description provided for @summarizeFeedbackFallBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! Something went wrong while analyzing customer comments.'**
+  String get summarizeFeedbackFallBack;
+
   /// No description provided for @newIdeasTitle.
   ///
   /// In en, this message translates to:
   /// **'New Ideas'**
   String get newIdeasTitle;
+
+  /// No description provided for @summarizeFeedbackIsDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Product Comments Analysis is Done!'**
+  String get summarizeFeedbackIsDone;
 
   /// No description provided for @newIdeasSubtitle.
   ///
@@ -293,6 +305,78 @@ abstract class AppLocalizations {
   /// **'Save'**
   String get save;
 
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'E-mail Address'**
+  String get email;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phone;
+
+  /// No description provided for @address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get address;
+
+  /// No description provided for @noAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'No Address'**
+  String get noAddress;
+
+  /// No description provided for @contactInfoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Info'**
+  String get contactInfoTitle;
+
+  /// No description provided for @sellerInfoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sales Info'**
+  String get sellerInfoTitle;
+
+  /// No description provided for @differentProductCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of Product Types'**
+  String get differentProductCountLabel;
+
+  /// No description provided for @targetCountriesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Available Countries'**
+  String get targetCountriesLabel;
+
+  /// No description provided for @processesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Products Process Status'**
+  String get processesLabel;
+
+  /// No description provided for @customerLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer'**
+  String get customerLabel;
+
+  /// No description provided for @quantityLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get quantityLabel;
+
+  /// No description provided for @dateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get dateLabel;
+
   /// No description provided for @noSave.
   ///
   /// In en, this message translates to:
@@ -305,11 +389,23 @@ abstract class AppLocalizations {
   /// **'Close'**
   String get close;
 
+  /// No description provided for @profileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile Page'**
+  String get profileTitle;
+
   /// No description provided for @newPrice.
   ///
   /// In en, this message translates to:
   /// **'Enter the New Price'**
   String get newPrice;
+
+  /// No description provided for @summarizeFeedbackWelcomeText.
+  ///
+  /// In en, this message translates to:
+  /// **'EcoBot will now analyze customer feedback (comments and scores) about the product you selected.\n\nIt will summarize the comments to highlight the product’s strengths and weaknesses, and provide suggestions for improvement based on real user experiences.\n\nOur goal is to enhance the user experience and make the product more sustainable by minimizing its environmental impact.\n\nIf you\'re ready, let\'s take your product to the next level with the help of user feedback!'**
+  String get summarizeFeedbackWelcomeText;
 
   /// No description provided for @marketResearchFallBack.
   ///
@@ -476,14 +572,20 @@ abstract class AppLocalizations {
   /// No description provided for @userFeedbackTitle.
   ///
   /// In en, this message translates to:
-  /// **'User Feedback'**
+  /// **'Analysis of Customer Comments'**
   String get userFeedbackTitle;
 
   /// No description provided for @userFeedbackSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'EcoBot analyzes user comments and requests for you'**
+  /// **'EcoBot analyzes the comments and ratings of your selected product'**
   String get userFeedbackSubtitle;
+
+  /// No description provided for @summarizeCommentsButton.
+  ///
+  /// In en, this message translates to:
+  /// **'See the Analysis'**
+  String get summarizeCommentsButton;
 
   /// No description provided for @newIdeaIsDone.
   ///

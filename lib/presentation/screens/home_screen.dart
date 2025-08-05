@@ -1,9 +1,13 @@
 import 'package:ecomarket/config/theme/app_theme.dart';
-import 'package:ecomarket/presentation/screens/ecobot_chat.dart';
-import 'package:ecomarket/presentation/screens/improve_product.dart';
-import 'package:ecomarket/presentation/screens/market_research.dart';
-import 'package:ecomarket/presentation/screens/new_ideas.dart';
+import 'package:ecomarket/core/models/process.dart';
+import 'package:ecomarket/presentation/screens/ecobot_chat_screen.dart';
+import 'package:ecomarket/presentation/screens/improve_product_screen.dart';
+import 'package:ecomarket/presentation/screens/market_research_screen.dart';
+import 'package:ecomarket/presentation/screens/new_ideas_screen.dart';
+import 'package:ecomarket/presentation/screens/processes_screen.dart';
 import 'package:ecomarket/presentation/screens/products_screen.dart';
+import 'package:ecomarket/presentation/screens/profile_screen.dart';
+import 'package:ecomarket/presentation/screens/summarize_feedback_screen.dart';
 import 'package:ecomarket/presentation/widgets/ecobot_suggestion.dart';
 import 'package:ecomarket/presentation/widgets/info_card.dart';
 import 'package:flutter/material.dart';
@@ -200,7 +204,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           icon: Icons.star,
                           iconColor: AppTheme.starIcon,
                           onTap: () {
-                            // TODO: User feedback page
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SummarizeFeedbackScreen()));
                           },
                         ),
                       ],
@@ -245,7 +252,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           context,
                           MaterialPageRoute(builder: (context) => EcoBotChat()),
                         );
-                        // TODO: EcoBot chat page
                         print("EcoBot tıklandı!");
                       },
                       child: Ink(
@@ -299,7 +305,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     ),
                     onPressed: () {
-                      // TODO: Following product page
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProcessesScreen())
+                      );
                     },
                     child: Icon(
                       Icons.local_shipping,
@@ -337,7 +346,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           context,
                           MaterialPageRoute(builder: (context) => Products())
                       );
-                      // TODO: Inventory Page
                     },
                     child: Icon(
                       Icons.inventory,
@@ -354,7 +362,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     ),
                     onPressed: () {
-                      // TODO: Profile page
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfileScreen())
+                      );
                     },
                     child: Icon(
                       Icons.person,

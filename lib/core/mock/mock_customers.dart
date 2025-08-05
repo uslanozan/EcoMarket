@@ -5,19 +5,23 @@ import 'package:ecomarket/core/models/product.dart';
 final List<Customer> mockCustomers = [
   Customer(
     id: 1,
-    name: 'Zeynep',
-    surName: 'Yılmaz',
-    email: 'zeynep.yilmaz@example.com',
+    name: 'Mustafa',
+    surName: 'Kemal',
+    email: 'mustafa.kemal@example.com',
     phone: '+90 532 111 2233',
-    avatarUrl: 'assets/avatars/user_woman.png',
+    avatarUrl: 'assets/avatars/user_man.png',
+    addressList: ['Ankara, Çankaya, Atatürk Bulvarı, No:1'],
+    location: 'Ankara, Türkiye',
   ),
   Customer(
     id: 2,
-    name: 'Ali',
-    surName: 'Koç',
-    email: 'ali.koc@example.com',
+    name: 'Sabiha',
+    surName: 'Gökçen',
+    email: 'sabiha.gokcen@example.com',
     phone: '+90 530 444 5566',
-    avatarUrl: 'assets/avatars/user_man.png',
+    avatarUrl: 'assets/avatars/user_woman.png',
+    addressList: ['İstanbul, Kadıköy, Bağdat Caddesi, No:2'],
+    location: 'İstanbul, Türkiye',
   ),
   Customer(
     id: 3,
@@ -26,6 +30,8 @@ final List<Customer> mockCustomers = [
     email: 'elif.demir@example.com',
     phone: '+90 533 222 3344',
     avatarUrl: 'assets/avatars/user_woman.png',
+    addressList: ['İzmir, Konak, Cumhuriyet Meydanı, No:3'],
+    location: 'İzmir, Türkiye',
   ),
   Customer(
     id: 4,
@@ -34,6 +40,8 @@ final List<Customer> mockCustomers = [
     email: 'ahmet.sahin@example.com',
     phone: '+90 552 666 7788',
     avatarUrl: 'assets/avatars/user_man.png',
+    addressList: ['Bursa, Osmangazi, Heykel, No:4'],
+    location: 'Bursa, Türkiye',
   ),
   Customer(
     id: 5,
@@ -42,5 +50,7 @@ final List<Customer> mockCustomers = [
     email: 'merve.kara@example.com',
     phone: '+90 531 999 0011',
     avatarUrl: 'assets/avatars/user_woman.png',
+    addressList: ['Adana, Seyhan, Atatürk Parkı, No:5'],
+    location: 'Adana, Türkiye',
   ),
 ];
