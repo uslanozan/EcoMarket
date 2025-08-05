@@ -1,5 +1,6 @@
 import 'package:ecomarket/data/api/gemini_api.dart';
 import 'package:ecomarket/presentation/providers/gemini_provider.dart';
+import 'package:ecomarket/presentation/providers/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -31,6 +32,7 @@ class EcoMarketApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => ProductProvider()),
         ChangeNotifierProvider(create: (_) => GeminiProvider()),
         ChangeNotifierProvider(create: (_) => ThemeModeProvider()),
         ChangeNotifierProvider(create: (_) => LocaleProvider()),

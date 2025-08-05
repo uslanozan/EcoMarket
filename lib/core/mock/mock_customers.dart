@@ -10,7 +10,6 @@ final List<Customer> mockCustomers = [
     email: 'zeynep.yilmaz@example.com',
     phone: '+90 532 111 2233',
     avatarUrl: 'assets/avatars/user_woman.png',
-    purchasedItems: [mockProducts[0], mockProducts[1]],
   ),
   Customer(
     id: 2,
@@ -19,7 +18,6 @@ final List<Customer> mockCustomers = [
     email: 'ali.koc@example.com',
     phone: '+90 530 444 5566',
     avatarUrl: 'assets/avatars/user_man.png',
-    purchasedItems: [mockProducts[2]],
   ),
   Customer(
     id: 3,
@@ -28,7 +26,6 @@ final List<Customer> mockCustomers = [
     email: 'elif.demir@example.com',
     phone: '+90 533 222 3344',
     avatarUrl: 'assets/avatars/user_woman.png',
-    purchasedItems: [],
   ),
   Customer(
     id: 4,
@@ -37,7 +34,6 @@ final List<Customer> mockCustomers = [
     email: 'ahmet.sahin@example.com',
     phone: '+90 552 666 7788',
     avatarUrl: 'assets/avatars/user_man.png',
-    purchasedItems: [mockProducts[1], mockProducts[3]],
   ),
   Customer(
     id: 5,
@@ -46,6 +42,5 @@ final List<Customer> mockCustomers = [
     email: 'merve.kara@example.com',
     phone: '+90 531 999 0011',
     avatarUrl: 'assets/avatars/user_woman.png',
-    purchasedItems: [mockProducts[0]],
   ),
 ];

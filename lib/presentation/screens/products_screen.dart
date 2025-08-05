@@ -31,8 +31,7 @@ class _ProductsState extends State<Products> {
           //return Image.asset(mockProducts[index].imageUrls[0]);
           return ProductCard(product: product);
         },
-      )
-      ,
+      ),
     );
   }
 }

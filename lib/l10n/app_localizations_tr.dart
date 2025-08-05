@@ -105,6 +105,18 @@ class AppLocalizationsTr extends AppLocalizations {
   String get products => 'Ürünler';
 
   @override
+  String get save => 'Kaydet';
+
+  @override
+  String get noSave => 'Kaydetmeden Çık';
+
+  @override
+  String get close => 'Kapat';
+
+  @override
+  String get newPrice => 'Yeni Fiyatı Giriniz';
+
+  @override
   String get marketResearchFallBack => 'Oops! Pazar araştırması yapılırken bir sorun oluştu. Lütfen tekrar deneyin.';
 
   @override

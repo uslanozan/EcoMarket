@@ -17,6 +17,14 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateProductPrice(int productId, double newPrice) {
+    final index = _products.indexWhere((p) => p.id == productId);
+    if (index != -1) {
+      _products[index] = _products[index].copyWith(price: newPrice);
+      notifyListeners();
+    }
+  }
+
   void editProduct(Product updatedProduct) {
     final index = _products.indexWhere((product) => product.id == updatedProduct.id);
     if (index != -1) {

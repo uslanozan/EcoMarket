@@ -287,6 +287,30 @@ abstract class AppLocalizations {
   /// **'Products'**
   String get products;
 
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @noSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t Save'**
+  String get noSave;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @newPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the New Price'**
+  String get newPrice;
+
   /// No description provided for @marketResearchFallBack.
   ///
   /// In en, this message translates to:

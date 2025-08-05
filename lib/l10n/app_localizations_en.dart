@@ -105,6 +105,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get products => 'Products';
 
   @override
+  String get save => 'Save';
+
+  @override
+  String get noSave => 'Don\'t Save';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get newPrice => 'Enter the New Price';
+
+  @override
   String get marketResearchFallBack => 'Oops! Something went wrong while doing market research.';
 
   @override
