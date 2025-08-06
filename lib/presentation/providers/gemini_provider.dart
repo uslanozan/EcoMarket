@@ -301,17 +301,16 @@ Identify the most frequently mentioned strengths and weaknesses. Present them cl
 Improvement Suggestions
 List practical improvement suggestions derived from the user feedback and make them concise and actionable.
 
-Answer in $answerLanguage and JSON format to make parsing easy but don't add JSON markdown (```).
+DON'T add JSON markdown (```) Answer in $answerLanguage and JSON format to make parsing easy but don't add JSON markdown (```).
 ''';
 
     logPrint(logTag: "summarizeUserFeedback: ",logMessage: "Prompt is: \n $prompt");
 
 
-
     try {
       final result = await _gemini.text(prompt);
       _setSummarizeUserFeedback(result?.output ?? fallBackText);
-      logPrint(logTag: "summarizeUserFeedback: ",logMessage: "Result is: \n ${result.toString()}");
+      logPrint(logTag: "summarizeUserFeedback: ",logMessage: "Result is: \n ${result.toString().substring(7, prompt.length - 3)}");
     } catch (e) {
       _setError(e.toString());
       logPrint(logTag: "summarizeUserFeedback: ",logMessage: "Result Error: \n $e");
