@@ -88,4 +88,28 @@ final List<ProductProcess> mockProcesses = [
     status: ProcessStatus.delivered,
     quantity: 5,
   ),
+  ProductProcess(
+    id: 11,
+    customer: mockCustomers[2],
+    product: mockProducts[0],
+    date: DateTime.now().subtract(const Duration(days: 9)),
+    status: ProcessStatus.cancelled,
+    quantity: 2,
+  ),
+  ProductProcess(
+    id: 12,
+    customer: mockCustomers[3],
+    product: mockProducts[3],
+    date: DateTime.now().subtract(const Duration(days: 2)),
+    status: ProcessStatus.cancelled,
+    quantity: 6,
+  ),
+  ProductProcess(
+    id: 13,
+    customer: mockCustomers[1],
+    product: mockProducts[2],
+    date: DateTime.now().subtract(const Duration(days: 1)),
+    status: ProcessStatus.delivered,
+    quantity: 3,
+  ),
 ];

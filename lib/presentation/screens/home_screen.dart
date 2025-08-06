@@ -1,7 +1,9 @@
 import 'package:ecomarket/config/theme/app_theme.dart';
 import 'package:ecomarket/core/models/process.dart';
 import 'package:ecomarket/presentation/screens/ecobot_chat_screen.dart';
+import 'package:ecomarket/presentation/screens/graph_screen.dart';
 import 'package:ecomarket/presentation/screens/improve_product_screen.dart';
+import 'package:ecomarket/presentation/screens/login_screen.dart';
 import 'package:ecomarket/presentation/screens/market_research_screen.dart';
 import 'package:ecomarket/presentation/screens/new_ideas_screen.dart';
 import 'package:ecomarket/presentation/screens/processes_screen.dart';
@@ -102,7 +104,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(local.appTitle),
+        title: Center(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                'assets/icons/ecomarket_transparent_logo.png',
+                height: 32,
+              ),
+              const SizedBox(width: 50),
+              Text(local.appTitle),
+            ],
+          ),
+        ),
         actions: [
           IconButton(
             icon: ShaderMask(
@@ -214,6 +228,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 5),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      );
+                    },
+                    child: Text("GİRİŞ YAPMA DENEMESİ"),
+                  ),
                   Center(
                       child: Text(
                     local.cardInfo,
@@ -325,7 +348,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     ),
                     onPressed: () {
-                      // TODO: Showing graphs page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => GraphScreen()),
+                      );
                     },
                     child: Icon(
                       Icons.bar_chart_sharp,

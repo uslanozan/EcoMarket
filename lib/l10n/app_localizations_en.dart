@@ -54,6 +54,39 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ecoBot => 'EcoBot';
 
   @override
+  String get soldProductGraph => 'Sold Products Pie Graph';
+
+  @override
+  String get productStatusBar => 'Delievered/Cancelled Ratio of Products';
+
+  @override
+  String get graphTitle => 'Graphs';
+
+  @override
+  String get signInSuccess => 'Login is Successful';
+
+  @override
+  String get signInCancelled => 'Login is Cancelled';
+
+  @override
+  String get signInFailed => 'Login Failure';
+
+  @override
+  String get loginTitle => 'Login';
+
+  @override
+  String get signInWithGoogle => 'Login with Google';
+
+  @override
+  String get deliveredStatus => 'Delivered';
+
+  @override
+  String get cancelledStatus => 'Cancelled';
+
+  @override
+  String get top5customers => 'Top 5 Customers Who Purchased the Most';
+
+  @override
   String get sendMessageFallback => 'Oops! Something went wrong while generating message.';
 
   @override

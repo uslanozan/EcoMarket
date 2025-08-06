@@ -54,6 +54,39 @@ class AppLocalizationsTr extends AppLocalizations {
   String get ecoBot => 'EcoBot';
 
   @override
+  String get soldProductGraph => 'Satılan Ürünler Pasta Grafiği';
+
+  @override
+  String get productStatusBar => 'Ürünlerin Teslim Edildi/İptal Edildi Oranı';
+
+  @override
+  String get graphTitle => 'Grafikler';
+
+  @override
+  String get signInSuccess => 'Başarılı Giriş';
+
+  @override
+  String get signInCancelled => 'Giriş İptal Edildi';
+
+  @override
+  String get signInFailed => 'Giriş Başarısız';
+
+  @override
+  String get loginTitle => 'Giriş Yap';
+
+  @override
+  String get signInWithGoogle => 'Google ileGiriş Yap';
+
+  @override
+  String get deliveredStatus => 'Teslim Edildi';
+
+  @override
+  String get cancelledStatus => 'İade Edildi';
+
+  @override
+  String get top5customers => 'En Çok Alım Yapan 5 Müşteri';
+
+  @override
   String get sendMessageFallback => 'Mesaj oluşturulurken bir hata oldu.';
 
   @override

@@ -185,6 +185,72 @@ abstract class AppLocalizations {
   /// **'EcoBot'**
   String get ecoBot;
 
+  /// No description provided for @soldProductGraph.
+  ///
+  /// In en, this message translates to:
+  /// **'Sold Products Pie Graph'**
+  String get soldProductGraph;
+
+  /// No description provided for @productStatusBar.
+  ///
+  /// In en, this message translates to:
+  /// **'Delievered/Cancelled Ratio of Products'**
+  String get productStatusBar;
+
+  /// No description provided for @graphTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Graphs'**
+  String get graphTitle;
+
+  /// No description provided for @signInSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Login is Successful'**
+  String get signInSuccess;
+
+  /// No description provided for @signInCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Login is Cancelled'**
+  String get signInCancelled;
+
+  /// No description provided for @signInFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Failure'**
+  String get signInFailed;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get loginTitle;
+
+  /// No description provided for @signInWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Login with Google'**
+  String get signInWithGoogle;
+
+  /// No description provided for @deliveredStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get deliveredStatus;
+
+  /// No description provided for @cancelledStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get cancelledStatus;
+
+  /// No description provided for @top5customers.
+  ///
+  /// In en, this message translates to:
+  /// **'Top 5 Customers Who Purchased the Most'**
+  String get top5customers;
+
   /// No description provided for @sendMessageFallback.
   ///
   /// In en, this message translates to:

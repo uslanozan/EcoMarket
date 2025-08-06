@@ -30,7 +30,7 @@ class DoodleBackground extends StatelessWidget {
       children: [
         ...doodles,
         Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
           child: child,
         ),
       ],

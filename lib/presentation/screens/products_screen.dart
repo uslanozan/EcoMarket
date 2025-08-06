@@ -1,3 +1,4 @@
+import 'package:ecomarket/config/theme/app_theme.dart';
 import 'package:ecomarket/l10n/app_localizations.dart';
 import 'package:ecomarket/presentation/widgets/product_card.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,12 @@ class _ProductsState extends State<Products> {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.products),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppTheme.primaryGreenLight,
+        child: Icon(Icons.add,),
+          onPressed: (){
+            //todo: yeni ürün ekleme yeri yapılabilir
+          }),
       body: GridView.builder(
         padding: const EdgeInsets.all(8),
         itemCount: mockProducts.length,

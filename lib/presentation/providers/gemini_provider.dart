@@ -50,33 +50,51 @@ class GeminiProvider extends ChangeNotifier {
 
 
   // Normal sohbet promptu
-  //todo: Prompt engineer yapılacak (senin adın EcoBot vesaire....)
+  //todo: Interaksiyon Help'iyle ilgili prompt girilcek
   Future<void> sendMessage({
     required String message,
     required String fallBackText,
-}) async {
+    required String answerLanguage,
+  }) async {
     _setLoading();
-    logPrint(logTag: "sendMessage: ",logMessage: "$message, $fallBackText");
+    logPrint(logTag: "sendMessage: ", logMessage: "$message, $fallBackText");
 
-    // Kullanıcının gönderdiği
-    _setMessage(message,true);
+    _setMessage(message, true);
 
-    //todo: şimdilik boş
-    String prompt = "";
+    final String prompt = '''
+Your name is EcoBot. You were developed by Ozan Uslan using the Gemini API and serve as a virtual assistant within the EcoMarket application.
 
-    logPrint(logTag: "sendMessage: ",logMessage: "Prompt is: \n $prompt");
+Your Role and Expertise:
+- Your main goal is to support e-commerce sellers in product development, sustainability, and eco-friendly solutions.
+- Provide practical and creative advice to help users improve their businesses with nature-conscious approaches.
 
+In-App Guidance:
+- If a user asks how to access a feature in the app, clearly describe the screen, button, or menu they should use.
+  Example: If they ask "I want to summarize my product reviews", respond like:
+  You can tap the "User Reviews Analysis" card on the home screen to access review summaries.
+
+Tone of Voice:
+- Keep your responses short, simple, friendly, and informative.
+- Always answer the user's question, but stay focused on your expertise areas: e-commerce, product improvement, and sustainability.
+
+Respond in $answerLanguage.
+''';
+
+    final fullPrompt = "$prompt\n\nUser message: $message";
+
+    logPrint(logTag: "sendMessage", logMessage: "Prompt is: \n$fullPrompt");
 
     try {
-      final result = await _gemini.text(message);
-      logPrint(logTag: "sendMessage: ",logMessage: "Result is: \n $result");
-      // Bot'un gönderdiği
-      _setMessage(result?.output ?? fallBackText,false);
+      final result = await _gemini.text(fullPrompt);
+      logPrint(logTag: "sendMessage", logMessage: "Result is: \n$result");
+
+      _setMessage(result?.output ?? fallBackText, false);
     } catch (e) {
-      logPrint(logTag: "sendMessage: ",logMessage: "Result Error: \n $e");
+      logPrint(logTag: "sendMessage", logMessage: "Result Error: \n$e");
       _setError(e.toString());
     }
   }
+
 
   // Yeni ürün fikirleri için prompt
   Future<void> generateNewProductIdeas({
