@@ -24,6 +24,39 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeWelcome => 'Welcome to EcoMarket';
 
   @override
+  String get welcome => 'Welcome';
+
+  @override
+  String get loginWithAccount => 'Login to Your Account';
+
+  @override
+  String get enterEmail => 'Enter Your Email';
+
+  @override
+  String get enterValidEmail => 'Enter a Valid Email';
+
+  @override
+  String get username => 'Username';
+
+  @override
+  String get enterPassword => 'Enter Your Password';
+
+  @override
+  String get enterValidPassword => 'Password must be at least 6 characters';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get forgotPassword => 'Forgot Password';
+
+  @override
+  String get noAccount => 'Don\'t Have an Account?';
+
+  @override
+  String get signUp => 'Sign Up';
+
+  @override
   String get addProduct => 'Add Product';
 
   @override
@@ -76,6 +109,66 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signInWithGoogle => 'Login with Google';
+
+  @override
+  String get ozanUslan => 'Powered by Ozan Uslan';
+
+  @override
+  String get createAccount => 'Create your account';
+
+  @override
+  String get enterName => 'Please enter your name';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get enterSurname => 'Please enter your surname';
+
+  @override
+  String get surname => 'Surname';
+
+  @override
+  String get confirmPassword => 'Please confirm your password';
+
+  @override
+  String get passwordsNotMatch => 'Passwords do not match';
+
+  @override
+  String get alreadyHaveAccount => 'Already have an account?';
+
+  @override
+  String get forgotPasswordTitle => 'Forgot Password';
+
+  @override
+  String get verifyCodeTitle => 'Verify Code';
+
+  @override
+  String get enterEmailForReset => 'Please enter your email address to receive a verification code.';
+
+  @override
+  String get codeSentToEmail => 'A verification code has been sent to:';
+
+  @override
+  String get verificationCode => 'Verification Code';
+
+  @override
+  String get enterCode => 'Please enter the verification code';
+
+  @override
+  String get invalidCode => 'Invalid verification code';
+
+  @override
+  String get sendCodeButton => 'Send Code';
+
+  @override
+  String get verifyButton => 'Verify';
+
+  @override
+  String get cancelButton => 'Cancel';
+
+  @override
+  String get passwordResetSuccess => 'Password reset link sent successfully!';
 
   @override
   String get deliveredStatus => 'Delivered';

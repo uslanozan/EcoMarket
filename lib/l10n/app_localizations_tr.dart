@@ -24,6 +24,39 @@ class AppLocalizationsTr extends AppLocalizations {
   String get homeWelcome => 'EcoMarket\'e Hoş Geldin';
 
   @override
+  String get welcome => 'Hoş Geldin';
+
+  @override
+  String get loginWithAccount => 'Hesabınıza Giriş Yapın';
+
+  @override
+  String get enterEmail => 'E-postanızı Girin';
+
+  @override
+  String get enterValidEmail => 'Geçerli Bir E-posta Girin';
+
+  @override
+  String get username => 'Kullanıcı Adı';
+
+  @override
+  String get enterPassword => 'Şifrenizi Girin';
+
+  @override
+  String get enterValidPassword => 'Şifre en az 6 karakter olmalı';
+
+  @override
+  String get password => 'Şifre';
+
+  @override
+  String get forgotPassword => 'Şifremi Unuttum';
+
+  @override
+  String get noAccount => 'Hesabınız Yok mu?';
+
+  @override
+  String get signUp => 'Üye Ol';
+
+  @override
   String get addProduct => 'Ürün Ekle';
 
   @override
@@ -76,6 +109,66 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get signInWithGoogle => 'Google ileGiriş Yap';
+
+  @override
+  String get ozanUslan => 'Ozan Uslan Tarafından Geliştirildi';
+
+  @override
+  String get createAccount => 'Hesabınızı oluşturun';
+
+  @override
+  String get enterName => 'Lütfen adınızı girin';
+
+  @override
+  String get name => 'Adınız';
+
+  @override
+  String get enterSurname => 'Lütfen soyadınızı girin';
+
+  @override
+  String get surname => 'Soyadınız';
+
+  @override
+  String get confirmPassword => 'Lütfen şifrenizi tekrar girin';
+
+  @override
+  String get passwordsNotMatch => 'Şifreler eşleşmiyor';
+
+  @override
+  String get alreadyHaveAccount => 'Zaten hesabınız var mı?';
+
+  @override
+  String get forgotPasswordTitle => 'Şifremi Unuttum';
+
+  @override
+  String get verifyCodeTitle => 'Doğrulama Kodu';
+
+  @override
+  String get enterEmailForReset => 'Doğrulama kodu almak için lütfen e-posta adresinizi girin.';
+
+  @override
+  String get codeSentToEmail => 'Doğrulama kodu e-posta adresinize gönderildi:';
+
+  @override
+  String get verificationCode => 'Doğrulama Kodu';
+
+  @override
+  String get enterCode => 'Lütfen doğrulama kodunu girin';
+
+  @override
+  String get invalidCode => 'Geçersiz doğrulama kodu';
+
+  @override
+  String get sendCodeButton => 'Kod Gönder';
+
+  @override
+  String get verifyButton => 'Doğrula';
+
+  @override
+  String get cancelButton => 'İptal';
+
+  @override
+  String get passwordResetSuccess => 'Şifre sıfırlama bağlantısı başarıyla gönderildi!';
 
   @override
   String get deliveredStatus => 'Teslim Edildi';

@@ -1,6 +1,7 @@
 import 'package:ecomarket/data/api/gemini_api.dart';
 import 'package:ecomarket/presentation/providers/gemini_provider.dart';
 import 'package:ecomarket/presentation/providers/product_provider.dart';
+import 'package:ecomarket/presentation/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -56,7 +57,7 @@ class EcoMarketApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            home: const HomeScreen(),
+            home: const LoginScreen(),
           );
         },
       ),

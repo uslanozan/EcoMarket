@@ -228,15 +228,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      );
-                    },
-                    child: Text("GİRİŞ YAPMA DENEMESİ"),
-                  ),
                   Center(
                       child: Text(
                     local.cardInfo,
