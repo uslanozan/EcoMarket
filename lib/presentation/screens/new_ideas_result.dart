@@ -74,6 +74,7 @@ class _NewIdeasResultState extends State<NewIdeasResult> {
           padding: const EdgeInsets.only(bottom: 24,top: 24,left: 3,right: 3),
           child: Column(
             children: [
+              SizedBox(height: 10,),
               Text(
                 AppLocalizations.of(context)!.newIdeaIsDone,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(

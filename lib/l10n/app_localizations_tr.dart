@@ -9,10 +9,49 @@ class AppLocalizationsTr extends AppLocalizations {
   AppLocalizationsTr([String locale = 'tr']) : super(locale);
 
   @override
-  String get appTitle => 'EcoMarket';
+  String get address => 'Adres';
+
+  @override
+  String get alreadyHaveAccount => 'Zaten hesabınız var mı?';
 
   @override
   String get answeredAllQuestions => 'Tebrikler! Tüm soruları yanıtladınız.';
+
+  @override
+  String get apiResponseNotJson => 'API yanıtı geçerli bir JSON formatında değil.';
+
+  @override
+  String get appTitle => 'EcoMarket';
+
+  @override
+  String get averageRating => 'Ortalama Derecelendirme';
+
+  @override
+  String get brandsSellers => 'Markalar/Satıcılar';
+
+  @override
+  String get cancelButton => 'İptal';
+
+  @override
+  String get cancelledStatus => 'İade Edildi';
+
+  @override
+  String get cardInfo => 'Daha Fazlası İçin Kartlara Dokun';
+
+  @override
+  String get close => 'Kapat';
+
+  @override
+  String get codeSentToEmail => 'Doğrulama kodu e-posta adresinize gönderildi:';
+
+  @override
+  String get competitiveLandscape => 'Rekabet Ortamı';
+
+  @override
+  String get confirmPassword => 'Lütfen şifrenizi tekrar girin';
+
+  @override
+  String get contactInfoTitle => 'İletişim Bilgileri';
 
   @override
   String get copied => 'Kopyalandı!';
@@ -21,169 +60,22 @@ class AppLocalizationsTr extends AppLocalizations {
   String get copyError => 'Kopyalanamadı';
 
   @override
-  String get homeWelcome => 'EcoMarket\'e Hoş Geldin';
-
-  @override
-  String get welcome => 'Hoş Geldin';
-
-  @override
-  String get loginWithAccount => 'Hesabınıza Giriş Yapın';
-
-  @override
-  String get enterEmail => 'E-postanızı Girin';
-
-  @override
-  String get enterValidEmail => 'Geçerli Bir E-posta Girin';
-
-  @override
-  String get username => 'Kullanıcı Adı';
-
-  @override
-  String get enterPassword => 'Şifrenizi Girin';
-
-  @override
-  String get enterValidPassword => 'Şifre en az 6 karakter olmalı';
-
-  @override
-  String get password => 'Şifre';
-
-  @override
-  String get forgotPassword => 'Şifremi Unuttum';
-
-  @override
-  String get noAccount => 'Hesabınız Yok mu?';
-
-  @override
-  String get signUp => 'Üye Ol';
-
-  @override
-  String get addProduct => 'Ürün Ekle';
-
-  @override
-  String get cardInfo => 'Daha Fazlası İçin Kartlara Dokun';
-
-  @override
-  String get ecoBotSuggestion => 'EcoBot\'tan Bugünkü Öneri';
-
-  @override
-  String get gotIt => 'Harika';
-
-  @override
-  String get generateNewProductIdeasFallBack => 'Oops! Yeni fikirler üretilirken bir sorun oluştu. Lütfen tekrar deneyin.';
-
-  @override
-  String get summarizeFeedbackFallBack => 'Oops! Müşteri yorumları analiz edilirken bir sorun oluştu. Lütfen tekrar deneyin.';
-
-  @override
-  String get newIdeasTitle => 'Yeni Ürün Fikirleri';
-
-  @override
-  String get summarizeFeedbackIsDone => 'Ürün Yorumları Analizi Hazır!';
-
-  @override
-  String get newIdeasSubtitle => 'EcoBot ile beraber yeni fikirlere yelken aç';
-
-  @override
-  String get ecoBot => 'EcoBot';
-
-  @override
-  String get soldProductGraph => 'Satılan Ürünler Pasta Grafiği';
-
-  @override
-  String get productStatusBar => 'Ürünlerin Teslim Edildi/İptal Edildi Oranı';
-
-  @override
-  String get graphTitle => 'Grafikler';
-
-  @override
-  String get signInSuccess => 'Başarılı Giriş';
-
-  @override
-  String get signInCancelled => 'Giriş İptal Edildi';
-
-  @override
-  String get signInFailed => 'Giriş Başarısız';
-
-  @override
-  String get loginTitle => 'Giriş Yap';
-
-  @override
-  String get signInWithGoogle => 'Google ileGiriş Yap';
-
-  @override
-  String get ozanUslan => 'Ozan Uslan Tarafından Geliştirildi';
-
-  @override
   String get createAccount => 'Hesabınızı oluşturun';
 
   @override
-  String get enterName => 'Lütfen adınızı girin';
+  String get customerLabel => 'Müşteri';
 
   @override
-  String get name => 'Adınız';
-
-  @override
-  String get enterSurname => 'Lütfen soyadınızı girin';
-
-  @override
-  String get surname => 'Soyadınız';
-
-  @override
-  String get confirmPassword => 'Lütfen şifrenizi tekrar girin';
-
-  @override
-  String get passwordsNotMatch => 'Şifreler eşleşmiyor';
-
-  @override
-  String get alreadyHaveAccount => 'Zaten hesabınız var mı?';
-
-  @override
-  String get forgotPasswordTitle => 'Şifremi Unuttum';
-
-  @override
-  String get verifyCodeTitle => 'Doğrulama Kodu';
-
-  @override
-  String get enterEmailForReset => 'Doğrulama kodu almak için lütfen e-posta adresinizi girin.';
-
-  @override
-  String get codeSentToEmail => 'Doğrulama kodu e-posta adresinize gönderildi:';
-
-  @override
-  String get verificationCode => 'Doğrulama Kodu';
-
-  @override
-  String get enterCode => 'Lütfen doğrulama kodunu girin';
-
-  @override
-  String get invalidCode => 'Geçersiz doğrulama kodu';
-
-  @override
-  String get sendCodeButton => 'Kod Gönder';
-
-  @override
-  String get verifyButton => 'Doğrula';
-
-  @override
-  String get cancelButton => 'İptal';
-
-  @override
-  String get passwordResetSuccess => 'Şifre sıfırlama bağlantısı başarıyla gönderildi!';
+  String get dateLabel => 'Tarih';
 
   @override
   String get deliveredStatus => 'Teslim Edildi';
 
   @override
-  String get cancelledStatus => 'İade Edildi';
+  String get differentProductCountLabel => 'Ürün Çeşidi Sayısı';
 
   @override
-  String get top5customers => 'En Çok Alım Yapan 5 Müşteri';
-
-  @override
-  String get sendMessageFallback => 'Mesaj oluşturulurken bir hata oldu.';
-
-  @override
-  String get ecoBotTalkHint => 'Konuşmak için yaz';
+  String get ecoBot => 'EcoBot';
 
   @override
   String get ecoBotInfoLabel => 'EcoBot Nedir?';
@@ -192,25 +84,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get ecoBotInfoMessage => 'EcoBot, e-ticaret, sürdürülebilirlik ve bilinçli yaşam alışkanlıkları üzerine günlük ipuçları ve öneriler sunmak için tasarlanmış akıllı bir asistandır. Google’ın Gemini yapay zekâsı tarafından desteklenen EcoBot, kullanıcıya özel, ilham verici ve sürdürülebilir yaşamı destekleyen öneriler üretir.\n\nEcoBot, Ozan Uslan tarafından geliştirilen EcoMarket uygulamasının temel bir özelliğidir. Amacı, sürdürülebilirliği günlük hayatın bir parçası hâline getirmek ve kullanıcıların daha bilinçli tercihler yapmasına yardımcı olmaktır. Tercihlerinizi öğrenen EcoBot, çevre dostu yaşam tarzına doğru atacağınız adımlarda size yol gösterir.\n\n👉 EcoBot, her gün daha iyi ve daha yeşil kararlar almanız için daima yanınızda.';
 
   @override
-  String get ecoProductTitle => 'Daha Çevreci Ürünler';
+  String get ecoBotSuggestion => 'EcoBot\'tan Bugünkü Öneri';
 
   @override
-  String get ecoProductSubtitle => 'EcoBot ürünlerini yenilemekte, geliştirmekte ve çevre dostu yapamakta sana yardımcı olur';
+  String get ecoBotTalkHint => 'Konuşmak için yaz';
 
   @override
-  String get ecoProductWelcomeText => 'EcoBot ile birlikte ürününü geliştirmeye hazır mısın?\n\nBana ürünün adını, açıklamasını, materyallerini ve satış yapmayı planladığın ülkeyi ver — gerisini birlikte halledelim.\n\nAmacımız, ürününü daha çevreci ve rekabetçi hale getirmek.\n\nEcoBot senin geliştirme asistanın olacak: sana birkaç soru soracak, ardından analiz yaparak çevresel etkileri azaltmaya ve ürününü iyileştirmeye yönelik öneriler sunacak.\n\nHazırsan, başlayalım ve daha sürdürülebilir bir ürüne birlikte adım atalım!';
-
-  @override
-  String get ecoProductQuestionName => 'Ürünün adı nedir?';
-
-  @override
-  String get ecoProductQuestionDescription => 'Ürünü tanımlayabilir misin?';
-
-  @override
-  String get ecoProductQuestionMaterial => 'Ürün hangi malzeme ya da malzemelerden yapılmıştır?';
-
-  @override
-  String get ecoProductQuestionTarget => 'Ürünün satışının hedeflendiği ülke veya ülkeler hangileri?';
+  String get ecoProductFallBack => 'Oops! Ürün geliştirmesi yapılırken bir sorun oluştu. Lütfen tekrar deneyin.';
 
   @override
   String get ecoProductHint1 => 'Ürününüzün adı, baskılı tişört...';
@@ -225,91 +105,100 @@ class AppLocalizationsTr extends AppLocalizations {
   String get ecoProductHint4 => 'Global, Türkiye, Rusya...';
 
   @override
-  String get ecoProductFallBack => 'Oops! Ürün geliştirmesi yapılırken bir sorun oluştu. Lütfen tekrar deneyin.';
-
-  @override
   String get ecoProductIsDone => 'Eco Ürün Geliştirmeleri Hazır!';
 
   @override
-  String get loading => 'Yükleniyor...';
+  String get ecoProductQuestionDescription => 'Ürünü tanımlayabilir misin?';
 
   @override
-  String get products => 'Ürünler';
+  String get ecoProductQuestionMaterial => 'Ürün hangi malzeme ya da malzemelerden yapılmıştır?';
 
   @override
-  String get save => 'Kaydet';
+  String get ecoProductQuestionName => 'Ürünün adı nedir?';
+
+  @override
+  String get ecoProductQuestionTarget => 'Ürünün satışının hedeflendiği ülke veya ülkeler hangileri?';
+
+  @override
+  String get ecoProductSubtitle => 'EcoBot ürünlerini yenilemekte, geliştirmekte ve çevre dostu yapamakta sana yardımcı olur';
+
+  @override
+  String get ecoProductTitle => 'Daha Çevreci Ürünler';
+
+  @override
+  String get ecoProductWelcomeText => 'EcoBot ile birlikte ürününü geliştirmeye hazır mısın?\n\nBana ürünün adını, açıklamasını, materyallerini ve satış yapmayı planladığın ülkeyi ver — gerisini birlikte halledelim.\n\nAmacımız, ürününü daha çevreci ve rekabetçi hale getirmek.\n\nEcoBot senin geliştirme asistanın olacak: sana birkaç soru soracak, ardından analiz yaparak çevresel etkileri azaltmaya ve ürününü iyileştirmeye yönelik öneriler sunacak.\n\nHazırsan, başlayalım ve daha sürdürülebilir bir ürüne birlikte adım atalım!';
 
   @override
   String get email => 'E-posta Adresi';
 
   @override
-  String get phone => 'Telefon Numarasu';
+  String get enterCode => 'Lütfen doğrulama kodunu girin';
 
   @override
-  String get address => 'Adres';
+  String get enterEmail => 'E-postanızı Girin';
 
   @override
-  String get noAddress => 'Adres Yok';
+  String get enterEmailForReset => 'Doğrulama kodu almak için lütfen e-posta adresinizi girin.';
 
   @override
-  String get contactInfoTitle => 'İletişim Bilgileri';
+  String get enterName => 'Lütfen adınızı girin';
 
   @override
-  String get sellerInfoTitle => 'Satış Bilgileri';
+  String get enterPassword => 'Şifrenizi Girin';
 
   @override
-  String get differentProductCountLabel => 'Ürün Çeşidi Sayısı';
+  String get enterSurname => 'Lütfen soyadınızı girin';
 
   @override
-  String get targetCountriesLabel => 'Satış Yapılabilen Ülkeler';
+  String get enterValidEmail => 'Geçerli Bir E-posta Girin';
 
   @override
-  String get processesLabel => 'Ürünlerin İşlem Durumu';
+  String get enterValidPassword => 'Şifre en az 6 karakter olmalı';
 
   @override
-  String get customerLabel => 'Müşteri';
+  String get existingProductsAndPrices => 'Mevcut Ürünler ve Fiyatlar';
 
   @override
-  String get quantityLabel => 'Miktar';
+  String get forgotPassword => 'Şifremi Unuttum';
 
   @override
-  String get dateLabel => 'Tarih';
+  String get forgotPasswordTitle => 'Şifremi Unuttum';
 
   @override
-  String get noSave => 'Kaydetmeden Çık';
+  String get generateNewProductIdeasFallBack => 'Oops! Yeni fikirler üretilirken bir sorun oluştu. Lütfen tekrar deneyin.';
 
   @override
-  String get close => 'Kapat';
+  String get gotIt => 'Harika';
 
   @override
-  String get profileTitle => 'Profil Sayfası';
+  String get graphTitle => 'Grafikler';
 
   @override
-  String get newPrice => 'Yeni Fiyatı Giriniz';
+  String get homeWelcome => 'EcoMarket\'e Hoş Geldin';
 
   @override
-  String get summarizeFeedbackWelcomeText => 'EcoBot şimdi seçtiğin ürünle ilgili yapılan müşteri yorumlarını analiz edecek.\n\nYorumları özetleyerek ürünün güçlü ve zayıf yönlerini senin için ortaya koyacak. Ayrıca, müşterilerden gelen geri bildirimlere dayanarak ürünü nasıl geliştirebileceğine dair öneriler sunacak.\n\nHedefimiz, kullanıcı deneyimini artırmak ve çevresel etkileri en aza indirecek şekilde ürünü daha sürdürülebilir hale getirmek.\n\nHazırsan, kullanıcı görüşlerinden yola çıkarak ürününü bir adım öteye taşıyalım!';
+  String get improvementSuggestions => 'Geliştirme Önerileri';
+
+  @override
+  String get invalidCode => 'Geçersiz doğrulama kodu';
+
+  @override
+  String get jsonParsingFailed => 'JSON ayrıştırma başarısız oldu';
+
+  @override
+  String get loading => 'Yükleniyor...';
+
+  @override
+  String get loginTitle => 'Giriş Yap';
+
+  @override
+  String get loginWithAccount => 'Hesabınıza Giriş Yapın';
+
+  @override
+  String get marketDemand => 'Pazar Talebi';
 
   @override
   String get marketResearchFallBack => 'Oops! Pazar araştırması yapılırken bir sorun oluştu. Lütfen tekrar deneyin.';
-
-  @override
-  String get marketResearchIsDone => 'Pazar Araştırması Tamamlandı!';
-
-  @override
-  String get marketResearchTitle => 'Pazar Araştırması';
-
-  @override
-  String get marketResearchSubtitle => 'EcoBot ile pazar ve fiyat araştırması yapalım';
-
-  @override
-  String get marketResearchWelcomeText => 'EcoBot ile birlikte e-ticaret pazarını keşfetmeye hazır mısın?\n\nVerdiğin ürün fikri ve hedef ülke doğrultusunda, benzer ürünlerin piyasada olup olmadığını, fiyat aralıklarını ve pazar trendlerini birlikte inceleyeceğiz.\n\nAmacımız, girişim yolculuğunda sana güçlü veriler sunmak ve fikrinin pazardaki yerini netleştirmek.\n\nEcoBot senin araştırma asistanın olacak: sana birkaç soru soracak, ardından verileri toplayıp analiz ederek sana özel bir pazar araştırması sunacak.\n\nHazırsan, başlayalım ve fikrini gerçeğe dönüştürme yolunda sağlam adımlar atalım!';
-
-  @override
-  String get marketResearchQuestionIdeaExplanation => 'Pazar araştırmasını hangi ürün fikri üzerine yapmak istersin?';
-
-  @override
-  String get marketResearchQuestionTarget => 'Bu ürün için pazar araştırmasını hangi ülke ya da ülkelerde yapmak istersin?';
 
   @override
   String get marketResearchHint1 => 'Telefon Kılıfı, Küpe, Sweatshirt...';
@@ -318,19 +207,25 @@ class AppLocalizationsTr extends AppLocalizations {
   String get marketResearchHint2 => 'Global, Amerika, Filipinler';
 
   @override
-  String get newIdeaQuestionCategory => 'Ürünün kategorisi ya da kategorileri ne olacak?';
+  String get marketResearchIsDone => 'Pazar Araştırması Tamamlandı!';
 
   @override
-  String get newIdeaQuestionMaterial => 'Ürünün materyali ya da materyalleri ne olacak?';
+  String get marketResearchQuestionIdeaExplanation => 'Pazar araştırmasını hangi ürün fikri üzerine yapmak istersin?';
 
   @override
-  String get newIdeaQuestionCountry => 'Ürünün hedef ülke ya da ülkeleri neresi olacak?';
+  String get marketResearchQuestionTarget => 'Bu ürün için pazar araştırmasını hangi ülke ya da ülkelerde yapmak istersin?';
 
   @override
-  String get newIdeaQuestionBudget => 'Ürünün bütçesi ne olacak?';
+  String get marketResearchSubtitle => 'EcoBot ile pazar ve fiyat araştırması yapalım';
 
   @override
-  String get newIdeaQuestionIsEco => 'Ürün çevre dostu olacak mı? Olacaksa ne düzeyde olacak?';
+  String get marketResearchTitle => 'Pazar Araştırması';
+
+  @override
+  String get marketResearchWelcomeText => 'EcoBot ile birlikte e-ticaret pazarını keşfetmeye hazır mısın?\n\nVerdiğin ürün fikri ve hedef ülke doğrultusunda, benzer ürünlerin piyasada olup olmadığını, fiyat aralıklarını ve pazar trendlerini birlikte inceleyeceğiz.\n\nAmacımız, girişim yolculuğunda sana güçlü veriler sunmak ve fikrinin pazardaki yerini netleştirmek.\n\nEcoBot senin araştırma asistanın olacak: sana birkaç soru soracak, ardından verileri toplayıp analiz ederek sana özel bir pazar araştırması sunacak.\n\nHazırsan, başlayalım ve fikrini gerçeğe dönüştürme yolunda sağlam adımlar atalım!';
+
+  @override
+  String get name => 'Adınız';
 
   @override
   String get newIdeaHint1 => 'Giyim, aksesuar, elektronik...';
@@ -348,38 +243,224 @@ class AppLocalizationsTr extends AppLocalizations {
   String get newIdeaHint5 => 'Hayır, biraz, olabilir...';
 
   @override
+  String get newIdeaIsDone => 'Fikirlerin Hazır!';
+
+  @override
+  String get newIdeasSubtitle => 'EcoBot ile beraber yeni fikirlere yelken aç';
+
+  @override
+  String get newIdeasTitle => 'Yeni Ürün Fikirleri';
+
+  @override
   String get newIdeasWelcomeText => 'EcoBot ile birlikte geleceğin yeni e-ticaret ürünlerini tasarlamaya ne dersin?\n\nYeni fikirlerinle dünyayı daha sürdürülebilir bir yer hâline getirmeye yardımcı olabilirsin.\n\nAmacımız, çevre dostu, yenilikçi ve ilham verici e-ticaret ürün fikirleri geliştirmek.\n\nEcoBot senin rehberin olacak: sana sorular soracak, fikirlerini şekillendirmen için yol gösterecek.\n\nHazırsan, şimdi cevaplarla vizyonunu paylaş ve geleceği birlikte inşa edelim!';
 
   @override
-  String get noResponse => 'Cevap alınamadı';
+  String get newIdeaQuestionBudget => 'Ürünün bütçesi ne olacak?';
+
+  @override
+  String get newIdeaQuestionCategory => 'Ürünün kategorisi ya da kategorileri ne olacak?';
+
+  @override
+  String get newIdeaQuestionCountry => 'Ürünün hedef ülke ya da ülkeleri neresi olacak?';
+
+  @override
+  String get newIdeaQuestionIsEco => 'Ürün çevre dostu olacak mı? Olacaksa ne düzeyde olacak?';
+
+  @override
+  String get newIdeaQuestionMaterial => 'Ürünün materyali ya da materyalleri ne olacak?';
+
+  @override
+  String get newPrice => 'Yeni Fiyatı Giriniz';
+
+  @override
+  String get no => 'Hayır';
+
+  @override
+  String get noAccount => 'Hesabınız Yok mu?';
+
+  @override
+  String get noAddress => 'Adres Yok';
+
+  @override
+  String get noSave => 'Kaydetmeden Çık';
+
+  @override
+  String get noSpecificProductInfo => 'Belirli bir ürün bilgisi bulunamadı.';
 
   @override
   String get noSuggestion => 'Uygun öneri bulunamadı';
 
   @override
+  String get noWeaknessesFound => 'Zayıf Yön Bulunmadı';
+
+  @override
+  String get ozanUslan => 'Ozan Uslan Tarafından Geliştirildi';
+
+  @override
+  String get overallSentiment => 'Genel Duygu';
+
+  @override
+  String get passwordsNotMatch => 'Şifreler eşleşmiyor';
+
+  @override
+  String get password => 'Şifre';
+
+  @override
+  String get passwordResetSuccess => 'Şifre sıfırlama bağlantısı başarıyla gönderildi!';
+
+  @override
+  String get phone => 'Telefon Numarasu';
+
+  @override
+  String get price => 'Fiyat';
+
+  @override
+  String get priceRange => 'Fiyat Aralığı';
+
+  @override
+  String get priceRanges => 'Fiyat Aralıkları';
+
+  @override
+  String get problematicPart => 'Sorunlu kısım';
+
+  @override
+  String get addProduct => 'Ürün Ekle';
+
+  @override
+  String get products => 'Ürünler';
+
+  @override
+  String get processesLabel => 'Ürünlerin İşlem Durumu';
+
+  @override
+  String get profileTitle => 'Profil Sayfası';
+
+  @override
+  String get quantityLabel => 'Miktar';
+
+  @override
+  String get ratingSummary => 'Derecelendirme Özeti';
+
+  @override
   String get restart => 'Yeniden Başla';
 
   @override
-  String get seeTheNewIdeas => 'Yeni Fikirleri Gör';
+  String get risksAndLimitations => 'Riskler ve Sınırlamalar';
 
   @override
-  String get seeTheMarketResearch => 'Market Araştırması sonuçlarını Gör';
+  String get save => 'Kaydet';
 
   @override
   String get seeTheImprovedProduct => 'Geliştirilmiş ürünü gör';
 
   @override
-  String get talkToEcoBot => 'EcoBot ile konuşmak için dokun';
+  String get seeTheMarketResearch => 'Market Araştırması sonuçlarını Gör';
 
   @override
-  String get userFeedbackTitle => 'Kullanıcı Yorumlarının Analizi';
+  String get seeTheNewIdeas => 'Yeni Fikirleri Gör';
 
   @override
-  String get userFeedbackSubtitle => 'EcoBot senin için kullanıcıların yorumlarını ve isteklerini analiz eder';
+  String get sellerInfoTitle => 'Satış Bilgileri';
+
+  @override
+  String get sendCodeButton => 'Kod Gönder';
+
+  @override
+  String get sendMessageFallback => 'Mesaj oluşturulurken bir hata oldu.';
+
+  @override
+  String get signUp => 'Üye Ol';
+
+  @override
+  String get signInCancelled => 'Giriş İptal Edildi';
+
+  @override
+  String get signInFailed => 'Giriş Başarısız';
+
+  @override
+  String get signInSuccess => 'Başarılı Giriş';
+
+  @override
+  String get signInWithGoogle => 'Google ileGiriş Yap';
+
+  @override
+  String get similarProductsAndMarketplaces => 'Benzer Ürünler ve Pazaryerleri';
+
+  @override
+  String get similarProductsAvailable => 'Benzer Ürünler Mevcut Mu?';
+
+  @override
+  String get soldProductGraph => 'Satılan Ürünler Pasta Grafiği';
+
+  @override
+  String get starRatingBreakdown => 'Yıldız Derecelendirme Dağılımı';
+
+  @override
+  String get strengths => 'Güçlü Yönler';
 
   @override
   String get summarizeCommentsButton => 'Analizi Gör';
 
   @override
-  String get newIdeaIsDone => 'Fikirlerin Hazır!';
+  String get summarizeFeedbackFallBack => 'Oops! Müşteri yorumları analiz edilirken bir sorun oluştu. Lütfen tekrar deneyin.';
+
+  @override
+  String get summarizeFeedbackIsDone => 'Ürün Yorumları Analizi Hazır!';
+
+  @override
+  String get summarizeFeedbackWelcomeText => 'EcoBot şimdi seçtiğin ürünle ilgili yapılan müşteri yorumlarını analiz edecek.\n\nYorumları özetleyerek ürünün güçlü ve zayıf yönlerini senin için ortaya koyacak. Ayrıca, müşterilerden gelen geri bildirimlere dayanarak ürünü nasıl geliştirebileceğine dair öneriler sunacak.\n\nHedefimiz, kullanıcı deneyimini artırmak ve çevresel etkileri en aza indirecek şekilde ürünü daha sürdürülebilir hale getirmek.\n\nHazırsan, kullanıcı görüşlerinden yola çıkarak ürününü bir adım öteye taşıyalım!';
+
+  @override
+  String get surname => 'Soyadınız';
+
+  @override
+  String get talkToEcoBot => 'EcoBot ile konuşmak için dokun';
+
+  @override
+  String get targetCountriesLabel => 'Satış Yapılabilen Ülkeler';
+
+  @override
+  String get targetCustomerSegments => 'Hedef Müşteri Segmentleri';
+
+  @override
+  String get top5customers => 'En Çok Alım Yapan 5 Müşteri';
+
+  @override
+  String get trendsAndGrowthPattern => 'Trendler ve Büyüme Modeli';
+
+  @override
+  String get userFeedbackSubtitle => 'EcoBot senin için kullanıcıların yorumlarını ve isteklerini analiz eder';
+
+  @override
+  String get userFeedbackTitle => 'Kullanıcı Yorumlarının Analizi';
+
+  @override
+  String get username => 'Kullanıcı Adı';
+
+  @override
+  String get verificationCode => 'Doğrulama Kodu';
+
+  @override
+  String get verifyButton => 'Doğrula';
+
+  @override
+  String get verifyCodeTitle => 'Doğrulama Kodu';
+
+  @override
+  String get welcome => 'Hoş Geldin';
+
+  @override
+  String get weaknesses => 'Zayıf Yönler';
+
+  @override
+  String get yes => 'Evet';
+
+  @override
+  String get productStatusBar => 'Ürünlerin Teslim Edildi/İptal Edildi Oranı';
+
+  @override
+  String get notAvailable => 'Mevcut Değil';
+
+  @override
+  String get noResponse => 'Cevap alınamadı';
 }

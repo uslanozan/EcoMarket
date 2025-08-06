@@ -1,18 +1,20 @@
+import 'package:ecomarket/core/globals/globals.dart';
 import 'package:ecomarket/core/mock/mock_products.dart';
 import 'package:ecomarket/core/models/product.dart';
 import 'package:ecomarket/l10n/app_localizations.dart';
+import 'package:ecomarket/presentation/screens/improve_product_result.dart';
 import 'package:ecomarket/presentation/screens/summarize_feedback_result_screen.dart';
 import 'package:ecomarket/presentation/widgets/doodle_background.dart';
 import 'package:flutter/material.dart';
 
-class ChooseSummarizeProduct extends StatefulWidget {
-  const ChooseSummarizeProduct({super.key});
+class ChooseImproveProduct extends StatefulWidget {
+  const ChooseImproveProduct({super.key});
 
   @override
-  State<ChooseSummarizeProduct> createState() => _ChooseSummarizeProductState();
+  State<ChooseImproveProduct> createState() => _ChooseImproveProductState();
 }
 
-class _ChooseSummarizeProductState extends State<ChooseSummarizeProduct> {
+class _ChooseImproveProductState extends State<ChooseImproveProduct> {
   Product? _selectedProduct;
 
   @override
@@ -79,17 +81,24 @@ class _ChooseSummarizeProductState extends State<ChooseSummarizeProduct> {
                         onPressed: _selectedProduct == null
                             ? null
                             : () {
+                          global_ecoImproveAnswers['name'] = _selectedProduct!.name.toString();
+                          global_ecoImproveAnswers['description'] = _selectedProduct!.description.toString();
+                          // buralar textformfield'dan gelecek
+                          //global_ecoImproveAnswers['material'] = _selectedProduct!..toString();
+                          //global_ecoImproveAnswers['targetCountry'] = _selectedProduct!.t.toString();
+
+
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SummarizeFeedbackResultScreen(product: _selectedProduct!),
+                              builder: (context) => ImproveProductResult(),
                             ),
                           );
                         },
                         style: ElevatedButton.styleFrom(
                           minimumSize: const Size(double.infinity, 50),
                         ),
-                        child: Text(AppLocalizations.of(context)!.summarizeCommentsButton),
+                        child: Text(AppLocalizations.of(context)!.seeTheImprovedProduct),
                       ),
                     ),
                   ],

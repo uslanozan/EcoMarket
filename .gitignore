@@ -1,6 +1,8 @@
 # env
 .env
 
+untranslated_messages.json
+
 # Miscellaneous
 *.class
 *.log

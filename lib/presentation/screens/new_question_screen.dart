@@ -49,7 +49,7 @@ class _NewQuestionPageState extends State<NewQuestionPage> {
     }
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -57,9 +57,9 @@ class _NewQuestionPageState extends State<NewQuestionPage> {
               child: Container(
                 height: 600,
                 width: double.infinity,
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Align(
                       alignment: Alignment.topCenter,
@@ -67,59 +67,61 @@ class _NewQuestionPageState extends State<NewQuestionPage> {
                         question: widget.question,
                       ),
                     ),
-                    Spacer(),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: TextFormField(
-                              controller: _answerController,
-                              decoration: InputDecoration(
-                                hintText: widget.hint,
-                                hintStyle: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall!
-                                    .copyWith(fontStyle: FontStyle.italic),
+                    const SizedBox(height: 100),
+                    Expanded(
+                        child:Center(
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _answerController,
+                                  decoration: InputDecoration(
+                                    hintText: widget.hint,
+                                    hintStyle: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .copyWith(fontStyle: FontStyle.italic),
+                                  ),
+                                ),
                               ),
-                            ),
+                              const SizedBox(width: 4), // buton ile alan arasında boşluk
+                              IconButton(
+                                onPressed: () {
+                                  logPrint(logTag: "_isAnswerSaved: ",logMessage: '$_isAnswerSaved');
+                                  logPrint(logTag: "_answerController: ",logMessage: _answerController.text.trim());
+
+
+                                  if (_answerController.text.trim().isNotEmpty) {
+                                    widget.globMap[widget.questionType] = _answerController.text.trim();
+                                    logPrint(
+                                      logTag: "${widget.globMap}",
+                                      logMessage: "Kaydedildi: ${widget.questionType} = ${_answerController.text.trim()}",
+                                    );
+                                  } else {
+                                    // Cevap boşsa "-" olarak kaydet
+                                    widget.globMap[widget.questionType] = '-';
+                                    logPrint(
+                                      logTag: "${widget.globMap}",
+                                      logMessage: "Boş cevap, - ile kaydedildi: ${widget.questionType}",
+                                    );
+                                  }
+
+                                  logPrint(logTag: "${widget.globMap}", logMessage: '$widget.globMap');
+
+                                  setState(() {
+                                    _isAnswerSaved = true;
+                                  });
+                                },
+                                icon: _isAnswerSaved
+                                    ? Icon(Icons.done,color: AppTheme.primaryGreenLight,)
+                                    : Icon(Icons.send,color: AppTheme.primaryGreenLight,),
+                                //icon: Icon(Icons.send,color: AppTheme.primaryGreenLight,),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 4), // buton ile alan arasında boşluk
-                          IconButton(
-                            onPressed: () {
-                              logPrint(logTag: "_isAnswerSaved: ",logMessage: '$_isAnswerSaved');
-                              logPrint(logTag: "_answerController: ",logMessage: _answerController.text.trim());
-
-
-                              if (_answerController.text.trim().isNotEmpty) {
-                                widget.globMap[widget.questionType] = _answerController.text.trim();
-                                logPrint(
-                                  logTag: "${widget.globMap}",
-                                  logMessage: "Kaydedildi: ${widget.questionType} = ${_answerController.text.trim()}",
-                                );
-                              } else {
-                                // Cevap boşsa "-" olarak kaydet
-                                widget.globMap[widget.questionType] = '-';
-                                logPrint(
-                                  logTag: "${widget.globMap}",
-                                  logMessage: "Boş cevap, - ile kaydedildi: ${widget.questionType}",
-                                );
-                              }
-
-                              logPrint(logTag: "${widget.globMap}", logMessage: '$widget.globMap');
-
-                              setState(() {
-                                _isAnswerSaved = true;
-                              });
-                            },
-                            icon: _isAnswerSaved
-                                ? Icon(Icons.done,color: AppTheme.primaryGreenLight,)
-                                : Icon(Icons.send,color: AppTheme.primaryGreenLight,),
-                            //icon: Icon(Icons.send,color: AppTheme.primaryGreenLight,),
-                          ),
-                        ],
-                      ),
+                        ),
                     ),
+                    SizedBox(height: 15,)
                   ],
                 ),
               ),

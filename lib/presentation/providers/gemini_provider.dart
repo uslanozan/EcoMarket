@@ -91,6 +91,7 @@ Respond in $answerLanguage.
       _setMessage(result?.output ?? fallBackText, false);
     } catch (e) {
       logPrint(logTag: "sendMessage", logMessage: "Result Error: \n$e");
+      _setMessage(fallBackText, false);
       _setError(e.toString());
     }
   }
@@ -161,7 +162,6 @@ Answer in $answerLanguage.
     _setLoading();
 
     logPrint(logTag: "doMarketResearch: ",logMessage: "$productIdea, $targetCountries, $answerLanguage, $fallBackText");
-
 
     final prompt = '''
 Some of the parameters below may be written in Turkish. Please translate them to English before processing the request, and only use the translated versions in your reasoning. 
@@ -299,9 +299,9 @@ Comment Analysis
 Identify the most frequently mentioned strengths and weaknesses. Present them clearly, with short explanations.
 
 Improvement Suggestions
-List practical improvement suggestions derived from the user feedback. Start each suggestion with ++ and make them concise and actionable.
+List practical improvement suggestions derived from the user feedback and make them concise and actionable.
 
-Answer in $answerLanguage and JSON format to make parsing easy.
+Answer in $answerLanguage and JSON format to make parsing easy but don't add JSON markdown (```).
 ''';
 
     logPrint(logTag: "summarizeUserFeedback: ",logMessage: "Prompt is: \n $prompt");
